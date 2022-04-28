@@ -1,2 +1,3 @@
-# effect-zoo
-Effect Zoo for Scala
+# Effect Zoo for Scala
+
+:construction: WIP :construction:

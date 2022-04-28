@@ -1,2 +1,14 @@
 *.class
 *.log
+
+dist/
+target
+project/.sbt
+metals.sbt
+.tasty
+.bloop
+.bsp
+.metals
+.vscode
+.idea
+.DS_Store
