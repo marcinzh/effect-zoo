@@ -23,6 +23,7 @@ object Contest:
       Cdown,
       Fibo,
       Mulst,
+      Reint,
     )
 
   def fromString(text: String): Contest =
