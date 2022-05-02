@@ -10,9 +10,8 @@ import org.atnos.eff.syntax.all._
 
 object CatsEff extends Cdown.Entry(Contender.CatsEff):
   type MyState[A] = State[Int, A]
-  type _myState[U] = MyState |= U
 
-  def program[U: _myState]: Eff[U, Int] =
+  def program[U](using MyState |= U): Eff[U, Int] =
     get.flatMap { n =>
       if n <= 0
       then n.pure

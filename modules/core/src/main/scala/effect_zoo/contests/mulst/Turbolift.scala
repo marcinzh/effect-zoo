@@ -21,7 +21,7 @@ object Turbolift extends Mulst.Entry(Contender.Turbolift):
   override def round1 =
     def prog(n: Int): Unit !! MyState1 =
       if n <= 0
-      then !!.pure()
+      then !!.unit
       else
         MyState1.modify(_ + 1) &&!
         MyState1.modify(_ + 10) &&!
@@ -37,7 +37,7 @@ object Turbolift extends Mulst.Entry(Contender.Turbolift):
   override def round2 =
     def prog(n: Int): Unit !! (MyState1 & MyState2) =
       if n <= 0
-      then !!.pure()
+      then !!.unit
       else
         MyState1.modify(_ + 1) &&!
         MyState2.modify(_ + 10) &&!
@@ -53,7 +53,7 @@ object Turbolift extends Mulst.Entry(Contender.Turbolift):
   override def round3 =
     def prog(n: Int): Unit !! (MyState1 & MyState2 & MyState3) =
       if n <= 0
-      then !!.pure()
+      then !!.unit
       else
         MyState1.modify(_ + 1) &&!
         MyState2.modify(_ + 10) &&!
@@ -63,17 +63,13 @@ object Turbolift extends Mulst.Entry(Contender.Turbolift):
         prog(n - 1)
 
     prog(Mulst.LIMIT)
-    .runWith((
-      MyState1.handler(0) ***!
-      MyState2.handler(0) ***!
-      MyState3.handler(0)
-    ).exec)
+    .runWith((MyState1.handler(0) ***! MyState2.handler(0) ***! MyState3.handler(0)).exec)
 
 
   override def round4 =
     def prog(n: Int): Unit !! (MyState1 & MyState2 & MyState3 & MyState4) =
       if n <= 0
-      then !!.pure()
+      then !!.unit
       else
         MyState1.modify(_ + 1) &&!
         MyState2.modify(_ + 10) &&!
@@ -94,7 +90,7 @@ object Turbolift extends Mulst.Entry(Contender.Turbolift):
   override def round5 =
     def prog(n: Int): Unit !! (MyState1 & MyState2 & MyState3 & MyState4 & MyState5) =
       if n <= 0
-      then !!.pure()
+      then !!.unit
       else
         MyState1.modify(_ + 1) &&!
         MyState2.modify(_ + 10) &&!

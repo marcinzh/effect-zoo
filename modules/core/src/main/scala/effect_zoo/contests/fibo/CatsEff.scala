@@ -13,12 +13,8 @@ object CatsEff extends Fibo.Entry(Contender.CatsEff):
   type MyReader[A] = Reader[Int, A]
   type MyWriter[A] = Writer[Int, A]
   type MyState[A] = State[Int, A]
-  type _myEither[U] = MyEither |= U
-  type _myReader[U] = MyReader |= U
-  type _myWriter[U] = MyWriter |= U
-  type _myState[U] = MyState |= U
   
-  def fibo[U: _myReader: _myWriter: _myState: _myEither](a: Int): Eff[U, Int] =
+  def fibo[U](a: Int)(using MyReader |= U, MyWriter |= U, MyState |= U, MyEither |= U): Eff[U, Int] =
     for
       b <- get
       _ <- put(a)
@@ -37,7 +33,7 @@ object CatsEff extends Fibo.Entry(Contender.CatsEff):
 
     fibo[MyEff](1)
     .runState(0)
-    .runWriterFold(WriterEffect.MonoidFold[Int])
+    .runWriterMonoid
     .runReader(Fibo.LIMIT)
     .runEither
     .run

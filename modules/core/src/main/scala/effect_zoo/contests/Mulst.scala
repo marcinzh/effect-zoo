@@ -26,4 +26,5 @@ object Mulst extends Contest5:
     Vector(
       CatsCore,
       Turbolift,
+      // ZioMono,
     )

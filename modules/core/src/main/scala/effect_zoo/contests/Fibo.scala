@@ -24,5 +24,6 @@ object Fibo extends Contest1:
       Turbolift,
       Turbolift_RWS,
       ZioCake,
+      ZioMono,
       Zpure,
     )
