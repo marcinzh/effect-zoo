@@ -1,5 +1,6 @@
 package effect_zoo.contests.fibo
 import effect_zoo.contests.{Fibo, Contender}
+import effect_zoo.contests.ZioBenchmarkRuntime
 import scala.util.chaining._
 import cats.Monoid
 import cats.syntax.semigroup._
@@ -31,7 +32,7 @@ object ZioCake extends Fibo.Entry(Contender.ZIO % "Cake"):
     yield (a, w, s))
     .pipe(provideCake(Fibo.LIMIT, 0))
     .either
-    .pipe(Runtime.default.mapPlatform(_.withTracing(zio.internal.Tracing.disabled)).unsafeRun)
+    .pipe(ZioBenchmarkRuntime.unsafeRun)
 
 
 object ZioCake_Aux:

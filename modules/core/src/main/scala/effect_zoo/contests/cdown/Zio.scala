@@ -1,5 +1,6 @@
 package effect_zoo.contests.cdown
 import effect_zoo.contests.{Cdown, Contender}
+import effect_zoo.contests.ZioBenchmarkRuntime
 import scala.util.chaining._
 import zio._
 import Zio_Aux._
@@ -15,7 +16,7 @@ object Zio extends Cdown.Entry(Contender.ZIO):
 
   override def round1 =
     State.run(program, Cdown.LIMIT)
-    .pipe(Runtime.default.mapPlatform(_.withTracing(zio.internal.Tracing.disabled)).unsafeRun)
+    .pipe(ZioBenchmarkRuntime.unsafeRun)
 
 
 object Zio_Aux:
