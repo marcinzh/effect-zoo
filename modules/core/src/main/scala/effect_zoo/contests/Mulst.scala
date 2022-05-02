@@ -27,4 +27,6 @@ object Mulst extends Contest5:
       CatsCore,
       Turbolift,
       // ZioMono,
+      ZioEnv,
+      ZioStateful,
     )

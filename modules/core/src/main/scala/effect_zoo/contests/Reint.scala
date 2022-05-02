@@ -51,4 +51,5 @@ object Reint extends Contest3:
       cats_eff.Main,
       turbolift_.Main,
       zio_mono.Main,
+      zio_layer.Main,
     )

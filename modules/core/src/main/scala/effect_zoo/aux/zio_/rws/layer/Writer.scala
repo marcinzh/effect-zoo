@@ -9,11 +9,11 @@ trait Writer[W]:
   def listen[U, E, A](body: ZIO[U, E, A]): ZIO[U, E, (A, W)]
 
 object Writer:
-  def tell[W: Tag](w: W): URIO[Has[Writer[W]], Unit] = ZIO.serviceWith[Writer[W]](_.tell(w))
+  def tell[W: Tag](w: W): URIO[Writer[W], Unit] = ZIO.serviceWithZIO[Writer[W]](_.tell(w))
   def listen[W] = new ListenApply[W]
   class ListenApply[W]:
-    def apply[U <: Has[Writer[W]], E, A](body: ZIO[U, E, A])(using Tag[W]): ZIO[U, E, (A, W)] =
-      ZIO.serviceWith[Writer[W]](ZIO.succeed(_)).flatMap(_.listen(body))
+    def apply[U <: Writer[W], E, A](body: ZIO[U, E, A])(using Tag[W]): ZIO[U, E, (A, W)] = ZIO.serviceWithZIO[Writer[W]](_.listen(body))
+      // ZIO.serviceWith[Writer[W]](ZIO.succeed(_)).flatMap(_.listen(body))
 
 
 case class WriterLive[W: Tag: Monoid](ref: Ref[W]) extends Writer[W]:
@@ -26,4 +26,4 @@ case class WriterLive[W: Tag: Monoid](ref: Ref[W]) extends Writer[W]:
     yield (a, w1)
 
 object WriterLive:
-  def layer[W: Tag: Monoid]: ULayer[Has[Writer[W]]] = ZLayer.fromEffect(Ref.make[W](Monoid.empty).map(WriterLive.apply))
+  def layer[W: Tag: Monoid]: ULayer[Writer[W]] = ZLayer.fromZIO(Ref.make[W](Monoid.empty).map(WriterLive.apply))

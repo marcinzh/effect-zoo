@@ -17,7 +17,10 @@ class Cdown {
   val CatsEff__run = reg.findRound("CatsEff", 0).run
   val Turbolift__run = reg.findRound("Turbolift", 0).run
   val ZIO_Cake__run = reg.findRound("ZIO_Cake", 0).run
+  val ZIO_Env__run = reg.findRound("ZIO_Env", 0).run
+  val ZIO_Layer__run = reg.findRound("ZIO_Layer", 0).run
   val ZIO_Mono__run = reg.findRound("ZIO_Mono", 0).run
+  val ZIO_Stateful__run = reg.findRound("ZIO_Stateful", 0).run
   val ZPure__run = reg.findRound("ZPure", 0).run
   
   @Benchmark def CatsCore = CatsCore__run()
@@ -25,6 +28,9 @@ class Cdown {
   @Benchmark def CatsEff = CatsEff__run()
   @Benchmark def Turbolift = Turbolift__run()
   @Benchmark def ZIO_Cake = ZIO_Cake__run()
+  @Benchmark def ZIO_Env = ZIO_Env__run()
+  @Benchmark def ZIO_Layer = ZIO_Layer__run()
   @Benchmark def ZIO_Mono = ZIO_Mono__run()
+  @Benchmark def ZIO_Stateful = ZIO_Stateful__run()
   @Benchmark def ZPure = ZPure__run()
 }

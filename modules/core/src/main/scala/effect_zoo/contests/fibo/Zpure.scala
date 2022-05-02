@@ -2,6 +2,7 @@ package effect_zoo.contests.fibo
 import effect_zoo.contests.{Fibo, Contender}
 import scala.util.chaining._
 import zio.prelude.fx.ZPure
+import zio.ZEnvironment
 
 
 object Zpure extends Fibo.Entry(Contender.ZPure):
@@ -11,7 +12,7 @@ object Zpure extends Fibo.Entry(Contender.ZPure):
       _ <- ZPure.set(a)
       c = a + b
       _ <- ZPure.log(c)
-      d <- ZPure.access[Int](x => x)
+      d <- ZPure.serviceWith[Int](x => x)
       e <-
         if c < d
         then fibo(c)
@@ -20,7 +21,7 @@ object Zpure extends Fibo.Entry(Contender.ZPure):
 
   override def round1 =
     fibo(1)
-    .provide(Fibo.LIMIT)
+    .provideEnvironment(ZEnvironment(Fibo.LIMIT))
     .runAll(0)
     .pipe { case (ww, ee) =>
       val w = ww.foldLeft(0)(_ + _)

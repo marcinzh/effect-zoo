@@ -20,6 +20,9 @@ object Cdown extends Contest1:
       CatsEff,
       Turbolift,
       ZioCake,
+      ZioEnv,
+      ZioLayer,
       ZioMono,
+      ZioStateful,
       Zpure,
     )

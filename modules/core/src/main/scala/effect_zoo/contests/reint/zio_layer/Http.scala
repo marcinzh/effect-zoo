@@ -1,6 +1,6 @@
-package effect_zoo.contests.reint.zio_mono
+package effect_zoo.contests.reint.zio_layer
 import zio._
-import effect_zoo.aux.zio_.rws.mono.Reader
+import effect_zoo.aux.zio_.rws.layer.Reader
 
 
 trait Http:
@@ -18,6 +18,4 @@ object MockResponses:
     val layer: URLayer[ResponseReader, Http] = ZLayer.fromFunction(HttpLive.apply _)
 
 
-object ResponseReader extends Reader[String]
-
-type ResponseReader = ResponseReader.Service
+type ResponseReader = Reader[String]

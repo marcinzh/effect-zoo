@@ -8,9 +8,9 @@ trait State[S]:
     def put(s: S): UIO[Unit]
     def update(f: S => S): UIO[Unit]
 
-  def get: URIO[Has[Service], S] = ZIO.serviceWith[Service](_.get)
-  def put(s: S): URIO[Has[Service], Unit] = ZIO.serviceWith[Service](_.put(s))
-  def update(f: S => S): URIO[Has[Service], Unit] = ZIO.serviceWith[Service](_.update(f))
+  def get: URIO[Service, S] = ZIO.serviceWithZIO[Service](_.get)
+  def put(s: S): URIO[Service, Unit] = ZIO.serviceWithZIO[Service](_.put(s))
+  def update(f: S => S): URIO[Service, Unit] = ZIO.serviceWithZIO[Service](_.update(f))
       
 
   final case class Live(ref: Ref[S]) extends Service:
@@ -19,4 +19,4 @@ trait State[S]:
     override def update(f: S => S): UIO[Unit] = ref.update(f)
 
   object Live:
-    def layer(s: S): ULayer[Has[Service]] = ZLayer.fromEffect(Ref.make(s).map(Live(_)))
+    def layer(s: S): ULayer[Service] = ZLayer.fromZIO(Ref.make(s).map(Live(_)))

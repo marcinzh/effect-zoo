@@ -3,10 +3,10 @@ import effect_zoo.contests.{Cdown, Contender}
 import scala.util.chaining._
 import zio._
 import effect_zoo.aux.zio_.BenchmarkRuntime
-import effect_zoo.aux.zio_.rws.cake.{Reader, Writer, State, Cake}
+import effect_zoo.aux.zio_.rws.env.State
 
 
-object ZioCake extends Cdown.Entry(Contender.ZIO % "Cake"):
+object ZioEnv extends Cdown.Entry(Contender.ZIO % "Env"):
   def program: URIO[State[Int], Int] =
     State.get[Int].flatMap { n =>
       if n <= 0
@@ -16,8 +16,8 @@ object ZioCake extends Cdown.Entry(Contender.ZIO % "Cake"):
 
   override def round1 =
     (for
-      cake <- Cake[Int, Int, Int](0, Cdown.LIMIT)
-      prog = program <*> State.get[Int]
-      as <- prog.provideService(cake)
+      env <- State.env(Cdown.LIMIT)
+      prog2 = program <*> State.get[Int]
+      as <- prog2.provideEnvironment(env)
     yield as)
     .pipe(BenchmarkRuntime.unsafeRun)

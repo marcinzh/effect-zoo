@@ -8,9 +8,9 @@ trait State[S]:
   def update(f: S => S): UIO[Unit]
 
 object State:
-  def get[S: Tag]: URIO[Has[State[S]], S] = ZIO.serviceWith[State[S]](_.get)
-  def put[S: Tag](s: S): URIO[Has[State[S]], Unit] = ZIO.serviceWith[State[S]](_.put(s))
-  def update[S: Tag](f: S => S): URIO[Has[State[S]], Unit] = ZIO.serviceWith[State[S]](_.update(f))
+  def get[S: Tag]: URIO[State[S], S] = ZIO.serviceWithZIO[State[S]](_.get)
+  def put[S: Tag](s: S): URIO[State[S], Unit] = ZIO.serviceWithZIO[State[S]](_.put(s))
+  def update[S: Tag](f: S => S): URIO[State[S], Unit] = ZIO.serviceWithZIO[State[S]](_.update(f))
 
 
 case class StateLive[S: Tag](ref: Ref[S]) extends State[S]:
@@ -19,4 +19,4 @@ case class StateLive[S: Tag](ref: Ref[S]) extends State[S]:
   override def update(f: S => S): UIO[Unit] = ref.update(f)
 
 object StateLive:
-  def layer[S: Tag](s: S): ULayer[Has[State[S]]] = ZLayer.fromEffect(Ref.make[S](s).map(StateLive.apply))
+  def layer[S: Tag](s: S): ULayer[State[S]] = ZLayer.fromZIO(Ref.make[S](s).map(StateLive.apply))

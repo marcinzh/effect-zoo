@@ -23,7 +23,10 @@ object Fibo extends Contest1:
       CatsEff,
       Turbolift,
       Turbolift_RWS,
-      ZioCake,
+      // ZioCake,
       ZioMono,
+      ZioLayer,
+      ZioEnv,
+      ZioStateful,
       Zpure,
     )

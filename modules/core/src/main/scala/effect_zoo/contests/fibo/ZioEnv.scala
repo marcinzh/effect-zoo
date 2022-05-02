@@ -6,10 +6,10 @@ import cats.syntax.semigroup._
 import cats.instances.int._
 import zio._
 import effect_zoo.aux.zio_.BenchmarkRuntime
-import effect_zoo.aux.zio_.rws.cake.{Reader, Writer, State, Cake}
+import effect_zoo.aux.zio_.rws.env.{Reader, Writer, State}
 
 
-object ZioCake extends Fibo.Entry(Contender.ZIO % "Cake"):
+object ZioEnv extends Fibo.Entry(Contender.ZIO % "Env"):
   def fibo(a: Int): ZIO[Reader[Int] & Writer[Int] & State[Int], String, Int] =
     for
       b <- State.get[Int]
@@ -26,9 +26,11 @@ object ZioCake extends Fibo.Entry(Contender.ZIO % "Cake"):
 
   override def round1 =
     (for
-      cake <- Cake[Int, Int, Int](0, Fibo.LIMIT)
+      readerEnv <- Reader.env(Fibo.LIMIT)
+      writerEnv <- Writer.env[Int]
+      stateEnv <- State.env(0)
       prog = Writer.listen[Int](fibo(1)) <*> State.get[Int]
-      aws <- prog.provideService(cake)
+      aws <- prog.provideEnvironment(readerEnv ++ writerEnv ++ stateEnv)
     yield aws)
     .either
     .pipe(BenchmarkRuntime.unsafeRun)
