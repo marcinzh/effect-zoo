@@ -30,9 +30,9 @@ object Turbolift extends Fibo.Entry(Contender.Turbolift):
   override def round1 =
     fibo(1)
     .runWith(
-      MyState.handler(0) >>>!
-      MyWriter.handler >>>!
-      MyReader.handler(Fibo.LIMIT) >>>!
+      MyState.handler(0) &&&!
+      MyWriter.handler &&&!
+      MyReader.handler(Fibo.LIMIT) &&&!
       MyExcept.handler
     )
     .map { case ((a, s), w) => (a, w, s) }

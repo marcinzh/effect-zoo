@@ -1,4 +1,4 @@
-package effect_zoo.contests.reint.zio_
+package effect_zoo.contests.reint.zio_mono
 import effect_zoo.contests.Reint.Shared
 import zio._
 

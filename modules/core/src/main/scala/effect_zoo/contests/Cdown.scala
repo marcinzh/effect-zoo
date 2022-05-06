@@ -19,6 +19,7 @@ object Cdown extends Contest1:
       CatsMTL,
       CatsEff,
       Turbolift,
-      Zio,
+      ZioCake,
+      ZioMono,
       Zpure,
     )

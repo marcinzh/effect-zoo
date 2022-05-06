@@ -4,9 +4,9 @@ import effect_zoo.registry.{Contest3, Contender}
 
 object Reint extends Contest3:
   override def name = "Reint"
-  override def description = "Reinterpretation of effects into other effects"
-  override def description2 = "Effects used as modules, and reinterpretation as dependency passing"
-  override def roundNames = Vector(Shared.REPS1, Shared.REPS2, Shared.REPS3).map(n => s"$n reps")
+  override def description = "Reinterpretation (translation of effects into other effects)"
+  override def description2 = "Demonstrates FP way of \"program to an interface\""
+  override def roundNames = Vector(Shared.REPS1, Shared.REPS2, Shared.REPS3).map(n => s"$n queries/batch")
 
   override type Result1 = (Vector[String], Vector[String])
   override type Result2 = Result1
@@ -47,7 +47,8 @@ object Reint extends Contest3:
   override def enumEntries =
     import reint._
     Vector(
-      catsmtl_.Main,
+      cats_mtl.Main,
+      cats_eff.Main,
       turbolift_.Main,
-      zio_.Main,
+      zio_mono.Main,
     )

@@ -1,4 +1,4 @@
-package effect_zoo.contests.reint.catsmtl_
+package effect_zoo.contests.reint.cats_mtl
 import cats.mtl.Ask
 
 

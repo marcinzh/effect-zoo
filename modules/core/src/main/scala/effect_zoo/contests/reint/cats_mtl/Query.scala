@@ -1,4 +1,4 @@
-package effect_zoo.contests.reint.catsmtl_
+package effect_zoo.contests.reint.cats_mtl
 import effect_zoo.contests.Reint.Shared
 import cats._
 import cats.implicits._

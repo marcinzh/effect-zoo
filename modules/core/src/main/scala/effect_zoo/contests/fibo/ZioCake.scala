@@ -1,12 +1,12 @@
 package effect_zoo.contests.fibo
 import effect_zoo.contests.{Fibo, Contender}
-import effect_zoo.contests.ZioBenchmarkRuntime
 import scala.util.chaining._
 import cats.Monoid
 import cats.syntax.semigroup._
 import cats.instances.int._
 import zio._
-import ZioCake_Aux._
+import effect_zoo.aux.zio_.BenchmarkRuntime
+import effect_zoo.aux.zio_.rws.cake.{Reader, Writer, State, Cake}
 
 
 object ZioCake extends Fibo.Entry(Contender.ZIO % "Cake"):
@@ -26,48 +26,10 @@ object ZioCake extends Fibo.Entry(Contender.ZIO % "Cake"):
 
   override def round1 =
     (for
-      aw <- Writer.listen(fibo(1))
-      (a, w) = aw
-      s <- State.get[Int] 
+      cake <- Cake(Fibo.LIMIT, 0) 
+      prog = Writer.listen(fibo(1)) <*> State.get[Int]
+      aws <- prog.provide(cake)
+      ((a, w), s) = aws
     yield (a, w, s))
-    .pipe(provideCake(Fibo.LIMIT, 0))
     .either
-    .pipe(ZioBenchmarkRuntime.unsafeRun)
-
-
-object ZioCake_Aux:
-  trait Reader[R] { def reader: Ref[R] }
-  trait Writer[W] { def writer: Ref[W] }
-  trait State[S] { def state: Ref[S] }
-
-  object Reader:
-    def ask[R] = ZIO.accessM[Reader[R]](_.reader.get)
-
-  object Writer:
-    def tell[W: Monoid](w: W) = ZIO.accessM[Writer[W]](_.writer.update(_ |+| w).unit)
-    def listen[W: Monoid, U <: Writer[W], E, A](body: ZIO[U, E, A]): ZIO[U, E, (A, W)] =
-      for
-        w0 <- ZIO.accessM[Writer[W]](_.writer.get)
-        _ <- ZIO.accessM[Writer[W]](_.writer.set(Monoid[W].empty))
-        a <- body
-        w1 <- ZIO.accessM[Writer[W]](_.writer.getAndUpdate(w0 |+| _))
-      yield (a, w1)
-
-  object State:
-    def get[S] = ZIO.accessM[State[S]](_.state.get)
-    def put[S](s: S) = ZIO.accessM[State[S]](_.state.set(s).unit)
-
-  def provideCake[R, W: Monoid, S, E, A](r: R, s: S)(comp: ZIO[Reader[R] & Writer[W] & State[S], E, A]) =
-    class Cake(
-      override val reader: Ref[R],
-      override val writer: Ref[W],
-      override val state: Ref[S],
-    ) extends Reader[R] with Writer[W] with State[S]
-
-    for
-      writerSlice <- Ref.make(Monoid[W].empty)
-      stateSlice <- Ref.make(s)
-      readerSlice <- Ref.make(r)
-      cake <- ZIO.succeed(new Cake(readerSlice, writerSlice, stateSlice))
-      result <- comp.provide(cake)
-    yield result
+    .pipe(BenchmarkRuntime.unsafeRun)
