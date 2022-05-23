@@ -26,7 +26,7 @@ val Deps = {
     val catsEff = "org.atnos" %% "eff" % "5.18.0"
     val zio = "dev.zio" %% "zio" % "1.0.9"
     val zioPrelude = "dev.zio" %% "zio-prelude" % "1.0.0-RC5"
-    val turbolift = "com.github.marcinzh" %% "turbolift-core" % "0.21.0-SNAPSHOT"
+    val turbolift = "com.github.marcinzh" %% "turbolift-core" % "0.23.0-SNAPSHOT"
     val betterFiles = ("com.github.pathikrit" %% "better-files" % "3.9.1").cross(CrossVersion.for3Use2_13)
   }
   deps

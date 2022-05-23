@@ -13,7 +13,7 @@ enum Query[A]:
   case ListFruits() extends Query[Vector[String]]
 
 object Query:
-  def listFruits[U](using Query |= U) = ListFruits().send
+  def listFruits[U](using Query |= U): Eff[U, Vector[String]] = ListFruits().send
 
 
 def toLoggedHttp[R, U, A](comp: Eff[R, A])(using Member.Aux[Query, R, U], Http |= U, Logging |= U): Eff[U, A] =
@@ -27,4 +27,3 @@ def toLoggedHttp[R, U, A](comp: Eff[R, A])(using Member.Aux[Query, R, U], Http |
             lines = response.split('\n').toVector
           yield lines
   )
-

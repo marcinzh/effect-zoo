@@ -7,7 +7,7 @@ trait HttpSignature extends Signature:
   def get(url: String): String !@! ThisEffect
 
 case object Http extends Effect[HttpSignature] with HttpSignature:
-  final override def get(url: String): String !! this.type = perform(_.get(url))
+  final override def get(url: String): String !! ThisEffect = perform(_.get(url))
 
 type Http = Http.type  
 

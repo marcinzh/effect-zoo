@@ -12,7 +12,7 @@ enum Http[A]:
   case Get(url: String) extends Http[String]
 
 object Http:
-  def get[U](url: String)(using Http |= U) = Get(url).send
+  def get[U](url: String)(using Http |= U): Eff[U, String] = Get(url).send
 
 
 def mockResponses[R, U, A](comp: Eff[R, A])(using Member.Aux[Http, R, U], ResponseReader |= U): Eff[U, A] =

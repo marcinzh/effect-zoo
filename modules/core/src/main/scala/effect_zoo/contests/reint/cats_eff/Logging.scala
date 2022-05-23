@@ -12,7 +12,7 @@ enum Logging[A]:
   case LogMsg(url: String) extends Logging[Unit]
 
 object Logging:
-  def logMsg[U](text: String)(using Logging |= U) = LogMsg(text).send
+  def logMsg[U](text: String)(using Logging |= U): Eff[U, Unit] = LogMsg(text).send
 
 
 def accumulateLogMessages[R, U, A](comp: Eff[R, A])(using Member.Aux[Logging, R, U], LogWriter |= U): Eff[U, A] =
