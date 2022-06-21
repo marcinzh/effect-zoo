@@ -21,7 +21,7 @@ object Contest:
     import effect_zoo.contests._
     Vector(
       Cdown,
-      Fibo,
+      Sumh,
       Mulst,
       Reint,
     )

@@ -9,8 +9,8 @@ import effect_zoo.registry.Registry
 @State(Scope.Thread)
 @BenchmarkMode(Array(Mode.Throughput))
 @OutputTimeUnit(TimeUnit.SECONDS)
-class Fibo {
-  val reg = Registry.findByContestName("Fibo")
+class Sumh {
+  val reg = Registry.findByContestName("Sumh")
 
   val CatsCore__run = reg.findRound("CatsCore", 0).run
   val CatsCore_RWS__run = reg.findRound("CatsCore_RWS", 0).run

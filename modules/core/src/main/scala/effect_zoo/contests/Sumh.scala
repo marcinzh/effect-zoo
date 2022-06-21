@@ -2,20 +2,19 @@ package effect_zoo.contests
 import effect_zoo.registry.{Contest1, Contender}
 
 
-object Fibo extends Contest1:
-  override def name = "Fibo"
-  override def description = "Overengineered Fibonacci function"
+object Sumh extends Contest1:
+  override def name = "Sumh"
+  override def description = "Sums a series of natural numbers the hard way"
   override def description2 = "Uses Reader, Writer & State effects"
 
-  override type Result1 = Either[String, (Int, Int, Int)]
-  override def expected1 = Right((121393, 317809, 75025)).withLeft[String]
+  override type Result1 = Either[String, (Int, Long, Int)]
+  override def expected1 = Right((LIMIT, (LIMIT.toLong * (LIMIT + 1)) / 2, LIMIT + 1)).withLeft[String]
 
   val LIMIT = 100000
 
   override def enumEntries =
-    import fibo._
+    import sumh._
     Vector(
-      Unfunctional,
       CatsCore,
       CatsCore_RWS,
       CatsMTL,
@@ -26,4 +25,5 @@ object Fibo extends Contest1:
       ZioCake,
       ZioMono,
       Zpure,
+      Unfunctional,
     )
