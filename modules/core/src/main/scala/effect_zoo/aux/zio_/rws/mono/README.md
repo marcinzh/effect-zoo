@@ -30,5 +30,5 @@ val prog: UIO[S1 & S2, Unit] =
 	yield ()
 ```
 
-// Will compile. But won't work correctly, because ZIO 1.x runtime has can't distinguish `S1` from `S2`.
+Will compile. But won't work correctly, because ZIO 1.x runtime can't distinguish `S1` from `S2`.
 

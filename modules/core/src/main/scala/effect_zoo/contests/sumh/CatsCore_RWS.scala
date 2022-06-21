@@ -1,30 +1,29 @@
-package effect_zoo.contests.fibo
-import effect_zoo.contests.{Fibo, Contender}
+package effect_zoo.contests.sumh
+import effect_zoo.contests.{Sumh, Contender}
 import cats.{Monoid, Eval, Now}
 import cats.data.{ReaderWriterStateT, EitherT}
 import cats.implicits._
 
 
-object CatsCore_RWS extends Fibo.Entry(Contender.CatsCore % "RWS"):
-  val MyEffectStack = CatsCore_RWS_Aux.EffectStack[String, Int, Int, Int]
+object CatsCore_RWS extends Sumh.Entry(Contender.CatsCore % "RWS"):
+  val MyEffectStack = CatsCore_RWS_Aux.EffectStack[String, Int, Long, Int]
   import MyEffectStack._
 
-  def fibo(a: Int): Eff[Int] =
+  def prog: Eff[Int] =
     for
-      b <- liftRWS(ReaderWriterStateT.get)
-      _ <- liftRWS(ReaderWriterStateT.set(a))
-      c = a + b
-      _ <- liftRWS(ReaderWriterStateT.tell(c))
-      d <- liftRWS(ReaderWriterStateT.ask)
-      e <-
-        if c < d
-        then fibo(c)
-        else liftV(Now(c))
-    yield e
+      s <- liftRWS(ReaderWriterStateT.get)
+      _ <- liftRWS(ReaderWriterStateT.set(s + 1))
+      _ <- liftRWS(ReaderWriterStateT.tell(s))
+      r <- liftRWS(ReaderWriterStateT.ask)
+      x <-
+        if s < r
+        then prog
+        else liftV(Now(s))
+    yield x
 
   override def round1 =
-    fibo(1)
-    .run(Fibo.LIMIT, 0) // run RWS
+    prog
+    .run(Sumh.LIMIT, 0) // run RWS
     .value              // run Either
     .value              // run Eval
     .map { case (w, s, a) => (a, w, s) }

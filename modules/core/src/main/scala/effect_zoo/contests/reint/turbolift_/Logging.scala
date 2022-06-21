@@ -7,7 +7,7 @@ trait LoggingSignature extends Signature:
   def logMsg(text: String): Unit !@! ThisEffect
 
 case object Logging extends Effect[LoggingSignature] with LoggingSignature:
-  override def logMsg(text: String): Unit !! this.type = perform(_.logMsg(text))
+  override def logMsg(text: String): Unit !! ThisEffect = perform(_.logMsg(text))
 
 type Logging = Logging.type  
 

@@ -1,33 +1,32 @@
-package effect_zoo.contests.fibo
-import effect_zoo.contests.{Fibo, Contender}
+package effect_zoo.contests.sumh
+import effect_zoo.contests.{Sumh, Contender}
 import cats.{Monoid, Eval, Now}
 import cats.data.{ReaderT, WriterT, StateT, EitherT}
 import cats.implicits._
 import CatsCore_Aux._
 
 
-object CatsCore extends Fibo.Entry(Contender.CatsCore):
-  val MyEffectStack = EffectStack[String, Int, Int, Int]
+object CatsCore extends Sumh.Entry(Contender.CatsCore):
+  val MyEffectStack = EffectStack[String, Int, Long, Int]
   import MyEffectStack._
 
-  def fibo(a: Int): Eff[Int] =
+  def prog: Eff[Int] =
     for
-      b <- liftS(StateT.get)
-      _ <- liftS(StateT.set(a))
-      c = a + b
-      _ <- liftW(WriterT.tell(c))
-      d <- liftR(ReaderT.ask)
-      e <-
-        if c < d
-        then fibo(c)
-        else liftV(Now(c))
-    yield e
+      s <- liftS(StateT.get)
+      _ <- liftS(StateT.set(s + 1))
+      _ <- liftW(WriterT.tell(s))
+      r <- liftR(ReaderT.ask)
+      x <-
+        if s < r
+        then prog
+        else liftV(Now(s))
+    yield x
 
   override def round1 =
-    fibo(1)
+    prog
     .run(0)           // run State
     .run              // run Writer
-    .run(Fibo.LIMIT)  // run Reader
+    .run(Sumh.LIMIT)  // run Reader
     .value            // run Either
     .value            // run Eval
     .map { case (w, (s, a)) => (a, w, s) }

@@ -1,5 +1,5 @@
-package effect_zoo.contests.fibo
-import effect_zoo.contests.{Fibo, Contender}
+package effect_zoo.contests.sumh
+import effect_zoo.contests.{Sumh, Contender}
 import scala.util.chaining._
 import cats.Monoid
 import cats.instances.int._
@@ -8,36 +8,35 @@ import effect_zoo.aux.zio_.BenchmarkRuntime
 import effect_zoo.aux.zio_.rws.mono.{Reader, Writer, State}
 
 
-object ZioMono extends Fibo.Entry(Contender.ZIO % "Mono"):
+object ZioMono extends Sumh.Entry(Contender.ZIO % "Mono"):
   object MyReader extends Reader[Int]
-  object MyWriter extends Writer[Int]
+  object MyWriter extends Writer[Long]
   object MyState extends State[Int]
   type MyReader = Has[MyReader.Service]
   type MyWriter = Has[MyWriter.Service]
   type MyState = Has[MyState.Service]
 
 
-  def fibo(a: Int): ZIO[MyReader & MyWriter & MyState, String, Int] =
+  def prog: ZIO[MyReader & MyWriter & MyState, String, Int] =
     for
-      b <- MyState.get
-      _ <- MyState.put(a)
-      c = a + b
-      _ <- MyWriter.tell(c)
-      d <- MyReader.ask
-      e <-
-        if c < d
-        then fibo(c)
-        else ZIO.succeed(c)
-    yield e
+      s <- MyState.get
+      _ <- MyState.put(s + 1)
+      _ <- MyWriter.tell(s)
+      r <- MyReader.ask
+      x <-
+        if s < r
+        then prog
+        else ZIO.succeed(s)
+    yield x
 
 
   override def round1 =
-    (MyWriter.listen(fibo(1)) <*> MyState.get)
+    (MyWriter.listen(prog) <*> MyState.get)
     .map { case ((a, w), s) => (a, w, s) }
     .provideLayer(
       MyState.Live.layer(0) ++
       MyWriter.Live.layer ++
-      MyReader.Live.layer(Fibo.LIMIT)
+      MyReader.Live.layer(Sumh.LIMIT)
     )
     .either
     .pipe(BenchmarkRuntime.unsafeRun)
