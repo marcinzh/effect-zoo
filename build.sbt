@@ -14,12 +14,10 @@ ThisBuild / scalacOptions ++= Seq(
   "-Ykind-projector:underscores",
 )
 
-// ThisBuild / resolvers += Resolver.sonatypeRepo("snapshots")
-ThisBuild / resolvers += "Sonatype OSS Snapshots" at "https://s01.oss.sonatype.org/content/repositories/snapshots"
+ThisBuild / resolvers += "Sonatype s01 OSS Snapshots" at "https://s01.oss.sonatype.org/content/repositories/snapshots"
 
 val Deps = {
   object deps {
-    val scalactic = "org.scalactic" %% "scalactic" % "3.2.10"
     val scalatest = "org.scalatest" %% "scalatest" % "3.2.10" % "test"
     val catsCore = "org.typelevel" %% "cats-core" % "2.6.1"
     val catsMtl = "org.typelevel" %% "cats-mtl" % "1.2.1"
@@ -32,29 +30,17 @@ val Deps = {
   deps
 }
 
-lazy val testSettings = Seq(
-  libraryDependencies += Deps.scalactic,
-  libraryDependencies += Deps.scalatest,
-  Test / parallelExecution := false,
-)
-
-lazy val dontPublishMe = Seq(
-  publish := {},
-  publishLocal := {},
-  publishArtifact := false
-)
 
 lazy val root = project
   .in(file("."))
   .settings(sourcesInBase := false)
-  .settings(dontPublishMe: _*)
   .aggregate(core, chart, diy, meta, bench)
 
 lazy val core = project
   .in(file("modules/core"))
   .settings(name := "effect-zoo-core")
-  .settings(testSettings: _*)
   .settings(libraryDependencies ++= Seq(
+    Deps.scalatest,
     Deps.catsCore,
     Deps.catsMtl,
     Deps.catsEff,
