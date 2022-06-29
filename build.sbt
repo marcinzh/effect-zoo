@@ -1,7 +1,6 @@
 ThisBuild / organization := "com.github.marcinzh"
 ThisBuild / version := "1.0.0"
 ThisBuild / scalaVersion := "3.1.1"
-ThisBuild / crossScalaVersions := Seq(scalaVersion.value)
 
 ThisBuild / watchBeforeCommand := Watch.clearScreen
 ThisBuild / watchTriggeredMessage := Watch.clearScreenOnTrigger
@@ -15,7 +14,8 @@ ThisBuild / scalacOptions ++= Seq(
   "-Ykind-projector:underscores",
 )
 
-ThisBuild / resolvers += Resolver.sonatypeRepo("releases")
+// ThisBuild / resolvers += Resolver.sonatypeRepo("snapshots")
+ThisBuild / resolvers += "Sonatype OSS Snapshots" at "https://s01.oss.sonatype.org/content/repositories/snapshots"
 
 val Deps = {
   object deps {
@@ -26,7 +26,7 @@ val Deps = {
     val catsEff = "org.atnos" %% "eff" % "5.18.0"
     val zio = "dev.zio" %% "zio" % "1.0.9"
     val zioPrelude = "dev.zio" %% "zio-prelude" % "1.0.0-RC5"
-    val turbolift = "com.github.marcinzh" %% "turbolift-core" % "0.23.0-SNAPSHOT"
+    val turbolift = "io.github.marcinzh" %% "turbolift-core" % "0.23.0-SNAPSHOT"
     val betterFiles = ("com.github.pathikrit" %% "better-files" % "3.9.1").cross(CrossVersion.for3Use2_13)
   }
   deps
@@ -39,9 +39,8 @@ lazy val testSettings = Seq(
 )
 
 lazy val dontPublishMe = Seq(
-  publishTo := None,
-  publish := (()),
-  publishLocal := (()),
+  publish := {},
+  publishLocal := {},
   publishArtifact := false
 )
 
