@@ -1,21 +1,21 @@
 package effect_zoo.contests.sumh
 import effect_zoo.contests.{Sumh, Contender}
 import turbolift.!!
-import turbolift.std_effects.{Reader, Writer, State, Except}
+import turbolift.std_effects.{Reader, Writer, State, Error}
 import turbolift.extra_effects.ReaderWriterState.Syntax._
 
 
 object Turbolift_RWS extends Sumh.Entry(Contender.Turbolift % "RWS"):
-  case object MyExcept extends Except[String]
+  case object MyError extends Error[String]
   case object MyReader extends Reader[Int]
   case object MyWriter extends Writer[Long]
   case object MyState extends State[Int]
-  type MyExcept = MyExcept.type
+  type MyError = MyError.type
   type MyReader = MyReader.type
   type MyWriter = MyWriter.type
   type MyState = MyState.type
 
-  def prog: Int !! (MyExcept & MyReader & MyWriter & MyState) =
+  def prog: Int !! (MyError & MyReader & MyWriter & MyState) =
     for
       s <- MyState.get
       _ <- MyState.put(s + 1)
@@ -30,6 +30,6 @@ object Turbolift_RWS extends Sumh.Entry(Contender.Turbolift % "RWS"):
   override def round1 =
     prog
     .handleWith((MyReader &! MyWriter &! MyState).handler(Sumh.LIMIT, 0))
-    .handleWith(MyExcept.handler)
+    .handleWith(MyError.handler)
     .run
     .map { case (a, (w, s)) => (a, w, s) }

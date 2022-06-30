@@ -1,20 +1,20 @@
 package effect_zoo.contests.sumh
 import effect_zoo.contests.{Sumh, Contender}
 import turbolift.!!
-import turbolift.std_effects.{Reader, Writer, State, Except}
+import turbolift.std_effects.{Reader, Writer, State, Error}
 
 
 object Turbolift extends Sumh.Entry(Contender.Turbolift):
-  case object MyExcept extends Except[String]
+  case object MyError extends Error[String]
   case object MyReader extends Reader[Int]
   case object MyWriter extends Writer[Long]
   case object MyState extends State[Int]
-  type MyExcept = MyExcept.type
+  type MyError = MyError.type
   type MyReader = MyReader.type
   type MyWriter = MyWriter.type
   type MyState = MyState.type
 
-  def prog: Int !! (MyExcept & MyReader & MyWriter & MyState) =
+  def prog: Int !! (MyError & MyReader & MyWriter & MyState) =
     for
       s <- MyState.get
       _ <- MyState.put(s + 1)
@@ -32,6 +32,6 @@ object Turbolift extends Sumh.Entry(Contender.Turbolift):
       MyState.handler(0) &&&!
       MyWriter.handler &&&!
       MyReader.handler(Sumh.LIMIT) &&&!
-      MyExcept.handler
+      MyError.handler
     )
     .map { case ((a, s), w) => (a, w, s) }
