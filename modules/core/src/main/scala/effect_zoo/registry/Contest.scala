@@ -1,8 +1,8 @@
 package effect_zoo.registry
 
 
-trait Contest:
-  def name: String
+trait Contest extends Product:
+  final def name: String = productPrefix
   def description: String
   def description2: String
   def roundNames: Vector[String] = Vector()

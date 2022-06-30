@@ -2,8 +2,7 @@ package effect_zoo.contests
 import effect_zoo.registry.{Contest1, Contender}
 
 
-object Cdown extends Contest1:
-  override def name = "Cdown"
+case object Cdown extends Contest1:
   override def description = "CountDown, the classic"
   override def description2 = "State effect used as a counter"
    
