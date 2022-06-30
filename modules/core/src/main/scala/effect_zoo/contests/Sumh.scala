@@ -2,8 +2,7 @@ package effect_zoo.contests
 import effect_zoo.registry.{Contest1, Contender}
 
 
-object Sumh extends Contest1:
-  override def name = "Sumh"
+case object Sumh extends Contest1:
   override def description = "Sums a series of natural numbers the hard way"
   override def description2 = "Uses Reader, Writer & State effects"
 
