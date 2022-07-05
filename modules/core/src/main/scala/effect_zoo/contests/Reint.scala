@@ -3,7 +3,7 @@ import effect_zoo.registry.{Contest3, Contender}
 
 
 case object Reint extends Contest3:
-  override def description = "Reinterpretation (translation of effects into other effects)"
+  override def description = "Reinterpretation (handling effects by translating them into other effects)"
   override def description2 = "Demonstrates FP way of \"program to an interface\""
   override def roundNames = Vector(Shared.REPS1, Shared.REPS2, Shared.REPS3).map(n => s"$n queries/batch")
 

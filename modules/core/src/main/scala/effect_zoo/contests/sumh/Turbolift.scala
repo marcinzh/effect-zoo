@@ -28,10 +28,9 @@ object Turbolift extends Sumh.Entry(Contender.Turbolift):
 
   override def round1 =
     prog
-    .runWith(
-      MyState.handler(0) &&&!
-      MyWriter.handler &&&!
-      MyReader.handler(Sumh.LIMIT) &&&!
-      MyError.handler
-    )
+    .handleWith(MyState.handler(0))
+    .handleWith(MyWriter.handler)
+    .handleWith(MyReader.handler(Sumh.LIMIT))
+    .handleWith(MyError.handler)
+    .run
     .map { case ((a, s), w) => (a, w, s) }
