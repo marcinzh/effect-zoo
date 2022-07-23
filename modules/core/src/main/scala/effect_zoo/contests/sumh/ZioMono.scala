@@ -4,8 +4,8 @@ import scala.util.chaining._
 import cats.Monoid
 import cats.instances.int._
 import zio._
-import effect_zoo.aux.zio_.BenchmarkRuntime
-import effect_zoo.aux.zio_.rws.mono.{Reader, Writer, State}
+import effect_zoo.auxx.zio_.BenchmarkRuntime
+import effect_zoo.auxx.zio_.rws.mono.{Reader, Writer, State}
 
 
 object ZioMono extends Sumh.Entry(Contender.ZIO % "Mono"):

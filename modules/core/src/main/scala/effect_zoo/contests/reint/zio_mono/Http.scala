@@ -1,6 +1,6 @@
 package effect_zoo.contests.reint.zio_mono
 import zio._
-import effect_zoo.aux.zio_.rws.mono.Reader
+import effect_zoo.auxx.zio_.rws.mono.Reader
 
 
 trait Http:

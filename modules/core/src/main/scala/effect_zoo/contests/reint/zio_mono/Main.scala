@@ -2,7 +2,7 @@ package effect_zoo.contests.reint.zio_mono
 import effect_zoo.contests.{Reint, Contender}
 import scala.util.chaining._
 import zio._
-import effect_zoo.aux.zio_.BenchmarkRuntime
+import effect_zoo.auxx.zio_.BenchmarkRuntime
 
 
 object Main extends Reint.Entry(Contender.ZIO):

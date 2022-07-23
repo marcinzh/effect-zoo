@@ -5,8 +5,8 @@ import cats.Monoid
 import cats.syntax.semigroup._
 import cats.instances.int._
 import zio._
-import effect_zoo.aux.zio_.BenchmarkRuntime
-import effect_zoo.aux.zio_.rws.cake.{Reader, Writer, State, Cake}
+import effect_zoo.auxx.zio_.BenchmarkRuntime
+import effect_zoo.auxx.zio_.rws.cake.{Reader, Writer, State, Cake}
 
 
 object ZioCake extends Sumh.Entry(Contender.ZIO % "Cake"):
