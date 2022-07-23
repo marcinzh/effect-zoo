@@ -11,11 +11,14 @@ class Colored(fgc: Int, bgc: Int):
 
 
 object Colored:
+  private val isOk = !".*windows.*".r.matches(System.getProperty("os.name").toLowerCase)
+  private def ifOk(s: String) = if isOk then s else ""
+
   def palette(i: Int) = colors(i % colors.size)
 
-  private def fg(n: Int) = "\u001b[38;2;" + rgb(n)
-  private def bg(n: Int) = "\u001b[48;2;" + rgb(n)
-  private def rgb(n: Int) = s"${(n >> 16) & 255};${(n >> 8) & 255};${n & 255}m"
+  private def fg(n: Int) = ifOk("\u001b[38;2;" + rgb(n))
+  private def bg(n: Int) = ifOk("\u001b[48;2;" + rgb(n))
+  private def rgb(n: Int) = ifOk(s"${(n >> 16) & 255};${(n >> 8) & 255};${n & 255}m")
 
   private val textFg = 0
   private val gridFg = 0xc0c0c0
