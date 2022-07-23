@@ -2,8 +2,8 @@ package effect_zoo.contests.mulst
 import effect_zoo.contests.{Contender, Mulst}
 import scala.util.chaining._
 import zio._
-import effect_zoo.aux.zio_.BenchmarkRuntime
-import effect_zoo.aux.zio_.rws.mono.State
+import effect_zoo.auxx.zio_.BenchmarkRuntime
+import effect_zoo.auxx.zio_.rws.mono.State
 
 
 object ZioLayer extends Mulst.Entry(Contender.ZIO % "Mono"):

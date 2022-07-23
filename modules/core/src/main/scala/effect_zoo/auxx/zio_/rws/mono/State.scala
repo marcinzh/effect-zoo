@@ -1,4 +1,4 @@
-package effect_zoo.aux.zio_.rws.mono
+package effect_zoo.auxx.zio_.rws.mono
 import zio._
 
 

@@ -1,4 +1,4 @@
-package effect_zoo.aux.zio_.rws.cake
+package effect_zoo.auxx.zio_.rws.cake
 import cats.Monoid
 import zio._
 
