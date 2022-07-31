@@ -10,12 +10,11 @@ object Http:
   def get(url: String): URIO[Has[Http], String] = ZIO.serviceWith[Http](_.get(url))
 
 
-object MockResponses:
-  final case class HttpLive(responseReader: ResponseReader) extends Http:
-    override def get(url: String): UIO[String] = responseReader.ask
+final case class MockResponses(responseReader: ResponseReader) extends Http:
+  override def get(url: String): UIO[String] = responseReader.ask
 
-  object HttpLive:
-    val layer: URLayer[Has[ResponseReader], Has[Http]] = (HttpLive(_)).toLayer
+object MockResponses:
+  val layer: URLayer[Has[ResponseReader], Has[Http]] = (MockResponses(_)).toLayer
 
 
 object ResponseReader extends Reader[String]
