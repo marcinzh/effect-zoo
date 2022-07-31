@@ -11,12 +11,13 @@ object Main extends Reint.Entry(Contender.ZIO):
       Query.listFruits.replicateM(n)
       .map(_.iterator.flatten.toVector)
     )
-    .provideLayer(
+    .provideLayer {
+      val lw = LogWriter.Live.layer
       ((
-        (ResponseReader.Live.layer(Reint.Shared.RESPONSE) >>> MockResponses.HttpLive.layer) ++
-        (LogWriter.Live.layer >>> AccumulateLogMessages.LoggingLive.layer)
-      ) >>> ToLoggedHttp.QueryLive.layer) ++ LogWriter.Live.layer
-    )
+        (ResponseReader.Live.layer(Reint.Shared.RESPONSE) >>> MockResponses.layer) ++
+        (lw >>> AccumulateLogMessages.layer)
+      ) >>> ToLoggedHttp.layer) ++ lw
+    }
     .pipe(BenchmarkRuntime.unsafeRun)
 
 

@@ -10,12 +10,11 @@ object Logging:
   def logMsg(text: String): URIO[Has[Logging], Unit] = ZIO.serviceWith[Logging](_.logMsg(text))
 
 
-object AccumulateLogMessages:
-  final case class LoggingLive(logWriter: LogWriter) extends Logging:
-    override def logMsg(text: String): UIO[Unit] = logWriter.tell(Vector(text))
+final case class AccumulateLogMessages(logWriter: LogWriter) extends Logging:
+  override def logMsg(text: String): UIO[Unit] = logWriter.tell(Vector(text))
 
-  object LoggingLive:
-    val layer: URLayer[Has[LogWriter], Has[Logging]] = (LoggingLive(_)).toLayer
+object AccumulateLogMessages:
+  val layer: URLayer[Has[LogWriter], Has[Logging]] = (AccumulateLogMessages(_)).toLayer
 
 
 object LogWriter extends Writer[Vector[String]]
