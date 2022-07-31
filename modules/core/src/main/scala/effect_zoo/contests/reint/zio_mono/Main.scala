@@ -5,7 +5,7 @@ import zio._
 import effect_zoo.auxx.zio_.BenchmarkRuntime
 
 
-object Main extends Reint.Entry(Contender.ZIO):
+object Main extends Reint.Entry(Contender.ZIO % "Mono"):
   def prog(n: Int): (Vector[String], Vector[String]) =
     LogWriter.listen(
       Query.listFruits.replicateM(n)

@@ -13,7 +13,7 @@ object Main:
         case "help" => printHelp()
         case "list" =>
           for reg <- Registry.benchmarkable do
-            println(s"${reg.contest.nameLC}: ${reg.contest.description}. ${reg.contest.description2}.")
+            println(s"${reg.contest.nameLC}: ${reg.contest.description}.")
         case "all" => runBenchmarks(Registry.benchmarkable)
         case x =>
           println(s"Unknown option: `$x`")

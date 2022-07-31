@@ -4,7 +4,7 @@ package effect_zoo.diy
 object Measure:
   final case class Config(
     probeLimitMillis: Int = 200,
-    measureLimitMillis: Int = 2000,
+    measureLimitMillis: Int = 3000,
   )
 
   def apply(stuff: => Any)(implicit config: Config): Double =

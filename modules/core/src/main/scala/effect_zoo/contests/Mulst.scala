@@ -4,7 +4,6 @@ import effect_zoo.registry.{Contest5, Contender}
 
 case object Mulst extends Contest5:
   override def description = "Multiple State effects used at the same time"
-  override def description2 = "Compares overhead of effect stack size"
   override def roundNames = (for i <- 1 to 5 yield s"$i state${if i == 1 then "" else "s"}").toVector
 
   override type Result1 = Int
@@ -25,5 +24,4 @@ case object Mulst extends Contest5:
     Vector(
       CatsCore,
       Turbolift,
-      // ZioMono,
     )

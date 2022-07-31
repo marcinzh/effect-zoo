@@ -56,6 +56,8 @@ lazy val chart = project
 lazy val diy = project
   .in(file("modules/diy"))
   .settings(name := "effect-zoo-diy")
+  .settings(run / fork := true)
+  .settings(javaOptions += "-Xmx2G")
   .dependsOn(core, chart)
 
 lazy val meta = project

@@ -3,8 +3,7 @@ import effect_zoo.registry.{Contest1, Contender}
 
 
 case object Sumh extends Contest1:
-  override def description = "Sums a series of natural numbers the hard way"
-  override def description2 = "Uses Reader, Writer & State effects"
+  override def description = "Sums a series of natural numbers the hard way. Uses multiple effects"
 
   override type Result1 = Either[String, (Int, Long, Int)]
   override def expected1 = Right((LIMIT, (LIMIT.toLong * (LIMIT + 1)) / 2, LIMIT + 1)).withLeft[String]
