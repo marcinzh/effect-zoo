@@ -44,8 +44,9 @@ There are many more effect systems for Scala (e.g. 3 more implementations of the
 
 ##### Step 0:
 
-Charts require terminal with support for Unicode characters and True Color. If you are on Windows, old `cmd.exe` or PowerShell you will get you garbage on the screen.  The [New Terminal](https://github.com/Microsoft/Terminal) might work.
+Effect Zoo assumes your terminal supports Unicode characters and True Color. Without it, charts wouldn't be displayed properly.
 
+If you are on Windows, old `cmd.exe` or PowerShell will get you garbage on the screen. The [New Terminal](https://github.com/Microsoft/Terminal) might work (unconfirmed).
 
 ##### Step 1:
 	

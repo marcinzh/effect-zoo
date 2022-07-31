@@ -3,8 +3,7 @@ import effect_zoo.registry.{Contest1, Contender}
 
 
 case object Cdown extends Contest1:
-  override def description = "CountDown, the classic"
-  override def description2 = "State effect used as a counter"
+  override def description = "CountDown, the classic. State effect used as a counter"
    
   override type Result1 = (Int, Int)
   override def expected1 = (0, 0)

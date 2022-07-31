@@ -40,13 +40,13 @@ class Draw(barWidth: Int, columnWidths: Vector[Int]):
     Colored.border(columnWidths.map("─" * _).mkString(" ", "─┼─", "")) + emptyBar
 
   def headers(texts: Vector[String]): Vector[String] =
-    val Vector(a, b, c) = texts.take(3).padTo(3, "")
-    Vector(s"$a: $b", c)
-    .map(" " + _)
-    .map(_.padTo(gridWidth + barWidth + 3, ' '))
-    .zipWithIndex.map { case (x, 0) => s"${Console.BOLD}$x" ; case (x, _) => x }
-    .map(Colored.text(_))
+    val Vector(a, b) = texts.take(2).padTo(2, "")
+    val n = (gridWidth + barWidth + 3) - (a.size + b.size + 4)
+    val aa = Colored.text(s" ${Console.BOLD}${a}")
+    val bb = Colored.text(s" - $b")
+    val cc = Colored.text(" " * n)
+    Vector(aa + bb + cc)
 
 
 object Draw:
-  def cursorUp(n: Int): String = s"\u001b[${n + 4}A"
+  def cursorUp(n: Int): String = s"\u001b[${n + 3}A"
