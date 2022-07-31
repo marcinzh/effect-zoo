@@ -1,5 +1,5 @@
 
-###This is ZIO 1.x specific
+### This is ZIO 1.x specific.
 
 ZIO's `Has[_]` doesn't seem to work for polymorphic types. This means it's impossible to 
 implement standard effects, such as `Reader[R]`, `Writer[W]` and `State[S]`, by following 
