@@ -41,3 +41,35 @@ That's unlike in Effect Zoo, where (currently) included scenarios don't involve 
 There are many more effect systems for Scala (e.g. 3 more implementations of the Eff monad alone), but they are unmaintained and unavailable for Scala 2.13 or 3.x.
 
 # Running Microbenchmarks
+
+##### Step 0:
+
+Charts require terminal with support for Unicode characters and True Color. If you are on Windows, old `cmd.exe` or PowerShell you will get you garbage on the screen.  The [New Terminal](https://github.com/Microsoft/Terminal) might work.
+
+
+##### Step 1:
+	
+Have sbt installed. https://www.scala-sbt.org/download.html
+
+##### Step 2:
+
+Get a local copy of this repo and launch sbt:
+
+```
+git clone https://github.com/marcinzh/effect-zoo.git
+cd effect-zoo
+sbt
+```
+
+##### Step 3:
+
+From sbt's command prompt, pick **one** method:
+
+- Run JMH by using predefined alias (takes ~10 minutes to complete):  
+        ```runbench```
+
+- Run JMH directly, with your own parameters, e.g:  
+        ```bench/Jmh/run -i 3 -wi 3 -f1 -t1 -r 3 -w 3 .*Cdown```
+
+- Run Effect-Zoo's own, simple microbenchmark tool. It's less accurate than JMH, but completes much sooner:  
+         ```diy/run --all```
