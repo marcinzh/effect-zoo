@@ -8,7 +8,7 @@ Effect Zoo provides:
 The sources are located [here](https://github.com/marcinzh/effect-zoo/tree/main/modules/core/src/main/scala/effect_zoo/contests).
 
 2. Microbenchmark suite. See running instruction [below](README.md#running-microbenchmarks). Currently, in Scala community,
-the microbenchmark discourse is almost exclusively oriented about `IO` performance. 
+the effect system microbenchmarking discourse is almost exclusively oriented about `IO` performance. 
 That's unlike in Effect Zoo, where (currently) included scenarios don't involve `IO`.
 
 
