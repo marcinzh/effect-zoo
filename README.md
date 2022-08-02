@@ -4,7 +4,7 @@ Inspired by [Effect Zoo](https://github.com/ocharles/effect-zoo) for Haskell.
 
 Effect Zoo provides:
 
-1. Code gallery, where we can demonstrate and compare, how different effect systems solve the same task.
+1. Code gallery, where we can demonstrate and compare, how different effect systems perform the same task.
 The sources are located [here](https://github.com/marcinzh/effect-zoo/tree/main/modules/core/src/main/scala/effect_zoo/contests).
 
 2. Microbenchmark suite. See running instruction [below](README.md#running-microbenchmarks). Currently, in Scala community,
@@ -44,7 +44,7 @@ There are many more effect systems for Scala (e.g. 3 more implementations of the
 
 ##### Step 0:
 
-Effect Zoo assumes your terminal supports Unicode characters and True Color. Without it, charts wouldn't be displayed properly.
+Ensure your terminal supports Unicode characters and True Color. Without it, charts won't be displayed properly.
 
 If you are on Windows, old `cmd.exe` or PowerShell will get you garbage on the screen. The [New Terminal](https://github.com/Microsoft/Terminal) might work (unconfirmed).
 
