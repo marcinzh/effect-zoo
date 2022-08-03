@@ -14,8 +14,6 @@ ThisBuild / scalacOptions ++= Seq(
   "-Ykind-projector:underscores",
 )
 
-ThisBuild / resolvers += "Sonatype s01 OSS Snapshots" at "https://s01.oss.sonatype.org/content/repositories/snapshots"
-
 val Deps = {
   object deps {
     val scalatest = "org.scalatest" %% "scalatest" % "3.2.10" % "test"
@@ -24,7 +22,7 @@ val Deps = {
     val catsEff = "org.atnos" %% "eff" % "5.18.0"
     val zio = "dev.zio" %% "zio" % "1.0.9"
     val zioPrelude = "dev.zio" %% "zio-prelude" % "1.0.0-RC5"
-    val turbolift = "io.github.marcinzh" %% "turbolift-core" % "0.25.0-SNAPSHOT"
+    val turbolift = "io.github.marcinzh" %% "turbolift-core" % "0.27.0"
     val betterFiles = ("com.github.pathikrit" %% "better-files" % "3.9.1").cross(CrossVersion.for3Use2_13)
   }
   deps
@@ -74,6 +72,6 @@ lazy val bench = project
   .settings(Jmh / run / mainClass := Some("effect_zoo.bench.Main"))
 
 
-addCommandAlias("runbench", "bench/Jmh/run -i 3 -wi 3 -f1 -t1 -r 3 -w 3")
+addCommandAlias("runbench", "bench/Jmh/run -i 5 -wi 3 -f1 -t1 -r 10 -w 10")
 addCommandAlias("runbench1", "bench/Jmh/run -i 3 -wi 3 -f1 -t1 -r 1 -w 1")
 addCommandAlias("runbench0", "bench/Jmh/run -i 1 -wi 1 -f1 -t1 -r 1 -w 1")
