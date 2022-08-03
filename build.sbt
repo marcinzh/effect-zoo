@@ -14,8 +14,6 @@ ThisBuild / scalacOptions ++= Seq(
   "-Ykind-projector:underscores",
 )
 
-ThisBuild / resolvers += "Sonatype s01 OSS Snapshots" at "https://s01.oss.sonatype.org/content/repositories/snapshots"
-
 val Deps = {
   object deps {
     val scalatest = "org.scalatest" %% "scalatest" % "3.2.10" % "test"
@@ -24,7 +22,7 @@ val Deps = {
     val catsEff = "org.atnos" %% "eff" % "5.18.0"
     val zio = "dev.zio" %% "zio" % "1.0.9"
     val zioPrelude = "dev.zio" %% "zio-prelude" % "1.0.0-RC5"
-    val turbolift = "io.github.marcinzh" %% "turbolift-core" % "0.25.0-SNAPSHOT"
+    val turbolift = "io.github.marcinzh" %% "turbolift-core" % "0.27.0"
     val betterFiles = ("com.github.pathikrit" %% "better-files" % "3.9.1").cross(CrossVersion.for3Use2_13)
   }
   deps
