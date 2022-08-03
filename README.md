@@ -62,7 +62,7 @@ There are many more effect systems for Scala (e.g. 3 more implementations of the
 
 - **Step 3:** From sbt's command prompt, pick **one** method:
 
-  - Run JMH by using predefined alias (takes ~10 minutes to complete):  
+  - Run JMH by using predefined alias (takes ~50 minutes to complete):  
     ```
     runbench
     ```
@@ -72,7 +72,7 @@ There are many more effect systems for Scala (e.g. 3 more implementations of the
     bench/Jmh/run -i 3 -wi 3 -f1 -t1 -r 3 -w 3 .*Cdown
     ```
   
-  - Run Effect-Zoo's own, simple microbenchmark tool. It's less accurate than JMH, but completes much sooner:  
+  - Run Effect-Zoo's own, simple microbenchmark tool. It's less accurate than JMH, but completes much sooner (under 3 minutes):  
     ```
     diy/run --all
     ```
