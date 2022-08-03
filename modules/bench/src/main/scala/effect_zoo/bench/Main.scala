@@ -15,10 +15,10 @@ object Main:
       if args == Array("devel") then
         val opts = new OptionsBuilder()
           .forks(1)
-          .warmupIterations(1)
-          .measurementIterations(1)
-          .warmupTime(TimeValue(10, TimeUnit.MILLISECONDS))
-          .measurementTime(TimeValue(10, TimeUnit.MILLISECONDS))
+          .warmupIterations(3)
+          .measurementIterations(5)
+          .warmupTime(TimeValue(3, TimeUnit.MILLISECONDS))
+          .measurementTime(TimeValue(5, TimeUnit.MILLISECONDS))
           .build()
         new Runner(opts)
       else

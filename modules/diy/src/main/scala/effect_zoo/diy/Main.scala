@@ -3,9 +3,7 @@ import effect_zoo.registry.Registry
 
 
 object Main:
-  def main(args: Array[String]) = run(args.toVector)
-
-  def run(args: Vector[String]): Unit =
+  def main(args: Array[String]) =
     val RxOption = "--(.+)".r
     args.toVector match
       case Vector() => printHelp()

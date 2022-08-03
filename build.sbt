@@ -72,6 +72,6 @@ lazy val bench = project
   .settings(Jmh / run / mainClass := Some("effect_zoo.bench.Main"))
 
 
-addCommandAlias("runbench", "bench/Jmh/run -i 3 -wi 3 -f1 -t1 -r 3 -w 3")
+addCommandAlias("runbench", "bench/Jmh/run -i 5 -wi 3 -f1 -t1 -r 10 -w 10")
 addCommandAlias("runbench1", "bench/Jmh/run -i 3 -wi 3 -f1 -t1 -r 1 -w 1")
 addCommandAlias("runbench0", "bench/Jmh/run -i 1 -wi 1 -f1 -t1 -r 1 -w 1")

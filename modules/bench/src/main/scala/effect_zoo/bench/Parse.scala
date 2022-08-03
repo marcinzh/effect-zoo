@@ -8,13 +8,13 @@ object Parse:
     groupScores(benchResults)
 
   private val PrefixRx = """effect_zoo\.bench\.contests\.(\w+)\.(.+)""".r
-  private val RoundfulRx = """(\w+)__(\d+)""".r
-  private val RoundlessRx = """(\w+)""".r
+  private val MultiRoundRx = """(\w+)__(\d+)""".r
+  private val SingleRoundRx = """(\w+)""".r
   private def parseBenchmarkName(text: String): (Contest, Contender, Int) =
     val PrefixRx(contestName, rest) = text
     val (contenderName, roundIndex) = rest match
-      case RoundfulRx(x, y) => (x, y.toInt)
-      case RoundlessRx(x) => (x, 0)
+      case MultiRoundRx(x, y) => (x, y.toInt)
+      case SingleRoundRx(x) => (x, 0)
     (Contest.fromString(contestName), Contender.fromString(contenderName), roundIndex)
 
   private def groupScores(benchResults: Vector[(String, Double)]) =
