@@ -8,6 +8,8 @@ Effect Zoo provides:
 
 2. Microbenchmark suite. See running instruction [below](#running-microbenchmarks).
 
+   Or, if you really don't want to run the microbenchmark yourself 😞, you can just see sample results [here](https://gist.github.com/marcinzh/711a0810e7915e0e36c3f8c3ba78a6a0).
+
 
 ### Included scenarios (contests):
 
