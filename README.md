@@ -4,12 +4,9 @@ Inspired by [Effect Zoo](https://github.com/ocharles/effect-zoo) for Haskell.
 
 Effect Zoo provides:
 
-1. Code gallery, where we can demonstrate and compare, how different effect systems perform the same task.
-The sources are located [here](https://github.com/marcinzh/effect-zoo/tree/main/modules/core/src/main/scala/effect_zoo/contests).
+1. Code gallery, where we can demonstrate and compare the syntax of different effect systems, when they are assigned the same task. The sources are located [here](https://github.com/marcinzh/effect-zoo/tree/main/modules/core/src/main/scala/effect_zoo/contests).
 
-2. Microbenchmark suite. See running instruction [below](#running-microbenchmarks). Currently, in Scala community,
-the effect system microbenchmarking discourse is almost exclusively oriented about `IO` performance. 
-That's unlike in Effect Zoo, where (currently) included scenarios don't involve `IO`.
+2. Microbenchmark suite. See running instruction [below](#running-microbenchmarks).
 
 
 ### Included scenarios (contests):
@@ -44,9 +41,7 @@ There are many more effect systems for Scala (e.g. 3 more implementations of the
 
 - **Step 0:** Ensure you have a modern terminal.
 
-  Without support for Unicode characters and True Color, charts won't be displayed properly.
-
-  If you are on Windows, old `cmd.exe` or PowerShell will get you garbage on the screen. The [New Terminal](https://github.com/Microsoft/Terminal) might work (unconfirmed).
+  Without support for Unicode characters and True Color, charts won't be displayed properly. If you are on Windows, old `cmd.exe` or PowerShell will get you garbage on the screen. The [New Terminal](https://github.com/Microsoft/Terminal) might work (unconfirmed).
 
 - **Step 1:** Have sbt installed.
 
@@ -62,7 +57,7 @@ There are many more effect systems for Scala (e.g. 3 more implementations of the
 
 - **Step 3:** From sbt's command prompt, pick **one** method:
 
-  - Run JMH by using predefined alias (takes ~50 minutes to complete):  
+  - Run JMH by using predefined alias (takes ~20 minutes to complete):  
     ```
     runbench
     ```
