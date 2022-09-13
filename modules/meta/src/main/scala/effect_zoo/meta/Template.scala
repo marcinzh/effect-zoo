@@ -23,7 +23,7 @@ object Template:
 
   def apply(name: String, body: Vector[String]): String =
     val lines = template.map(_.replace("CONTEST_NAME", name))
-    val (linesBefore, _ +: linesAfter) = lines.span(_ != "CLASS_BODY")
+    val (linesBefore, _ +: linesAfter) = lines.span(_ != "CLASS_BODY"): @unchecked
     val content2 = body.map("  " + _)
     val lines2 = linesBefore ++ content2 ++ linesAfter
     lines2.mkString("", "\n", "\n")

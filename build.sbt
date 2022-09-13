@@ -1,6 +1,6 @@
 ThisBuild / organization := "com.github.marcinzh"
 ThisBuild / version := "1.0.0"
-ThisBuild / scalaVersion := "3.1.1"
+ThisBuild / scalaVersion := "3.2.0"
 
 ThisBuild / watchBeforeCommand := Watch.clearScreen
 ThisBuild / watchTriggeredMessage := Watch.clearScreenOnTrigger
@@ -20,9 +20,10 @@ val Deps = {
     val catsCore = "org.typelevel" %% "cats-core" % "2.6.1"
     val catsMtl = "org.typelevel" %% "cats-mtl" % "1.2.1"
     val catsEff = "org.atnos" %% "eff" % "5.18.0"
-    val zio = "dev.zio" %% "zio" % "1.0.9"
+    val zio = "dev.zio" %% "zio" % "1.0.16"
     val zioPrelude = "dev.zio" %% "zio-prelude" % "1.0.0-RC5"
     val turbolift = "io.github.marcinzh" %% "turbolift-core" % "0.27.0"
+    val yamlayer = "io.github.marcinzh" %% "yamlayer" % "0.1.0"
     val betterFiles = ("com.github.pathikrit" %% "better-files" % "3.9.1").cross(CrossVersion.for3Use2_13)
   }
   deps
@@ -45,6 +46,7 @@ lazy val core = project
     Deps.turbolift,
     Deps.zio,
     Deps.zioPrelude,
+    Deps.yamlayer,
   ))
 
 lazy val chart = project

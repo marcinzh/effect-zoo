@@ -11,7 +11,7 @@ object Parse:
   private val MultiRoundRx = """(\w+)__(\d+)""".r
   private val SingleRoundRx = """(\w+)""".r
   private def parseBenchmarkName(text: String): (Contest, Contender, Int) =
-    val PrefixRx(contestName, rest) = text
+    val PrefixRx(contestName, rest) = text: @unchecked
     val (contenderName, roundIndex) = rest match
       case MultiRoundRx(x, y) => (x, y.toInt)
       case SingleRoundRx(x) => (x, 0)
