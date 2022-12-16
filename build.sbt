@@ -16,9 +16,9 @@ ThisBuild / scalacOptions ++= Seq(
 
 val Deps = {
   object deps {
-    val scalatest = "org.scalatest" %% "scalatest" % "3.2.10" % "test"
-    val catsCore = "org.typelevel" %% "cats-core" % "2.6.1"
-    val catsMtl = "org.typelevel" %% "cats-mtl" % "1.2.1"
+    val scalatest = "org.scalatest" %% "scalatest" % "3.2.14" % "test"
+    val catsCore = "org.typelevel" %% "cats-core" % "2.9.0"
+    val catsMtl = "org.typelevel" %% "cats-mtl" % "1.3.0"
     val catsEff = "org.atnos" %% "eff" % "5.18.0"
     val zio = "dev.zio" %% "zio" % "1.0.16"
     val zioPrelude = "dev.zio" %% "zio-prelude" % "1.0.0-RC5"
