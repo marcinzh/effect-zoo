@@ -19,5 +19,6 @@ case object Cdown extends Contest1:
       Turbolift,
       ZioCake,
       ZioMono,
+      ZioRef,
       Zpure,
     )

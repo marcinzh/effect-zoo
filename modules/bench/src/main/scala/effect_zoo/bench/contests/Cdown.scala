@@ -18,6 +18,7 @@ class Cdown {
   val Turbolift__run = reg.findRound("Turbolift", 0).run
   val ZIO_Cake__run = reg.findRound("ZIO_Cake", 0).run
   val ZIO_Mono__run = reg.findRound("ZIO_Mono", 0).run
+  val ZIO_Ref__run = reg.findRound("ZIO_Ref", 0).run
   val ZPure__run = reg.findRound("ZPure", 0).run
   
   @Benchmark def CatsCore = CatsCore__run()
@@ -26,5 +27,6 @@ class Cdown {
   @Benchmark def Turbolift = Turbolift__run()
   @Benchmark def ZIO_Cake = ZIO_Cake__run()
   @Benchmark def ZIO_Mono = ZIO_Mono__run()
+  @Benchmark def ZIO_Ref = ZIO_Ref__run()
   @Benchmark def ZPure = ZPure__run()
 }
