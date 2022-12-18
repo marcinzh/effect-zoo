@@ -30,6 +30,7 @@ object Contender:
   case object Unfunctional extends Plain
   case object CatsCore extends Plain
   case object CatsMTL extends Plain
+  case object CatsIO extends Plain
   case object CatsEff extends Plain
   case object Turbolift extends Plain
   case object ZIO extends Plain
@@ -39,6 +40,7 @@ object Contender:
     Unfunctional,
     CatsCore,
     CatsMTL,
+    CatsIO,
     CatsEff,
     Turbolift,
     ZIO,

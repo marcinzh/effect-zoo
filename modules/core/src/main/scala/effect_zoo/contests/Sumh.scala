@@ -17,6 +17,8 @@ case object Sumh extends Contest1:
       CatsCore_RWS,
       CatsMTL,
       CatsMTL_RWS,
+      CatsIO,
+      CatsIO_RWS,
       CatsEff,
       Turbolift,
       Turbolift_RWS,

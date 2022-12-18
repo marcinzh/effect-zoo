@@ -20,6 +20,7 @@ val Deps = {
     val catsCore = "org.typelevel" %% "cats-core" % "2.9.0"
     val catsMtl = "org.typelevel" %% "cats-mtl" % "1.3.0"
     val catsEff = "org.atnos" %% "eff" % "6.0.2"
+    val catsEffect = "org.typelevel" %% "cats-effect" % "3.4.2"
     val zio = "dev.zio" %% "zio" % "1.0.17"
     val zioPrelude = "dev.zio" %% "zio-prelude" % "1.0.0-RC5"
     val turbolift = "io.github.marcinzh" %% "turbolift-core" % "0.27.0"
@@ -43,6 +44,7 @@ lazy val core = project
     Deps.catsCore,
     Deps.catsMtl,
     Deps.catsEff,
+    Deps.catsEffect,
     Deps.turbolift,
     Deps.zio,
     Deps.zioPrelude,

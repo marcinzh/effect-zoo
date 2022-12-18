@@ -9,6 +9,7 @@ import effect_zoo.registry.Registry
 @State(Scope.Thread)
 @BenchmarkMode(Array(Mode.Throughput))
 @OutputTimeUnit(TimeUnit.SECONDS)
+@Fork(jvmArgs = Array("-Dcats.effect.tracing.mode=DISABLED"))
 class Mulst {
   val reg = Registry.findByContestName("Mulst")
 

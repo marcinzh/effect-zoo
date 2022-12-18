@@ -46,6 +46,7 @@ case object Reint extends Contest3:
     import reint._
     Vector(
       cats_mtl.Main,
+      cats_io.Main,
       cats_eff.Main,
       turbolift_.Main,
       zio_mono.Main,
