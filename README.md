@@ -31,6 +31,8 @@ Demonstrates use of custom-defined effects as application modules, and effect re
 
 - [Cats MTL](https://github.com/typelevel/cats-mtl).
 
+- Cats IO. Typically, the same solution as Cats MTL, but with `IO` from [Cats Effect](https://github.com/typelevel/cats-effect) as the base monad.
+
 - [Cats Eff](https://github.com/atnos-org/eff). Don't confuse with [Cats Effect](https://github.com/typelevel/cats-effect).
 
 - [ZIO](https://github.com/zio/zio).

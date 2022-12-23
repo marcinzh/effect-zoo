@@ -18,4 +18,7 @@ object CatsEff extends Cdown.Entry(Contender.CatsEff):
       else put(n - 1) *> program
     }
 
-  override def round1 = program[Fx.fx1[MyState]].runState(Cdown.LIMIT).run
+  override def round1 =
+    program[Fx.fx1[MyState]]
+    .runState(Cdown.LIMIT)
+    .run

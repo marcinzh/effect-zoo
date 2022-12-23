@@ -15,6 +15,8 @@ case object Cdown extends Contest1:
     Vector(
       CatsCore,
       CatsMTL,
+      CatsIO,
+      CatsIORef,
       CatsEff,
       Turbolift,
       ZioCake,

@@ -15,4 +15,7 @@ object Turbolift extends Cdown.Entry(Contender.Turbolift):
       else MyState.put(n - 1) &&! program
     }
 
-  override def round1 = program.handleWith(MyState.handler(Cdown.LIMIT)).run
+  override def round1 =
+    program
+    .handleWith(MyState.handler(Cdown.LIMIT))
+    .run

@@ -9,12 +9,16 @@ import effect_zoo.registry.Registry
 @State(Scope.Thread)
 @BenchmarkMode(Array(Mode.Throughput))
 @OutputTimeUnit(TimeUnit.SECONDS)
+@Fork(jvmArgs = Array("-Dcats.effect.tracing.mode=DISABLED"))
 class Reint {
   val reg = Registry.findByContestName("Reint")
 
   val CatsMTL__0__run = reg.findRound("CatsMTL", 0).run
   val CatsMTL__1__run = reg.findRound("CatsMTL", 1).run
   val CatsMTL__2__run = reg.findRound("CatsMTL", 2).run
+  val CatsIO__0__run = reg.findRound("CatsIO", 0).run
+  val CatsIO__1__run = reg.findRound("CatsIO", 1).run
+  val CatsIO__2__run = reg.findRound("CatsIO", 2).run
   val CatsEff__0__run = reg.findRound("CatsEff", 0).run
   val CatsEff__1__run = reg.findRound("CatsEff", 1).run
   val CatsEff__2__run = reg.findRound("CatsEff", 2).run
@@ -28,6 +32,9 @@ class Reint {
   @Benchmark def CatsMTL__0 = CatsMTL__0__run()
   @Benchmark def CatsMTL__1 = CatsMTL__1__run()
   @Benchmark def CatsMTL__2 = CatsMTL__2__run()
+  @Benchmark def CatsIO__0 = CatsIO__0__run()
+  @Benchmark def CatsIO__1 = CatsIO__1__run()
+  @Benchmark def CatsIO__2 = CatsIO__2__run()
   @Benchmark def CatsEff__0 = CatsEff__0__run()
   @Benchmark def CatsEff__1 = CatsEff__1__run()
   @Benchmark def CatsEff__2 = CatsEff__2__run()
