@@ -31,7 +31,8 @@ object Turbolift extends Mulst.Entry(Contender.Turbolift):
         prog(n - 1)
 
     prog(Mulst.LIMIT)
-    .runWith(MyState1.handler(0).exec)
+    .handleWith(MyState1.handler(0).exec)
+    .run
 
 
   override def round2 =
@@ -47,7 +48,8 @@ object Turbolift extends Mulst.Entry(Contender.Turbolift):
         prog(n - 1)
 
     prog(Mulst.LIMIT)
-    .runWith((MyState1.handler(0) ***! MyState2.handler(0)).exec)
+    .handleWith((MyState1.handler(0) ***! MyState2.handler(0)).exec)
+    .run
 
 
   override def round3 =
@@ -63,7 +65,8 @@ object Turbolift extends Mulst.Entry(Contender.Turbolift):
         prog(n - 1)
 
     prog(Mulst.LIMIT)
-    .runWith((MyState1.handler(0) ***! MyState2.handler(0) ***! MyState3.handler(0)).exec)
+    .handleWith((MyState1.handler(0) ***! MyState2.handler(0) ***! MyState3.handler(0)).exec)
+    .run
 
 
   override def round4 =
@@ -79,12 +82,13 @@ object Turbolift extends Mulst.Entry(Contender.Turbolift):
         prog(n - 1)
 
     prog(Mulst.LIMIT)
-    .runWith((
+    .handleWith((
       MyState1.handler(0) ***!
       MyState2.handler(0) ***!
       MyState3.handler(0) ***!
       MyState4.handler(0)
     ).exec)
+    .run
 
 
   override def round5 =
@@ -100,10 +104,11 @@ object Turbolift extends Mulst.Entry(Contender.Turbolift):
         prog(n - 1)
 
     prog(Mulst.LIMIT)
-    .runWith((
+    .handleWith((
       MyState1.handler(0) ***!
       MyState2.handler(0) ***!
       MyState3.handler(0) ***!
       MyState4.handler(0) ***!
       MyState5.handler(0)
     ).exec)
+    .run
