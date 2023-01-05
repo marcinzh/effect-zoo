@@ -1,6 +1,6 @@
 ThisBuild / organization := "com.github.marcinzh"
 ThisBuild / version := "1.0.0"
-ThisBuild / scalaVersion := "3.2.0"
+ThisBuild / scalaVersion := "3.2.1"
 
 ThisBuild / watchBeforeCommand := Watch.clearScreen
 ThisBuild / watchTriggeredMessage := Watch.clearScreenOnTrigger
