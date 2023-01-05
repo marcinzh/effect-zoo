@@ -2,13 +2,13 @@ package effect_zoo.contests.reint.cats_mtl
 import effect_zoo.contests.{Reint, Contender}
 import cats._
 import cats.implicits._
-import cats.data.{ReaderT, Writer}
+import cats.data.{ReaderT, WriterT}
 import cats.mtl.{Ask, Tell}
 
 
 object Main extends Reint.Entry(Contender.CatsMTL):
   def prog(n: Int): (Vector[String], Vector[String]) =
-    type F[A] = ReaderT[Writer[Vector[String], _], String, A]
+    type F[A] = ReaderT[WriterT[Eval, Vector[String], _], String, A]
 
     val query =
       val http = mockResponses[F]
@@ -19,6 +19,7 @@ object Main extends Reint.Entry(Contender.CatsMTL):
     .map(_.iterator.toVector.flatten)
     .run(Reint.Shared.RESPONSE)
     .run
+    .value
     .swap
 
 
