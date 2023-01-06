@@ -1,14 +1,14 @@
-package effect_zoo.contests.reint.zio_mono
+package effect_zoo.contests.reint.zio_layer
 import effect_zoo.contests.{Reint, Contender}
 import scala.util.chaining._
 import zio._
-import yamlayer._
 import effect_zoo.auxx.zio_.BenchmarkRuntime
+import effect_zoo.auxx.zio_.rws.layer.{ReaderLive, Writer, WriterLive}
 
 
-object Main extends Reint.Entry(Contender.ZIO % "Mono"):
+object Main extends Reint.Entry(Contender.ZIO % "Layer"):
   def prog(n: Int): (Vector[String], Vector[String]) =
-    LogWriter.listen(
+    Writer.listen[Vector[String]](
       Query.listFruits.replicateZIO(n)
       .map(_.iterator.flatten.toVector)
     )
@@ -16,8 +16,8 @@ object Main extends Reint.Entry(Contender.ZIO % "Mono"):
       ToLoggedHttp.layer,
       AccumulateLogMessages.layer,
       MockResponses.layer,
-      LogWriter.Live.layer,
-      ResponseReader.Live.layer(Reint.Shared.RESPONSE),
+      WriterLive.layer[Vector[String]],
+      ReaderLive.layer(Reint.Shared.RESPONSE),
     )
     .pipe(BenchmarkRuntime.unsafeRun)
 

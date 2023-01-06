@@ -1,4 +1,11 @@
 
+### Update:
+
+This is all no longer necessary in ZIO 2.x, since parametrized services work now (see ../layer).
+
+However, it appears that monomorphised services are faster than parametrized ones. So we keep them both for comparison.
+
+
 ### This is ZIO 1.x specific.
 
 ZIO's `Has[_]` doesn't seem to work for polymorphic types. This means it's impossible to 

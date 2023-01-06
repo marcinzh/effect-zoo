@@ -6,10 +6,10 @@ import cats.syntax.semigroup._
 import cats.instances.int._
 import zio._
 import effect_zoo.auxx.zio_.BenchmarkRuntime
-import effect_zoo.auxx.zio_.rws.cake.{Reader, Writer, State, Cake}
+import effect_zoo.auxx.zio_.rws.env.{Reader, Writer, State}
 
 
-object ZioCake extends Sumh.Entry(Contender.ZIO % "Cake"):
+object ZioEnv extends Sumh.Entry(Contender.ZIO % "Env"):
   def prog: ZIO[Reader[Int] & Writer[Long] & State[Int], String, Int] =
     for
       s <- State.get[Int]
@@ -24,7 +24,12 @@ object ZioCake extends Sumh.Entry(Contender.ZIO % "Cake"):
 
 
   override def round1 =
-    (Writer.listen[Long](prog) <*> State.get[Int])
-    .provide(ZLayer.fromZIO(Cake[Int, Long, Int](Sumh.LIMIT, 0)))
+    (for
+      readerEnv <- Reader.env(Sumh.LIMIT)
+      writerEnv <- Writer.env[Long]
+      stateEnv <- State.env(0)
+      prog2 = Writer.listen[Long](prog) <*> State.get[Int]
+      aws <- prog2.provideEnvironment(readerEnv ++ writerEnv ++ stateEnv)
+    yield aws)
     .either
     .pipe(BenchmarkRuntime.unsafeRun)

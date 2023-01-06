@@ -12,7 +12,7 @@ case object Query extends Effect[QuerySignature] with QuerySignature:
 type Query = Query.type  
 
 
-def toLoggedHttp: Handler.Id[Query, Http & Logging] =
+val toLoggedHttp: Handler.Id[Query, Http & Logging] =
   new Query.Proxy[Http & Logging] with QuerySignature:
     override def listFruits: Vector[String] !@! ThisEffect =
       for

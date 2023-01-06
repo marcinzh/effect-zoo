@@ -1,6 +1,6 @@
-package effect_zoo.contests.reint.zio_mono
+package effect_zoo.contests.reint.zio_layer
 import zio._
-import effect_zoo.auxx.zio_.rws.mono.Writer
+import effect_zoo.auxx.zio_.rws.layer.Writer
 
 
 trait Logging:
@@ -17,6 +17,4 @@ object AccumulateLogMessages:
   val layer: URLayer[LogWriter, Logging] = ZLayer.fromFunction(AccumulateLogMessages.apply _)
 
 
-object LogWriter extends Writer[Vector[String]]
-
-type LogWriter = LogWriter.Service
+type LogWriter = Writer[Vector[String]]

@@ -12,9 +12,9 @@ object ZioMono extends Sumh.Entry(Contender.ZIO % "Mono"):
   object MyReader extends Reader[Int]
   object MyWriter extends Writer[Long]
   object MyState extends State[Int]
-  type MyReader = Has[MyReader.Service]
-  type MyWriter = Has[MyWriter.Service]
-  type MyState = Has[MyState.Service]
+  type MyReader = MyReader.Service
+  type MyWriter = MyWriter.Service
+  type MyState = MyState.Service
 
 
   def prog: ZIO[MyReader & MyWriter & MyState, String, Int] =
@@ -32,7 +32,6 @@ object ZioMono extends Sumh.Entry(Contender.ZIO % "Mono"):
 
   override def round1 =
     (MyWriter.listen(prog) <*> MyState.get)
-    .map { case ((a, w), s) => (a, w, s) }
     .provideLayer(
       MyState.Live.layer(0) ++
       MyWriter.Live.layer ++

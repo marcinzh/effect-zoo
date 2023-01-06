@@ -24,4 +24,6 @@ case object Mulst extends Contest5:
     Vector(
       CatsCore,
       Turbolift,
+      ZioEnv,
+      ZioStateful,
     )
