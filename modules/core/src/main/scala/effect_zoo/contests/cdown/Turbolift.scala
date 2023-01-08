@@ -1,7 +1,7 @@
 package effect_zoo.contests.cdown
 import effect_zoo.contests.{Cdown, Contender}
 import turbolift.!!
-import turbolift.std_effects.State
+import turbolift.effects.State
 
 
 object Turbolift extends Cdown.Entry(Contender.Turbolift):

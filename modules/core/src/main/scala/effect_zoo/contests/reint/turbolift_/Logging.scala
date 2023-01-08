@@ -1,6 +1,6 @@
 package effect_zoo.contests.reint.turbolift_
 import turbolift.{!!, Signature, Effect, Handler}
-import turbolift.std_effects.WriterK
+import turbolift.effects.WriterK
 
 
 trait LoggingSignature extends Signature:
