@@ -22,6 +22,9 @@ class Cdown {
   val Turbolift_Ref__run = reg.findRound("Turbolift_Ref", 0).run
   val ZIO_Cake__run = reg.findRound("ZIO_Cake", 0).run
   val ZIO_Mono__run = reg.findRound("ZIO_Mono", 0).run
+  val ZIO_Layer__run = reg.findRound("ZIO_Layer", 0).run
+  val ZIO_Env__run = reg.findRound("ZIO_Env", 0).run
+  val ZIO_Stateful__run = reg.findRound("ZIO_Stateful", 0).run
   val ZIO_Ref__run = reg.findRound("ZIO_Ref", 0).run
   val ZPure__run = reg.findRound("ZPure", 0).run
   
@@ -34,6 +37,9 @@ class Cdown {
   @Benchmark def Turbolift_Ref = Turbolift_Ref__run()
   @Benchmark def ZIO_Cake = ZIO_Cake__run()
   @Benchmark def ZIO_Mono = ZIO_Mono__run()
+  @Benchmark def ZIO_Layer = ZIO_Layer__run()
+  @Benchmark def ZIO_Env = ZIO_Env__run()
+  @Benchmark def ZIO_Stateful = ZIO_Stateful__run()
   @Benchmark def ZIO_Ref = ZIO_Ref__run()
   @Benchmark def ZPure = ZPure__run()
 }

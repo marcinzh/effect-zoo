@@ -9,9 +9,9 @@ abstract class Writer[W: Monoid]:
     def tell(w: W): UIO[Unit]
     def listen[R, E, A](body: ZIO[R, E, A]): ZIO[R, E, (A, W)]
 
-  def tell(w: W): URIO[Has[Service], Unit] = ZIO.serviceWith[Service](_.tell(w))
-  def listen[R <: Has[Service], E, A](body: ZIO[R, E, A]): ZIO[R, E, (A, W)] =
-    ZIO.serviceWith[Service](ZIO.succeed(_)).flatMap(_.listen(body))
+  def tell(w: W): URIO[Service, Unit] = ZIO.serviceWithZIO[Service](_.tell(w))
+  def listen[R <: Service, E, A](body: ZIO[R, E, A]): ZIO[R, E, (A, W)] =
+    ZIO.serviceWithZIO[Service](ZIO.succeed(_)).flatMap(_.listen(body))
 
       
   final case class Live(ref: Ref[W]) extends Service:
@@ -25,4 +25,4 @@ abstract class Writer[W: Monoid]:
       yield (a, w1)
 
   object Live:
-    val layer: ULayer[Has[Service]] = ZLayer.fromEffect(Ref.make(Monoid[W].empty).map(Live(_)))
+    val layer: ULayer[Service] = ZLayer.fromZIO(Ref.make(Monoid[W].empty).map(Live(_)))

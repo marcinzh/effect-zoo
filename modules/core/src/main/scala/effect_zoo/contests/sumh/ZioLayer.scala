@@ -2,14 +2,13 @@ package effect_zoo.contests.sumh
 import effect_zoo.contests.{Sumh, Contender}
 import scala.util.chaining._
 import cats.Monoid
-import cats.syntax.semigroup._
 import cats.instances.int._
 import zio._
 import effect_zoo.auxx.zio_.BenchmarkRuntime
-import effect_zoo.auxx.zio_.rws.cake.{Reader, Writer, State, Cake}
+import effect_zoo.auxx.zio_.rws.layer.{Reader, ReaderLive, Writer, WriterLive, State, StateLive}
 
 
-object ZioCake extends Sumh.Entry(Contender.ZIO % "Cake"):
+object ZioLayer extends Sumh.Entry(Contender.ZIO % "Layer"):
   def prog: ZIO[Reader[Int] & Writer[Long] & State[Int], String, Int] =
     for
       s <- State.get[Int]
@@ -25,6 +24,10 @@ object ZioCake extends Sumh.Entry(Contender.ZIO % "Cake"):
 
   override def round1 =
     (Writer.listen[Long](prog) <*> State.get[Int])
-    .provide(ZLayer.fromZIO(Cake[Int, Long, Int](Sumh.LIMIT, 0)))
+    .provideLayer(
+      StateLive.layer(0) ++
+      WriterLive.layer[Long] ++
+      ReaderLive.layer(Sumh.LIMIT)
+    )
     .either
     .pipe(BenchmarkRuntime.unsafeRun)
