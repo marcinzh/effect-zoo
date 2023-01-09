@@ -9,7 +9,7 @@ import effect_zoo.registry.Registry
 @State(Scope.Thread)
 @BenchmarkMode(Array(Mode.Throughput))
 @OutputTimeUnit(TimeUnit.SECONDS)
-@Fork(jvmArgs = Array("-Dcats.effect.tracing.mode=DISABLED", "-Xmx2048m"))
+@Fork(jvmArgs = Array("-Dcats.effect.tracing.mode=DISABLED", "-Xms2g", "-Xmx2g"))
 class Cdown {
   val reg = Registry.findByContestName("Cdown")
 

@@ -14,7 +14,7 @@ object Template:
     |@State(Scope.Thread)
     |@BenchmarkMode(Array(Mode.Throughput))
     |@OutputTimeUnit(TimeUnit.SECONDS)
-    |@Fork(jvmArgs = Array("-Dcats.effect.tracing.mode=DISABLED", "-Xmx2048m"))
+    |@Fork(jvmArgs = Array("-Dcats.effect.tracing.mode=DISABLED", "-Xms2g", "-Xmx2g"))
     |class CONTEST_NAME {
     |  val reg = Registry.findByContestName("CONTEST_NAME")
     |
