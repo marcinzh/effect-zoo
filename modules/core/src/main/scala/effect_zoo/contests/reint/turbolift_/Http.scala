@@ -1,6 +1,6 @@
 package effect_zoo.contests.reint.turbolift_
 import turbolift.{!!, Signature, Effect, Handler}
-import turbolift.std_effects.Reader
+import turbolift.effects.Reader
 
 
 trait HttpSignature extends Signature:

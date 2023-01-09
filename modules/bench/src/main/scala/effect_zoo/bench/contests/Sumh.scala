@@ -9,7 +9,7 @@ import effect_zoo.registry.Registry
 @State(Scope.Thread)
 @BenchmarkMode(Array(Mode.Throughput))
 @OutputTimeUnit(TimeUnit.SECONDS)
-@Fork(jvmArgs = Array("-Dcats.effect.tracing.mode=DISABLED", "-Xmx2048m"))
+@Fork(jvmArgs = Array("-Dcats.effect.tracing.mode=DISABLED", "-Xms2g", "-Xmx2g"))
 class Sumh {
   val reg = Registry.findByContestName("Sumh")
 
@@ -21,6 +21,7 @@ class Sumh {
   val CatsIO_RWS__run = reg.findRound("CatsIO_RWS", 0).run
   val CatsEff__run = reg.findRound("CatsEff", 0).run
   val Turbolift__run = reg.findRound("Turbolift", 0).run
+  val Turbolift_Ref__run = reg.findRound("Turbolift_Ref", 0).run
   val ZIO_Cake__run = reg.findRound("ZIO_Cake", 0).run
   val ZIO_Mono__run = reg.findRound("ZIO_Mono", 0).run
   val ZPure__run = reg.findRound("ZPure", 0).run
@@ -33,6 +34,7 @@ class Sumh {
   @Benchmark def CatsIO_RWS = CatsIO_RWS__run()
   @Benchmark def CatsEff = CatsEff__run()
   @Benchmark def Turbolift = Turbolift__run()
+  @Benchmark def Turbolift_Ref = Turbolift_Ref__run()
   @Benchmark def ZIO_Cake = ZIO_Cake__run()
   @Benchmark def ZIO_Mono = ZIO_Mono__run()
   @Benchmark def ZPure = ZPure__run()

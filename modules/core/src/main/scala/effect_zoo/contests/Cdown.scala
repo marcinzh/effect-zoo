@@ -19,6 +19,7 @@ case object Cdown extends Contest1:
       CatsIORef,
       CatsEff,
       Turbolift,
+      TurboliftRef,
       ZioCake,
       ZioMono,
       ZioRef,

@@ -21,6 +21,7 @@ case object Sumh extends Contest1:
       CatsIO_RWS,
       CatsEff,
       Turbolift,
+      TurboliftRef,
       ZioCake,
       ZioMono,
       Zpure,

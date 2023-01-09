@@ -2,7 +2,7 @@ package effect_zoo.contests.mulst
 import effect_zoo.contests.{Contender, Mulst}
 import scala.util.chaining._
 import turbolift.!!
-import turbolift.std_effects.State
+import turbolift.effects.State
 
 
 object Turbolift extends Mulst.Entry(Contender.Turbolift):

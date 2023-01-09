@@ -1,7 +1,7 @@
 package effect_zoo.contests.sumh
 import effect_zoo.contests.{Sumh, Contender}
 import turbolift.!!
-import turbolift.std_effects.{Reader, Writer, State, Error}
+import turbolift.effects.{Reader, Writer, State, Error}
 
 
 object Turbolift extends Sumh.Entry(Contender.Turbolift):
