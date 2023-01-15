@@ -15,9 +15,10 @@ type Query = Query.type
 val toLoggedHttp: Handler.Id[Query, Http & Logging] =
   new Query.Proxy[Http & Logging] with QuerySignature:
     override def listFruits: Vector[String] !@! ThisEffect =
-      for
-        _ <- Logging.logMsg(Shared.MESSAGE)
-        response <- Http.get(Shared.URL)
-        lines = response.split('\n').toVector
-      yield lines
+      _ =>
+        for
+          _ <- Logging.logMsg(Shared.MESSAGE)
+          response <- Http.get(Shared.URL)
+          lines = response.split('\n').toVector
+        yield lines
   .toHandler

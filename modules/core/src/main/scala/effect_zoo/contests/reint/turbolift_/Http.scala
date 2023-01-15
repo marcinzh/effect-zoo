@@ -14,7 +14,7 @@ type Http = Http.type
 
 val mockResponses: Handler.Id[Http, ResponseReader] =
   new Http.Proxy[ResponseReader] with HttpSignature:
-    override def get(url: String): String !@! ThisEffect = ResponseReader.ask
+    override def get(url: String): String !@! ThisEffect = _ => ResponseReader.ask
   .toHandler
 
 
