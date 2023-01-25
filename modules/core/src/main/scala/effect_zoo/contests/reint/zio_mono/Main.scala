@@ -2,7 +2,6 @@ package effect_zoo.contests.reint.zio_mono
 import effect_zoo.contests.{Reint, Contender}
 import scala.util.chaining._
 import zio._
-import yamlayer._
 import effect_zoo.auxx.zio_.BenchmarkRuntime
 
 
