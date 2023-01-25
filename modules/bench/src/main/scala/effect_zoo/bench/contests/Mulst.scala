@@ -23,16 +23,6 @@ class Mulst {
   val Turbolift__2__run = reg.findRound("Turbolift", 2).run
   val Turbolift__3__run = reg.findRound("Turbolift", 3).run
   val Turbolift__4__run = reg.findRound("Turbolift", 4).run
-  val ZIO_Env__0__run = reg.findRound("ZIO_Env", 0).run
-  val ZIO_Env__1__run = reg.findRound("ZIO_Env", 1).run
-  val ZIO_Env__2__run = reg.findRound("ZIO_Env", 2).run
-  val ZIO_Env__3__run = reg.findRound("ZIO_Env", 3).run
-  val ZIO_Env__4__run = reg.findRound("ZIO_Env", 4).run
-  val ZIO_Stateful__0__run = reg.findRound("ZIO_Stateful", 0).run
-  val ZIO_Stateful__1__run = reg.findRound("ZIO_Stateful", 1).run
-  val ZIO_Stateful__2__run = reg.findRound("ZIO_Stateful", 2).run
-  val ZIO_Stateful__3__run = reg.findRound("ZIO_Stateful", 3).run
-  val ZIO_Stateful__4__run = reg.findRound("ZIO_Stateful", 4).run
   
   @Benchmark def CatsCore__0 = CatsCore__0__run()
   @Benchmark def CatsCore__1 = CatsCore__1__run()
@@ -44,14 +34,4 @@ class Mulst {
   @Benchmark def Turbolift__2 = Turbolift__2__run()
   @Benchmark def Turbolift__3 = Turbolift__3__run()
   @Benchmark def Turbolift__4 = Turbolift__4__run()
-  @Benchmark def ZIO_Env__0 = ZIO_Env__0__run()
-  @Benchmark def ZIO_Env__1 = ZIO_Env__1__run()
-  @Benchmark def ZIO_Env__2 = ZIO_Env__2__run()
-  @Benchmark def ZIO_Env__3 = ZIO_Env__3__run()
-  @Benchmark def ZIO_Env__4 = ZIO_Env__4__run()
-  @Benchmark def ZIO_Stateful__0 = ZIO_Stateful__0__run()
-  @Benchmark def ZIO_Stateful__1 = ZIO_Stateful__1__run()
-  @Benchmark def ZIO_Stateful__2 = ZIO_Stateful__2__run()
-  @Benchmark def ZIO_Stateful__3 = ZIO_Stateful__3__run()
-  @Benchmark def ZIO_Stateful__4 = ZIO_Stateful__4__run()
 }

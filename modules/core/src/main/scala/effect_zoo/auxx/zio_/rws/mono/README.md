@@ -1,17 +1,4 @@
 
-### Update:
-
-This is all no longer necessary in ZIO 2.x, since parametrized services work now (see ../layer).
-
-However, it appears that monomorphised services are faster than parametrized ones. So we keep them both for comparison.
-
-### Update 2:
-
-Since ZIO 2.0.4, this module pattern no longer works, when more than 1 layers are used.
-https://github.com/zio/zio/issues/7506
-
----
-
 ### This is ZIO 1.x specific.
 
 ZIO's `Has[_]` doesn't seem to work for polymorphic types. This means it's impossible to 

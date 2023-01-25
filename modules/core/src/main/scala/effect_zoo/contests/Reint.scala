@@ -49,6 +49,5 @@ case object Reint extends Contest3:
       cats_io.Main,
       cats_eff.Main,
       turbolift_.Main,
-      // zio_mono.Main,
-      zio_layer.Main,
+      zio_mono.Main,
     )

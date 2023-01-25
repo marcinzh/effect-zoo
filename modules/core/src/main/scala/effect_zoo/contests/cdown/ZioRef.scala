@@ -7,7 +7,7 @@ import effect_zoo.auxx.zio_.BenchmarkRuntime
 
 object ZioRef extends Cdown.Entry(Contender.ZIO % "Ref"):
   def program: URIO[Ref[Int], Int] =
-    ZIO.serviceWithZIO { ref =>
+    ZIO.accessM { ref =>
       ref.get.flatMap { n =>
         if n <= 0
         then ZIO.succeed(n)
@@ -19,6 +19,6 @@ object ZioRef extends Cdown.Entry(Contender.ZIO % "Ref"):
     (for
       ref <- Ref.make(Cdown.LIMIT)
       prog = program <*> ref.get
-      as <- prog.provideEnvironment(ZEnvironment(ref))
+      as <- prog.provide(ref)
     yield as)
     .pipe(BenchmarkRuntime.unsafeRun)

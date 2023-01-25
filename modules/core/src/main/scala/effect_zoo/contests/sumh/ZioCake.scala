@@ -24,7 +24,11 @@ object ZioCake extends Sumh.Entry(Contender.ZIO % "Cake"):
 
 
   override def round1 =
-    (Writer.listen[Long](prog) <*> State.get[Int])
-    .provide(ZLayer.fromZIO(Cake[Int, Long, Int](Sumh.LIMIT, 0)))
+    (for
+      cake <- Cake[Int, Long, Int](Sumh.LIMIT, 0) 
+      prog2 = Writer.listen[Long](prog) <*> State.get[Int]
+      aws <- prog2.provide(cake)
+      ((a, w), s) = aws
+    yield (a, w, s))
     .either
     .pipe(BenchmarkRuntime.unsafeRun)

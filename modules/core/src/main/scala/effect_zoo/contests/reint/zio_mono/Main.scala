@@ -8,16 +8,16 @@ import effect_zoo.auxx.zio_.BenchmarkRuntime
 object Main extends Reint.Entry(Contender.ZIO % "Mono"):
   def prog(n: Int): (Vector[String], Vector[String]) =
     LogWriter.listen(
-      Query.listFruits.replicateZIO(n)
+      Query.listFruits.replicateM(n)
       .map(_.iterator.flatten.toVector)
     )
-    .provide(
-      ToLoggedHttp.layer,
-      AccumulateLogMessages.layer,
-      MockResponses.layer,
-      LogWriter.Live.layer,
-      ResponseReader.Live.layer(Reint.Shared.RESPONSE),
-    )
+    .provideLayer {
+      val logWriter = LogWriter.Live.layer
+      val responseReader = ResponseReader.Live.layer(Reint.Shared.RESPONSE) >>> MockResponses.layer
+      val accumulateLogMessages = logWriter >>> AccumulateLogMessages.layer
+      val httpLayer = (responseReader ++ accumulateLogMessages) >>> ToLoggedHttp.layer
+      httpLayer ++ logWriter
+    }  
     .pipe(BenchmarkRuntime.unsafeRun)
 
 

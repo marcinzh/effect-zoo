@@ -23,10 +23,7 @@ case object Sumh extends Contest1:
       Turbolift,
       TurboliftRef,
       ZioCake,
-      // ZioMono,
-      ZioLayer,
-      ZioEnv,
-      ZioStateful,
+      ZioMono,
       Zpure,
       Unfunctional,
     )

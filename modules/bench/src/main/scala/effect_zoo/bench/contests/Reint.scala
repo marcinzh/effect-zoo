@@ -25,9 +25,9 @@ class Reint {
   val Turbolift__0__run = reg.findRound("Turbolift", 0).run
   val Turbolift__1__run = reg.findRound("Turbolift", 1).run
   val Turbolift__2__run = reg.findRound("Turbolift", 2).run
-  val ZIO_Layer__0__run = reg.findRound("ZIO_Layer", 0).run
-  val ZIO_Layer__1__run = reg.findRound("ZIO_Layer", 1).run
-  val ZIO_Layer__2__run = reg.findRound("ZIO_Layer", 2).run
+  val ZIO_Mono__0__run = reg.findRound("ZIO_Mono", 0).run
+  val ZIO_Mono__1__run = reg.findRound("ZIO_Mono", 1).run
+  val ZIO_Mono__2__run = reg.findRound("ZIO_Mono", 2).run
   
   @Benchmark def CatsMTL__0 = CatsMTL__0__run()
   @Benchmark def CatsMTL__1 = CatsMTL__1__run()
@@ -41,7 +41,7 @@ class Reint {
   @Benchmark def Turbolift__0 = Turbolift__0__run()
   @Benchmark def Turbolift__1 = Turbolift__1__run()
   @Benchmark def Turbolift__2 = Turbolift__2__run()
-  @Benchmark def ZIO_Layer__0 = ZIO_Layer__0__run()
-  @Benchmark def ZIO_Layer__1 = ZIO_Layer__1__run()
-  @Benchmark def ZIO_Layer__2 = ZIO_Layer__2__run()
+  @Benchmark def ZIO_Mono__0 = ZIO_Mono__0__run()
+  @Benchmark def ZIO_Mono__1 = ZIO_Mono__1__run()
+  @Benchmark def ZIO_Mono__2 = ZIO_Mono__2__run()
 }

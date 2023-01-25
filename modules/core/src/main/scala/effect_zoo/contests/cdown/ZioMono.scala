@@ -8,7 +8,7 @@ import effect_zoo.auxx.zio_.rws.mono.State
 
 object ZioMono extends Cdown.Entry(Contender.ZIO % "Mono"):
   object MyState extends State[Int]
-  type MyState = MyState.Service
+  type MyState = Has[MyState.Service]
 
   def program: URIO[MyState, Int] =
     MyState.get.flatMap { n =>

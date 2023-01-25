@@ -7,7 +7,7 @@ trait Query:
   def listFruits: UIO[Vector[String]]
 
 object Query:
-  def listFruits: URIO[Query, Vector[String]] = ZIO.serviceWithZIO[Query](_.listFruits)
+  def listFruits: URIO[Has[Query], Vector[String]] = ZIO.serviceWith[Query](_.listFruits)
 
 
 final case class ToLoggedHttp(http: Http, logging: Logging) extends Query:
@@ -19,4 +19,4 @@ final case class ToLoggedHttp(http: Http, logging: Logging) extends Query:
     yield lines
 
 object ToLoggedHttp:
-  val layer: URLayer[Http & Logging, Query] = ZLayer.fromFunction(ToLoggedHttp.apply _)
+  val layer: URLayer[Has[Http] & Has[Logging], Has[Query]] = (ToLoggedHttp(_, _)).toLayer

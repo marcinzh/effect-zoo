@@ -6,4 +6,4 @@ trait Reader[R]:
   def reader: Ref[R]
 
 object Reader:
-  def ask[R: Tag] = ZIO.serviceWithZIO[Reader[R]](_.reader.get)
+  def ask[R] = ZIO.accessM[Reader[R]](_.reader.get)

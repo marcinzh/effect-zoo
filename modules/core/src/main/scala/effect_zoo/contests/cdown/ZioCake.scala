@@ -15,14 +15,9 @@ object ZioCake extends Cdown.Entry(Contender.ZIO % "Cake"):
     }
 
   override def round1 =
-    (program <*> State.get[Int])
-    .provide(ZLayer.fromZIO(Cake[Int, Int, Int](0, Cdown.LIMIT)))
+    (for
+      cake <- Cake[Int, Int, Int](0, Cdown.LIMIT)
+      prog = program <*> State.get[Int]
+      as <- prog.provide(cake)
+    yield as)
     .pipe(BenchmarkRuntime.unsafeRun)
-    
-    // (for
-    //   // cake <- Cake[Int, Int, Int](0, Cdown.LIMIT)
-    //   prog = program <*> State.get[Int]
-    //   // as <- prog.provideEnvironment(ZEnvironment(cake))
-    //   as <- prog.provide(ZLayer.fromZIO(Cake[Int, Int, Int](0, Cdown.LIMIT)))
-    // yield as)
-    // .pipe(BenchmarkRuntime.unsafeRun)

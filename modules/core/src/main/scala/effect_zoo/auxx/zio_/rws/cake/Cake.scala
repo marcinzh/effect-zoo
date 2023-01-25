@@ -12,7 +12,6 @@ class Cake[R, W, S] private (
 
 object Cake:
   def apply[R, W: Monoid, S](r: R, s: S): UIO[Cake[R, W, S]] =
-  // def apply[R: Tag, W: Tag: Monoid, S: Tag, E, A](r: R, s: S): UIO[Cake[R, W, S]] =
     for
       writerSlice <- Ref.make(Monoid[W].empty)
       stateSlice <- Ref.make(s)
