@@ -20,11 +20,10 @@ val Deps = {
     val catsCore = "org.typelevel" %% "cats-core" % "2.9.0"
     val catsMtl = "org.typelevel" %% "cats-mtl" % "1.3.0"
     val catsEff = "org.atnos" %% "eff" % "6.0.2"
-    val catsEffect = "org.typelevel" %% "cats-effect" % "3.4.2"
-    val zio = "dev.zio" %% "zio" % "2.0.5"
+    val catsEffect = "org.typelevel" %% "cats-effect" % "3.4.5"
+    val zio = "dev.zio" %% "zio" % "2.0.6"
     val zioPrelude = "dev.zio" %% "zio-prelude" % "1.0.0-RC16"
-    val turbolift = "io.github.marcinzh" %% "turbolift-core" % "0.45.0"
-    val yamlayer = "io.github.marcinzh" %% "yamlayer" % "0.1.0"
+    val turbolift = "io.github.marcinzh" %% "turbolift-core" % "0.46.0"
     val betterFiles = ("com.github.pathikrit" %% "better-files" % "3.9.1").cross(CrossVersion.for3Use2_13)
   }
   deps
@@ -48,7 +47,6 @@ lazy val core = project
     Deps.turbolift,
     Deps.zio,
     Deps.zioPrelude,
-    Deps.yamlayer,
   ))
 
 lazy val chart = project
@@ -76,6 +74,6 @@ lazy val bench = project
   .settings(Jmh / run / mainClass := Some("effect_zoo.bench.Main"))
 
 
-addCommandAlias("runbench", "bench/Jmh/run -i 5 -wi 3 -f1 -t1 -r 5 -w 5")
+addCommandAlias("runbench", "bench/Jmh/run -i 5 -wi 3 -f1 -t1 -r 3 -w 3")
 addCommandAlias("runbench10", "bench/Jmh/run -i 5 -wi 3 -f1 -t1 -r 10 -w 10")
 addCommandAlias("runbench1", "bench/Jmh/run -i 1 -wi 1 -f1 -t1 -r 1 -w 1")

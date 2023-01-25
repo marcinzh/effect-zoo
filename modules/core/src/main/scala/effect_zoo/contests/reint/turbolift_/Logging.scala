@@ -14,7 +14,7 @@ type Logging = Logging.type
 
 val accumulateLogMessages: Handler.Id[Logging, LogWriter] =
   new Logging.Proxy[LogWriter] with LoggingSignature:
-    override def logMsg(text: String): Unit !@! ThisEffect = LogWriter.tell(text)
+    override def logMsg(text: String): Unit !@! ThisEffect = _ => LogWriter.tell(text)
   .toHandler
 
 
