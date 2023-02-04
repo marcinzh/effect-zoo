@@ -27,6 +27,7 @@ class Cdown {
   val ZIO_Stateful__run = reg.findRound("ZIO_Stateful", 0).run
   val ZIO_Ref__run = reg.findRound("ZIO_Ref", 0).run
   val ZPure__run = reg.findRound("ZPure", 0).run
+  val Kyo__run = reg.findRound("Kyo", 0).run
   
   @Benchmark def CatsCore = CatsCore__run()
   @Benchmark def CatsMTL = CatsMTL__run()
@@ -42,4 +43,5 @@ class Cdown {
   @Benchmark def ZIO_Stateful = ZIO_Stateful__run()
   @Benchmark def ZIO_Ref = ZIO_Ref__run()
   @Benchmark def ZPure = ZPure__run()
+  @Benchmark def Kyo = Kyo__run()
 }

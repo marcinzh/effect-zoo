@@ -27,4 +27,5 @@ case object Cdown extends Contest1:
       ZioStateful,
       ZioRef,
       Zpure,
+      Kyo,
     )
