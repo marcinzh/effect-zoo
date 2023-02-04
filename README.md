@@ -43,6 +43,8 @@ In this project we explore [several ways](https://github.com/marcinzh/effect-zoo
 
 - [Turbolift](https://github.com/marcinzh/turbolift).
 
+- [Kyo](https://github.com/fwbrasil/kyo).
+
 There are many more effect systems for Scala (e.g. 3 more implementations of the Eff monad alone),
 but they are unmaintained and unavailable for Scala 2.13 or 3.x.
 
