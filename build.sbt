@@ -25,6 +25,7 @@ val Deps = {
     val zioPrelude = "dev.zio" %% "zio-prelude" % "1.0.0-RC16"
     val turbolift = "io.github.marcinzh" %% "turbolift-core" % "0.46.0"
     val betterFiles = ("com.github.pathikrit" %% "better-files" % "3.9.1").cross(CrossVersion.for3Use2_13)
+    val kyo = "io.getkyo" %% "kyo-core-opt3" % "0.1.4" 
   }
   deps
 }
@@ -47,6 +48,7 @@ lazy val core = project
     Deps.turbolift,
     Deps.zio,
     Deps.zioPrelude,
+    Deps.kyo,
   ))
 
 lazy val chart = project

@@ -35,6 +35,7 @@ object Contender:
   case object Turbolift extends Plain
   case object ZIO extends Plain
   case object ZPure extends Plain
+  case object Kyo extends Plain
 
   val all = Vector(
     Unfunctional,
@@ -45,4 +46,5 @@ object Contender:
     Turbolift,
     ZIO,
     ZPure,
+    Kyo
   )

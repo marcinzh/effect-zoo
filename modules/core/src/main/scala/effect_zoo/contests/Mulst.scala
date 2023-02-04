@@ -1,6 +1,7 @@
 package effect_zoo.contests
 import effect_zoo.registry.{Contest5, Contender}
 
+import effect_zoo.contests.mulst.Kyo
 
 case object Mulst extends Contest5:
   override def description = "Multiple State effects used at the same time"
@@ -26,4 +27,5 @@ case object Mulst extends Contest5:
       Turbolift,
       ZioEnv,
       ZioStateful,
+      Kyo,
     )
