@@ -1,6 +1,6 @@
 ThisBuild / organization := "com.github.marcinzh"
 ThisBuild / version := "1.0.0"
-ThisBuild / scalaVersion := "3.2.1"
+ThisBuild / scalaVersion := "3.3.0-RC3"
 
 ThisBuild / watchBeforeCommand := Watch.clearScreen
 ThisBuild / watchTriggeredMessage := Watch.clearScreenOnTrigger
@@ -23,7 +23,9 @@ val Deps = {
     val catsEffect = "org.typelevel" %% "cats-effect" % "3.4.5"
     val zio = "dev.zio" %% "zio" % "2.0.6"
     val zioPrelude = "dev.zio" %% "zio-prelude" % "1.0.0-RC16"
-    val turbolift = "io.github.marcinzh" %% "turbolift-core" % "0.46.0"
+    // val turbolift = "io.github.marcinzh" %% "turbolift-core" % "0.47.1-SNAPSHOT"
+    val turbolift = "io.github.marcinzh" %% "turbolift-core" % "0.49.0-SNAPSHOT"
+    // val turbolift = "io.github.marcinzh" %% "turbolift-core" % "0.48.0"
     val betterFiles = ("com.github.pathikrit" %% "better-files" % "3.9.1").cross(CrossVersion.for3Use2_13)
     val kyo = "io.getkyo" %% "kyo-core-opt3" % "0.1.4" 
   }
