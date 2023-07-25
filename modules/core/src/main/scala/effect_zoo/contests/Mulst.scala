@@ -27,5 +27,5 @@ case object Mulst extends Contest5:
       Turbolift,
       ZioEnv,
       ZioStateful,
-      Kyo,
+      // Kyo,
     )
