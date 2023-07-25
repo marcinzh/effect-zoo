@@ -18,14 +18,14 @@ val Deps = {
   object deps {
     val scalatest = "org.scalatest" %% "scalatest" % "3.2.14" % "test"
     val catsCore = "org.typelevel" %% "cats-core" % "2.9.0"
-    val catsMtl = "org.typelevel" %% "cats-mtl" % "1.3.0"
-    val catsEff = "org.atnos" %% "eff" % "6.0.2"
-    val catsEffect = "org.typelevel" %% "cats-effect" % "3.4.5"
-    val zio = "dev.zio" %% "zio" % "2.0.6"
-    val zioPrelude = "dev.zio" %% "zio-prelude" % "1.0.0-RC16"
-    val turbolift = "io.github.marcinzh" %% "turbolift-core" % "0.55.0-SNAPSHOT"
+    val catsMtl = "org.typelevel" %% "cats-mtl" % "1.3.1"
+    val catsEff = "org.atnos" %% "eff" % "6.0.3"
+    val catsEffect = "org.typelevel" %% "cats-effect" % "3.5.1"
+    val zio = "dev.zio" %% "zio" % "2.0.15"
+    val zioPrelude = "dev.zio" %% "zio-prelude" % "1.0.0-RC19"
+    val turbolift = "io.github.marcinzh" %% "turbolift-core" % "0.56.0"
     val betterFiles = ("com.github.pathikrit" %% "better-files" % "3.9.1").cross(CrossVersion.for3Use2_13)
-    val kyo = "io.getkyo" %% "kyo-core-opt3" % "0.1.4" 
+    val kyo = "io.getkyo" %% "kyo-core-opt3" % "0.1.4"
   }
   deps
 }
