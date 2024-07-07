@@ -1,22 +1,21 @@
 package effect_zoo.contests.cdown
-
-import language.implicitConversions
 import effect_zoo.contests.{Cdown, Contender}
-import kyo.core._
-import kyo.ios._
-import kyo.concurrent.atomics._
+import kyo.*
+
 
 object Kyo extends Cdown.Entry(Contender.Kyo):
-  def program(a: AtomicInteger): Int > IOs =
-    a.decrementAndGet {
-      case 0 => 0
-      case _ => program(a)
+  def program: Int < Vars[Int] =
+    Vars.get[Int].flatMap { n =>
+      if n <= 0
+      then n
+      else Vars.set(n - 1).andThen(program)
     }
 
   override def round1 =
-    IOs.run {
+    Vars.run(Cdown.LIMIT)(
       for {
-        a <- AtomicInteger(Cdown.LIMIT)
-        v <- program(a)
-      } yield (0, v)
-    }
+        a <- program
+        b <- Vars.get[Int]
+      } yield (a, b)
+    )
+    .pure

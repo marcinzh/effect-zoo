@@ -14,7 +14,7 @@ final case class AccumulateLogMessages(logWriter: LogWriter) extends Logging:
   override def logMsg(text: String): UIO[Unit] = logWriter.tell(Vector(text))
 
 object AccumulateLogMessages:
-  val layer: URLayer[LogWriter, Logging] = ZLayer.fromFunction(AccumulateLogMessages.apply _)
+  val layer: URLayer[LogWriter, Logging] = ZLayer.fromFunction(AccumulateLogMessages(_))
 
 
 object LogWriter extends Writer[Vector[String]]

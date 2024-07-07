@@ -14,7 +14,7 @@ final case class MockResponses(responseReader: ResponseReader) extends Http:
   override def get(url: String): UIO[String] = responseReader.ask
 
 object MockResponses:
-  val layer: URLayer[ResponseReader, Http] = ZLayer.fromFunction(MockResponses.apply _)
+  val layer: URLayer[ResponseReader, Http] = ZLayer.fromFunction(MockResponses(_))
 
 
 type ResponseReader = Reader[String]

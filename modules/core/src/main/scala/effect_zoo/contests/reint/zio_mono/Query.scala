@@ -19,4 +19,4 @@ final case class ToLoggedHttp(http: Http, logging: Logging) extends Query:
     yield lines
 
 object ToLoggedHttp:
-  val layer: URLayer[Http & Logging, Query] = ZLayer.fromFunction(ToLoggedHttp.apply _)
+  val layer: URLayer[Http & Logging, Query] = ZLayer.fromFunction(ToLoggedHttp(_, _))

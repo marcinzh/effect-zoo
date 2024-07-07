@@ -10,4 +10,4 @@ object TurboliftRef extends Cdown.Entry(Contender.Turbolift % "Ref"):
   override def round1 =
     program
     .handleWith(MyState.handlers.shared(Cdown.LIMIT))
-    .unsafeRun.get
+    .runIO.get

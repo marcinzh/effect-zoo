@@ -13,6 +13,6 @@ object TurboliftRef extends Sumh.Entry(Contender.Turbolift % "Ref"):
     .handleWith(MyWriter.handlers.shared)
     .handleWith(MyReader.handler(Sumh.LIMIT))
     .handleWith(MyError.handler)
-    .unsafeRun.get
+    .runIO.get
     .map { case ((a, s), w) => (a, w, s) }
 

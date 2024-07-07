@@ -22,7 +22,7 @@ object Main:
           .build()
         new Runner(opts)
       else
-        val opts = new CommandLineOptions(args: _*)
+        val opts = new CommandLineOptions(args*)
         new Runner(opts)
 
     val results = runner.run()
