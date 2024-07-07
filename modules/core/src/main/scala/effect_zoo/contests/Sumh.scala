@@ -28,5 +28,6 @@ case object Sumh extends Contest1:
       ZioEnv,
       ZioStateful,
       Zpure,
+      // Kyo,
       Unfunctional,
     )
