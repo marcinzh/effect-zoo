@@ -4,8 +4,8 @@ import turbolift.!!
 import turbolift.effects.State
 
 
-object TurboliftRef extends Cdown.Entry(Contender.Turbolift % "Ref"):
-  import Turbolift.{program, MyState}
+object TurboliftShared extends Cdown.Entry(Contender.Turbolift % "Shared"):
+  import TurboliftLocal.{program, MyState}
 
   override def round1 =
     program

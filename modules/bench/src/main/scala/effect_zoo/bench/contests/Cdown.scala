@@ -18,8 +18,8 @@ class Cdown {
   val CatsIO__run = reg.findRound("CatsIO", 0).run
   val CatsIO_Ref__run = reg.findRound("CatsIO_Ref", 0).run
   val CatsEff__run = reg.findRound("CatsEff", 0).run
-  val Turbolift__run = reg.findRound("Turbolift", 0).run
-  val Turbolift_Ref__run = reg.findRound("Turbolift_Ref", 0).run
+  val Turbolift_Local__run = reg.findRound("Turbolift_Local", 0).run
+  val Turbolift_Shared__run = reg.findRound("Turbolift_Shared", 0).run
   val ZIO_Cake__run = reg.findRound("ZIO_Cake", 0).run
   val ZIO_Mono__run = reg.findRound("ZIO_Mono", 0).run
   val ZIO_Layer__run = reg.findRound("ZIO_Layer", 0).run
@@ -34,8 +34,8 @@ class Cdown {
   @Benchmark def CatsIO = CatsIO__run()
   @Benchmark def CatsIO_Ref = CatsIO_Ref__run()
   @Benchmark def CatsEff = CatsEff__run()
-  @Benchmark def Turbolift = Turbolift__run()
-  @Benchmark def Turbolift_Ref = Turbolift_Ref__run()
+  @Benchmark def Turbolift_Local = Turbolift_Local__run()
+  @Benchmark def Turbolift_Shared = Turbolift_Shared__run()
   @Benchmark def ZIO_Cake = ZIO_Cake__run()
   @Benchmark def ZIO_Mono = ZIO_Mono__run()
   @Benchmark def ZIO_Layer = ZIO_Layer__run()

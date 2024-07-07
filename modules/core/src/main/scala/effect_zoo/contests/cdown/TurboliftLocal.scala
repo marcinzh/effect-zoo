@@ -4,7 +4,7 @@ import turbolift.!!
 import turbolift.effects.State
 
 
-object Turbolift extends Cdown.Entry(Contender.Turbolift):
+object TurboliftLocal extends Cdown.Entry(Contender.Turbolift % "Local"):
   case object MyState extends State[Int]
   type MyState = MyState.type
 

@@ -4,8 +4,8 @@ import turbolift.!!
 import turbolift.effects.{Reader, Writer, State, Error}
 
 
-object TurboliftRef extends Sumh.Entry(Contender.Turbolift % "Ref"):
-  import Turbolift.{prog, MyError, MyReader, MyWriter, MyState}
+object TurboliftShared extends Sumh.Entry(Contender.Turbolift % "Shared"):
+  import TurboliftLocal.{prog, MyError, MyReader, MyWriter, MyState}
 
   override def round1 =
     prog

@@ -4,7 +4,7 @@ import turbolift.!!
 import turbolift.effects.{Reader, Writer, State, Error}
 
 
-object Turbolift extends Sumh.Entry(Contender.Turbolift):
+object TurboliftLocal extends Sumh.Entry(Contender.Turbolift % "Local"):
   case object MyError extends Error[String]
   case object MyReader extends Reader[Int]
   case object MyWriter extends Writer[Long]
