@@ -10,11 +10,10 @@ import cats.effect.unsafe.implicits.global
 
 object CatsIO extends Cdown.Entry(Contender.CatsIO):
   def program[F[_]: Monad](using S: Stateful[F, Int]): F[Int] =
-    S.get.flatMap { n =>
+    S.get.flatMap: n =>
       if n <= 0
       then n.pure
       else S.set(n - 1) *> program
-    }
 
   override def round1 =
     program[StateT[IO, Int, _]]

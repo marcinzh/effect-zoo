@@ -16,11 +16,11 @@ object Logging:
 
 
 def accumulateLogMessages[R, U, A](comp: Eff[R, A])(using Member.Aux[Logging, R, U], LogWriter |= U): Eff[U, A] =
-  translate(comp)(new Translate[Logging, U]:
-    override def apply[X](logging: Logging[X]): Eff[U, X] =
-      logging match
-        case Logging.LogMsg(text) => tell(Vector(text))
-  )
+  translate(comp):
+    new Translate[Logging, U]:
+      override def apply[X](logging: Logging[X]): Eff[U, X] =
+        logging match
+          case Logging.LogMsg(text) => tell(Vector(text))
 
 
 type LogWriter[A] = Writer[Vector[String], A]

@@ -17,13 +17,13 @@ object Query:
 
 
 def toLoggedHttp[R, U, A](comp: Eff[R, A])(using Member.Aux[Query, R, U], Http |= U, Logging |= U): Eff[U, A] =
-  translate(comp)(new Translate[Query, U]:
-    override def apply[X](query: Query[X]): Eff[U, X] =
-      query match
-        case Query.ListFruits() =>
-          for
-            _ <- Logging.logMsg(Shared.MESSAGE)
-            response <- Http.get(Shared.URL)
-            lines = response.split('\n').toVector
-          yield lines
-  )
+  translate(comp):
+    new Translate[Query, U]:
+      override def apply[X](query: Query[X]): Eff[U, X] =
+        query match
+          case Query.ListFruits() =>
+            for
+              _ <- Logging.logMsg(Shared.MESSAGE)
+              response <- Http.get(Shared.URL)
+              lines = response.split('\n').toVector
+            yield lines

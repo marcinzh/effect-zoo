@@ -16,11 +16,11 @@ object Http:
 
 
 def mockResponses[R, U, A](comp: Eff[R, A])(using Member.Aux[Http, R, U], ResponseReader |= U): Eff[U, A] =
-  translate(comp)(new Translate[Http, U]:
-    override def apply[X](http: Http[X]): Eff[U, X] =
-      http match
-        case Http.Get(url) => ask[U, String]
-  )
+  translate(comp):
+    new Translate[Http, U]:
+      override def apply[X](http: Http[X]): Eff[U, X] =
+        http match
+          case Http.Get(url) => ask[U, String]
 
 
 type ResponseReader[A] = Reader[String, A]

@@ -11,11 +11,10 @@ object ZioMono extends Cdown.Entry(Contender.ZIO % "Mono"):
   type MyState = MyState.Service
 
   def program: URIO[MyState, Int] =
-    MyState.get.flatMap { n =>
+    MyState.get.flatMap: n =>
       if n <= 0
       then ZIO.succeed(n)
       else MyState.put(n - 1) *> program
-    }
 
   override def round1 =
     (program <*> MyState.get)

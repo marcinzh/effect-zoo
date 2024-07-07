@@ -12,11 +12,10 @@ object CatsEff extends Cdown.Entry(Contender.CatsEff):
   type MyState[A] = State[Int, A]
 
   def program[U](using MyState |= U): Eff[U, Int] =
-    get.flatMap { n =>
+    get.flatMap: n =>
       if n <= 0
       then n.pure
       else put(n - 1) *> program
-    }
 
   override def round1 =
     program[Fx.fx1[MyState]]
