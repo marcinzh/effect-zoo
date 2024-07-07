@@ -23,7 +23,7 @@ val Deps = {
     val catsEffect = "org.typelevel" %% "cats-effect" % "3.5.4"
     val zio = "dev.zio" %% "zio" % "2.1-RC1"
     val zioPrelude = "dev.zio" %% "zio-prelude" % "1.0.0-RC27"
-    val turbolift = "io.github.marcinzh" %% "turbolift-core" % "0.89.0-SNAPSHOT"
+    val turbolift = "io.github.marcinzh" %% "turbolift-core" % "0.90.0"
     val betterFiles = ("com.github.pathikrit" %% "better-files" % "3.9.2").cross(CrossVersion.for3Use2_13)
     val kyo = "io.getkyo" %% "kyo-core" % "0.10.2"
   }
