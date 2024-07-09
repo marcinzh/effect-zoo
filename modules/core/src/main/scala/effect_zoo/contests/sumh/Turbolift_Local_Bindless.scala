@@ -2,9 +2,10 @@ package effect_zoo.contests.sumh
 import effect_zoo.contests.{Sumh, Contender}
 import turbolift.!!
 import turbolift.effects.{Reader, Writer, State, Error}
+import turbolift.bindless._
 
 
-object TurboliftLocal extends Sumh.Entry(Contender.Turbolift % "Local"):
+object Turbolift_Local_Bindless extends Sumh.Entry(Contender.Turbolift % "Local_Bindless"):
   case object MyError extends Error[String]
   case object MyReader extends Reader[Int]
   case object MyWriter extends Writer[Long]
@@ -15,16 +16,12 @@ object TurboliftLocal extends Sumh.Entry(Contender.Turbolift % "Local"):
   type MyState = MyState.type
 
   def prog: Int !! (MyError & MyReader & MyWriter & MyState) =
-    for
-      s <- MyState.get
-      _ <- MyState.put(s + 1)
-      _ <- MyWriter.tell(s)
-      r <- MyReader.ask
-      x <-
-        if s < r
-        then prog
-        else !!.pure(s)
-    yield x
+    `do`:
+      val s = MyState.get.!
+      MyState.put(s + 1).!
+      MyWriter.tell(s).!
+      val r = MyReader.ask.!
+      if s < r then prog.! else s
 
   override def round1 =
     prog

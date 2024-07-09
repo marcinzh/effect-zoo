@@ -15,17 +15,21 @@ ThisBuild / scalacOptions ++= Seq(
 )
 
 val Deps = {
+  val v_kyo = "0.10.2"
+  val v_tur = "0.96.1"
   object deps {
     val scalatest = "org.scalatest" %% "scalatest" % "3.2.19" % "test"
     val catsCore = "org.typelevel" %% "cats-core" % "2.12.0"
-    val catsMtl = "org.typelevel" %% "cats-mtl" % "1.4.0"
+    val catsMtl = "org.typelevel" %% "cats-mtl" % "1.5.0"
     val catsEff = "org.atnos" %% "eff" % "7.0.4"
     val catsEffect = "org.typelevel" %% "cats-effect" % "3.5.4"
     val zio = "dev.zio" %% "zio" % "2.1-RC1"
-    val zioPrelude = "dev.zio" %% "zio-prelude" % "1.0.0-RC27"
-    val turbolift = "io.github.marcinzh" %% "turbolift-core" % "0.90.0"
+    val zioPrelude = "dev.zio" %% "zio-prelude" % "1.0.0-RC31"
+    val turbolift = "io.github.marcinzh" %% "turbolift-core" % v_tur
+    val turbolift_bindless = "io.github.marcinzh" %% "turbolift-bindless" % v_tur
     val betterFiles = ("com.github.pathikrit" %% "better-files" % "3.9.2").cross(CrossVersion.for3Use2_13)
-    val kyo = "io.getkyo" %% "kyo-core" % "0.10.2"
+    val kyo = "io.getkyo" %% "kyo-core" % v_kyo
+    val kyo_direct = "io.getkyo" %% "kyo-direct" % v_kyo
   }
   deps
 }
@@ -46,9 +50,11 @@ lazy val core = project
     Deps.catsEff,
     Deps.catsEffect,
     Deps.turbolift,
+    Deps.turbolift_bindless,
     Deps.zio,
     Deps.zioPrelude,
     Deps.kyo,
+    Deps.kyo_direct,
   ))
 
 lazy val chart = project

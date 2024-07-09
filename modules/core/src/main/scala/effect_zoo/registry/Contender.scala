@@ -25,7 +25,7 @@ object Contender:
       case RxWithMinor(a, b) => byName(a) % b
       case a => byName(a)
 
-  private val RxWithMinor = """(.+)_(\w+)""".r
+  private val RxWithMinor = """([^_]+)_(\w+)""".r
 
   case object Unfunctional extends Plain
   case object CatsCore extends Plain
