@@ -56,11 +56,13 @@ but they are unmaintained and unavailable for Scala 2.13 or 3.x.
   If you are on Windows, old `cmd.exe` or PowerShell will get you garbage on the screen.
   The [New Terminal](https://github.com/Microsoft/Terminal) might work (unconfirmed).
 
-- **Step 1:** Have sbt installed.
+- **Step 1:** Ensure you have Java 11 or newer.
+
+- **Step 2:** Have sbt installed.
 
   https://www.scala-sbt.org/download.html
 
-- **Step 2:** Get a local copy of this repo and launch sbt:
+- **Step 3:** Get a local copy of this repo and launch sbt:
 
   ```
   git clone https://github.com/marcinzh/effect-zoo.git
@@ -68,7 +70,7 @@ but they are unmaintained and unavailable for Scala 2.13 or 3.x.
   sbt
   ```
 
-- **Step 3:** From sbt's command prompt, pick **one** method:
+- **Step 4:** From sbt's command prompt, pick **one** method:
 
   - Run JMH by using predefined alias (takes ~20 minutes to complete):  
     ```
