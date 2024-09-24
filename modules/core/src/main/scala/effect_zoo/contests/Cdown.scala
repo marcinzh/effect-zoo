@@ -8,7 +8,7 @@ case object Cdown extends Contest1:
   override type Result1 = (Int, Int)
   override def expected1 = (0, 0)
 
-  val LIMIT = 100000
+  val LIMIT = 10000
 
   override def enumEntries =
     import cdown._
