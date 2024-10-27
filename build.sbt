@@ -1,6 +1,6 @@
 ThisBuild / organization := "com.github.marcinzh"
 ThisBuild / version := "1.0.0"
-ThisBuild / scalaVersion := "3.4.1"
+ThisBuild / scalaVersion := "3.6.1"
 
 ThisBuild / watchBeforeCommand := Watch.clearScreen
 ThisBuild / watchTriggeredMessage := Watch.clearScreenOnTrigger
@@ -11,7 +11,8 @@ ThisBuild / scalacOptions ++= Seq(
   "-feature",
   "-unchecked",
   "-Xfatal-warnings",
-  "-Ykind-projector:underscores",
+  "-Xkind-projector:underscores",
+  "-language:experimental.betterFors",
 )
 
 val Deps = {
