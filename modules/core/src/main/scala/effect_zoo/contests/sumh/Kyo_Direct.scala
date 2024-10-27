@@ -18,9 +18,9 @@ object Kyo_Direct extends Sumh.Entry(Contender.Kyo % "Direct"):
       Envs.run(Sumh.LIMIT):
         Vars.run(0L):
           Vars.run(0):
-            for
-              a <- prog
-              b <- Vars.get[Long]
-              c <- Vars.get[Int]
-            yield (a, b, c)
+            defer:
+              val a = await(prog)
+              val b = await(Vars.get[Long])
+              val c = await(Vars.get[Int])
+              (a, b, c)
     .pure

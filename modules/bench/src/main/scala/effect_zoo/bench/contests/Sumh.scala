@@ -23,6 +23,7 @@ class Sumh {
   val Turbolift_Local__run = reg.findRound("Turbolift_Local", 0).run
   val Turbolift_Local_Bindless__run = reg.findRound("Turbolift_Local_Bindless", 0).run
   val Turbolift_Shared__run = reg.findRound("Turbolift_Shared", 0).run
+  val Turbolift_Shared_Bindless__run = reg.findRound("Turbolift_Shared_Bindless", 0).run
   val ZIO_Cake__run = reg.findRound("ZIO_Cake", 0).run
   val ZIO_Layer__run = reg.findRound("ZIO_Layer", 0).run
   val ZIO_Env__run = reg.findRound("ZIO_Env", 0).run
@@ -41,6 +42,7 @@ class Sumh {
   @Benchmark def Turbolift_Local = Turbolift_Local__run()
   @Benchmark def Turbolift_Local_Bindless = Turbolift_Local_Bindless__run()
   @Benchmark def Turbolift_Shared = Turbolift_Shared__run()
+  @Benchmark def Turbolift_Shared_Bindless = Turbolift_Shared_Bindless__run()
   @Benchmark def ZIO_Cake = ZIO_Cake__run()
   @Benchmark def ZIO_Layer = ZIO_Layer__run()
   @Benchmark def ZIO_Env = ZIO_Env__run()
