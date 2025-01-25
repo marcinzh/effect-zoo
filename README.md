@@ -6,7 +6,7 @@ Effect Zoo provides:
 
 1. Code gallery, where we can demonstrate and compare the syntax of different effect systems,
 when they are assigned the same task.
-The sources are located [here](https://github.com/marcinzh/effect-zoo/tree/main/modules/core/src/main/scala/effect_zoo/contests).
+The sources are located [here](https://github.com/marcinzh/effect-zoo/tree/master/modules/core/src/main/scala/effect_zoo/contests).
 
 2. Microbenchmark suite. See running instruction [below](#running-microbenchmarks).
 
@@ -49,6 +49,9 @@ There are many more effect systems for Scala (e.g. 3 more implementations of the
 but they are unmaintained and unavailable for Scala 2.13 or 3.x.
 
 # Running Microbenchmarks
+
+> [!IMPORTANT]
+> Some effect systems require **Java 11** or newer.
 
 - **Step 0:** Ensure you have a modern terminal.
 
