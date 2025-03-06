@@ -23,8 +23,9 @@ case object Mulst extends Contest5:
     import mulst._
     Vector(
       CatsCore,
+      // CatsEff,
       Turbolift,
       ZioEnv,
       ZioStateful,
-      // Kyo,
+      Kyo,
     )

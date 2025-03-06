@@ -33,6 +33,11 @@ class Mulst {
   val ZIO_Stateful__2__run = reg.findRound("ZIO_Stateful", 2).run
   val ZIO_Stateful__3__run = reg.findRound("ZIO_Stateful", 3).run
   val ZIO_Stateful__4__run = reg.findRound("ZIO_Stateful", 4).run
+  val Kyo__0__run = reg.findRound("Kyo", 0).run
+  val Kyo__1__run = reg.findRound("Kyo", 1).run
+  val Kyo__2__run = reg.findRound("Kyo", 2).run
+  val Kyo__3__run = reg.findRound("Kyo", 3).run
+  val Kyo__4__run = reg.findRound("Kyo", 4).run
   
   @Benchmark def CatsCore__0 = CatsCore__0__run()
   @Benchmark def CatsCore__1 = CatsCore__1__run()
@@ -54,4 +59,9 @@ class Mulst {
   @Benchmark def ZIO_Stateful__2 = ZIO_Stateful__2__run()
   @Benchmark def ZIO_Stateful__3 = ZIO_Stateful__3__run()
   @Benchmark def ZIO_Stateful__4 = ZIO_Stateful__4__run()
+  @Benchmark def Kyo__0 = Kyo__0__run()
+  @Benchmark def Kyo__1 = Kyo__1__run()
+  @Benchmark def Kyo__2 = Kyo__2__run()
+  @Benchmark def Kyo__3 = Kyo__3__run()
+  @Benchmark def Kyo__4 = Kyo__4__run()
 }
