@@ -1,6 +1,5 @@
 package effect_zoo.contests.cdown
 import effect_zoo.contests.{Cdown, Contender}
-import zio.prelude.fx.ZPure
 
 
 object Unfunctional extends Cdown.Entry(Contender.Unfunctional):

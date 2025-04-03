@@ -32,10 +32,12 @@ object Contender:
   case object CatsMTL extends Plain
   case object CatsIO extends Plain
   case object CatsEff extends Plain
+  case object Fs2 extends Plain
   case object Turbolift extends Plain
   case object ZIO extends Plain
   case object ZPure extends Plain
   case object Kyo extends Plain
+  case object StdLib extends Plain { override def toString = "LazyList" }
 
   val all = Vector(
     Unfunctional,
@@ -43,8 +45,10 @@ object Contender:
     CatsMTL,
     CatsIO,
     CatsEff,
-    Turbolift,
+    Fs2,
     ZIO,
+    Kyo,
     ZPure,
-    Kyo
+    Turbolift,
+    StdLib,
   )

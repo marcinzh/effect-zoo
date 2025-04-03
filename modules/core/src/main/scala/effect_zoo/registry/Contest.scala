@@ -18,12 +18,13 @@ trait Contest extends Product:
 object Contest:
   val all: Vector[Contest] = 
     import effect_zoo.contests._
+    import effect_zoo.contests.streaming.StreamingContests
     Vector(
       Cdown,
       Sumh,
       Mulst,
       Reint,
-    )
+    ) ++ StreamingContests.enumContests
 
   def fromString(text: String): Contest =
     all.find(_.name == text).get

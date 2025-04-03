@@ -24,12 +24,13 @@ val Deps = {
     val catsMtl = "org.typelevel" %% "cats-mtl" % "1.5.0"
     val catsEff = "org.atnos" %% "eff" % "7.0.5"
     val catsEffect = "org.typelevel" %% "cats-effect" % "3.5.7"
+    val fs2 = "co.fs2" %% "fs2-core" % "3.12.0"
     val zio = "dev.zio" %% "zio" % "2.1-RC1"
     val zioPrelude = "dev.zio" %% "zio-prelude" % "1.0.0-RC39"
     val turbolift = "io.github.marcinzh" %% "turbolift-core-next" % v_tur
     val turbolift_bindless = "io.github.marcinzh" %% "turbolift-bindless-next" % v_tur
-    val betterFiles = ("com.github.pathikrit" %% "better-files" % "3.9.2")
-      .cross(CrossVersion.for3Use2_13)
+    val beam = "io.github.marcinzh" %% "beam-core" % "0.14.0"
+    val betterFiles = ("com.github.pathikrit" %% "better-files" % "3.9.2").cross(CrossVersion.for3Use2_13)
     val kyo = "io.getkyo" %% "kyo-core" % v_kyo
     val kyo_direct = "io.getkyo" %% "kyo-direct" % v_kyo
   }
@@ -44,21 +45,21 @@ lazy val root = project
 lazy val core = project
   .in(file("modules/core"))
   .settings(name := "effect-zoo-core")
-  .settings(
-    libraryDependencies ++= Seq(
-      Deps.scalatest,
-      Deps.catsCore,
-      Deps.catsMtl,
-      Deps.catsEff,
-      Deps.catsEffect,
-      Deps.turbolift,
-      Deps.turbolift_bindless,
-      Deps.zio,
-      Deps.zioPrelude,
-      Deps.kyo,
-      Deps.kyo_direct
-    )
-  )
+  .settings(libraryDependencies ++= Seq(
+    Deps.scalatest,
+    Deps.catsCore,
+    Deps.catsMtl,
+    Deps.catsEff,
+    Deps.catsEffect,
+    Deps.fs2,
+    Deps.turbolift,
+    Deps.turbolift_bindless,
+    Deps.beam,
+    Deps.zio,
+    Deps.zioPrelude,
+    Deps.kyo,
+    Deps.kyo_direct
+  ))
 
 lazy val chart = project
   .in(file("modules/chart"))
