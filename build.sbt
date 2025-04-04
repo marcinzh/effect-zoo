@@ -12,12 +12,12 @@ ThisBuild / scalacOptions ++= Seq(
   "-unchecked",
   "-Xfatal-warnings",
   "-Xkind-projector:underscores",
-  "-language:experimental.betterFors",
+  "-language:experimental.betterFors"
 )
 
 val Deps = {
-  val v_kyo = "0.10.2"
-  val v_tur = "0.104.0"
+  val v_kyo = "0.17.0"
+  val v_tur = "0.108.0"
   object deps {
     val scalatest = "org.scalatest" %% "scalatest" % "3.2.19" % "test"
     val catsCore = "org.typelevel" %% "cats-core" % "2.13.0"
@@ -27,14 +27,15 @@ val Deps = {
     val zio = "dev.zio" %% "zio" % "2.1-RC1"
     val zioPrelude = "dev.zio" %% "zio-prelude" % "1.0.0-RC39"
     val turbolift = "io.github.marcinzh" %% "turbolift-core" % v_tur
-    val turbolift_bindless = "io.github.marcinzh" %% "turbolift-bindless" % v_tur
-    val betterFiles = ("com.github.pathikrit" %% "better-files" % "3.9.2").cross(CrossVersion.for3Use2_13)
+    val turbolift_bindless =
+      "io.github.marcinzh" %% "turbolift-bindless" % v_tur
+    val betterFiles = ("com.github.pathikrit" %% "better-files" % "3.9.2")
+      .cross(CrossVersion.for3Use2_13)
     val kyo = "io.getkyo" %% "kyo-core" % v_kyo
     val kyo_direct = "io.getkyo" %% "kyo-direct" % v_kyo
   }
   deps
 }
-
 
 lazy val root = project
   .in(file("."))
@@ -44,19 +45,21 @@ lazy val root = project
 lazy val core = project
   .in(file("modules/core"))
   .settings(name := "effect-zoo-core")
-  .settings(libraryDependencies ++= Seq(
-    Deps.scalatest,
-    Deps.catsCore,
-    Deps.catsMtl,
-    Deps.catsEff,
-    Deps.catsEffect,
-    Deps.turbolift,
-    Deps.turbolift_bindless,
-    Deps.zio,
-    Deps.zioPrelude,
-    Deps.kyo,
-    Deps.kyo_direct,
-  ))
+  .settings(
+    libraryDependencies ++= Seq(
+      Deps.scalatest,
+      Deps.catsCore,
+      Deps.catsMtl,
+      Deps.catsEff,
+      Deps.catsEffect,
+      Deps.turbolift,
+      Deps.turbolift_bindless,
+      Deps.zio,
+      Deps.zioPrelude,
+      Deps.kyo,
+      Deps.kyo_direct
+    )
+  )
 
 lazy val chart = project
   .in(file("modules/chart"))
@@ -81,7 +84,6 @@ lazy val bench = project
   .dependsOn(core, chart)
   .enablePlugins(JmhPlugin)
   .settings(Jmh / run / mainClass := Some("effect_zoo.bench.Main"))
-
 
 addCommandAlias("runbench", "bench/Jmh/run -i 10 -wi 10 -f1 -t1 -r 1 -w 1")
 addCommandAlias("runbench3", "bench/Jmh/run -i 5 -wi 3 -f1 -t1 -r 3 -w 3")

@@ -1,26 +1,28 @@
 package effect_zoo.contests.sumh
 import effect_zoo.contests.{Sumh, Contender}
-import kyo._
-
+import kyo.*
 
 object Kyo_Direct extends Sumh.Entry(Contender.Kyo % "Direct"):
-  def prog: Int < (Aborts[String] & Envs[Int] & Vars[Int] & Vars[Long]) =
+  def prog: Int < (Abort[String] & Env[Int] & Var[Int] & Var[Long]) =
     defer:
-      val s = await(Vars.get[Int])
-      await(Vars.set[Int](s + 1))
-      await(Vars.update[Long](_ + s.toLong))
-      val r = await(Envs.get[Int])
-      if s < r then await(prog) else s
-
+      val s = (Var.get[Int]).now
+      (Var.set[Int](s + 1)).now
+      (Var.update[Long](_ + s.toLong)).now
+      val r = (Env.get[Int]).now
+      if s < r then (prog).now else s
 
   override def round1 =
-    Aborts.run[String]:
-      Envs.run(Sumh.LIMIT):
-        Vars.run(0L):
-          Vars.run(0):
-            defer:
-              val a = await(prog)
-              val b = await(Vars.get[Long])
-              val c = await(Vars.get[Int])
-              (a, b, c)
-    .pure
+    Abort
+      .run[String]:
+        Env.run(Sumh.LIMIT):
+          Var.run(0L):
+            Var.run(0):
+              defer:
+                val a = (prog).now
+                val b = (Var.get[Long]).now
+                val c = (Var.get[Int]).now
+                (a, b, c)
+      .eval
+      .toEither
+      .left
+      .map(e => e.toString())
