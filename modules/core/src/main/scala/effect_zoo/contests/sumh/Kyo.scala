@@ -6,25 +6,24 @@ import kyo.kernel.`<`.*
 
 object Kyo extends Sumh.Entry(Contender.Kyo):
   def prog: Int < (Abort[String] & Env[Int] & Var[Int] & Var[Long]) =
-    for
-      s <- Var.get[Int]
-      _ <- Var.set[Int](s + 1)
-      _ <- Var.update[Long](_ + s.toLong)
-      r <- Env.get[Int]
-      x <- if s < r then (prog) else s
-    yield x
+    Var.use[Int]: s =>
+      Var
+        .set(s + 1)
+        .andThen(Var.update[Long](_ + s.toLong))
+        .andThen(
+          Env.use[Int]: r =>
+            if s < r then (prog) else s 
+        )
 
   override def round1 =
 
-    val r = Abort.run[String]:
-      Env.run(Sumh.LIMIT):
-        Var.run(0L):
-          Var.run(0):
-            for
-              a <- prog
-              b <- Var.get[Long]
-              c <- Var.get[Int]
-            yield (a, b, c)
-
-    r.eval.toEither.left
+    prog
+      .pipe(
+        Var.runTuple(0),
+        Var.runTuple(0L),
+        Env.run(Sumh.LIMIT),
+        _.map { case (long, (int, r)) => (r, long, int) },
+        Abort.run(_)
+      )
+      .eval.toEither.left
       .map(e => e.toString())
