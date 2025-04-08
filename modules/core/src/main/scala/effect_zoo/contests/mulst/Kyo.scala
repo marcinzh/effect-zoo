@@ -17,12 +17,9 @@ object Kyo extends Mulst.Entry(Contender.Kyo):
           .andThen(Var.update[Int](_ + 10000))
           .andThen(prog(n - 1))
 
-    Var
-      .run(0):
-        for
-          _ <- prog(Mulst.LIMIT)
-          a <- Var.get[Int]
-        yield a
+    prog(Mulst.LIMIT)
+      .pipe(Var.runTuple(0))
+      .map(_._1)
       .eval
 
   override def round2 =
@@ -38,14 +35,12 @@ object Kyo extends Mulst.Entry(Contender.Kyo):
           .andThen(Var.update[Int1](_ + 10000))
           .andThen(prog(n - 1))
 
-    Var
-      .run(0.toInt2):
-        Var.run(0.toInt1):
-          for
-            _ <- prog(Mulst.LIMIT)
-            a <- Var.get[Int1]
-            b <- Var.get[Int2].map(_.toInt)
-          yield (a, b)
+    prog(Mulst.LIMIT)
+      .pipe(Var.runTuple(0.toInt1))
+      .pipe(Var.runTuple(0.toInt2))
+      .map {
+        case (int2, (int1, _)) => (int1.toInt, int2.toInt)
+      }
       .eval
 
   override def round3 =
@@ -61,16 +56,13 @@ object Kyo extends Mulst.Entry(Contender.Kyo):
           .andThen(Var.update[Int2](_ + 10000))
           .andThen(prog(n - 1))
 
-    Var
-      .run(0.toInt3):
-        Var.run(0.toInt2):
-          Var.run(0.toInt1):
-            for
-              _ <- prog(Mulst.LIMIT)
-              a <- Var.get[Int1]
-              b <- Var.get[Int2].map(_.toInt)
-              c <- Var.get[Int3].map(_.toInt)
-            yield (a, b, c)
+    prog(Mulst.LIMIT)
+      .pipe(Var.runTuple(0.toInt1))
+      .pipe(Var.runTuple(0.toInt2))
+      .pipe(Var.runTuple(0.toInt3))
+      .map {
+        case (int3, (int2, (int1, _))) => (int1.toInt, int2.toInt, int3.toInt)
+      }
       .eval
 
   override def round4 =
@@ -86,18 +78,14 @@ object Kyo extends Mulst.Entry(Contender.Kyo):
           .andThen(Var.update[Int1](_ + 10000))
           .andThen(prog(n - 1))
 
-    Var
-      .run(0.toInt4):
-        Var.run(0.toInt3):
-          Var.run(0.toInt2):
-            Var.run(0.toInt1):
-              for
-                _ <- prog(Mulst.LIMIT)
-                a <- Var.get[Int1]
-                b <- Var.get[Int2].map(_.toInt)
-                c <- Var.get[Int3].map(_.toInt)
-                d <- Var.get[Int4].map(_.toInt)
-              yield (a, b, c, d)
+    prog(Mulst.LIMIT)
+      .pipe(Var.runTuple(0.toInt1))
+      .pipe(Var.runTuple(0.toInt2))
+      .pipe(Var.runTuple(0.toInt3))
+      .pipe(Var.runTuple(0.toInt4))
+      .map {
+        case (int4, (int3, (int2, (int1, _)))) => (int1.toInt, int2.toInt, int3.toInt, int4.toInt)
+      }
       .eval
 
   override def round5 =
@@ -115,18 +103,14 @@ object Kyo extends Mulst.Entry(Contender.Kyo):
           .andThen(Var.update[Int5](_ + 10000))
           .andThen(prog(n - 1))
 
-    Var
-      .run(0.toInt5):
-        Var.run(0.toInt4):
-          Var.run(0.toInt3):
-            Var.run(0.toInt2):
-              Var.run(0.toInt1):
-                for
-                  _ <- prog(Mulst.LIMIT)
-                  a <- Var.get[Int1]
-                  b <- Var.get[Int2].map(_.toInt)
-                  c <- Var.get[Int3].map(_.toInt)
-                  d <- Var.get[Int4].map(_.toInt)
-                  e <- Var.get[Int5].map(_.toInt)
-                yield (a, b, c, d, e)
+    prog(Mulst.LIMIT)
+      .pipe(Var.runTuple(0.toInt1))
+      .pipe(Var.runTuple(0.toInt2))
+      .pipe(Var.runTuple(0.toInt3))
+      .pipe(Var.runTuple(0.toInt4))
+      .pipe(Var.runTuple(0.toInt5))
+      .map {
+        case (int5, (int4, (int3, (int2, (int1, _))))) => (int1.toInt, int2.toInt, int3.toInt, int4.toInt, int5.toInt)
+      }
       .eval
+
