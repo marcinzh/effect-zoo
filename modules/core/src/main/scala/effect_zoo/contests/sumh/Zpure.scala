@@ -11,7 +11,7 @@ object Zpure extends Sumh.Entry(Contender.ZPure):
       s <- ZPure.get
       _ <- ZPure.set(s + 1)
       _ <- ZPure.log(s.toLong)
-      r <- ZPure.serviceWith[Int](x => x)
+      r <- ZPure.service[Int, Int]
       x <-
         if s < r
         then prog

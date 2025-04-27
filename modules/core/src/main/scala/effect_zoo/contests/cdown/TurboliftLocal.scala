@@ -9,7 +9,7 @@ object TurboliftLocal extends Cdown.Entry(Contender.Turbolift % "Local"):
   type MyState = MyState.type
 
   def program: Int !! MyState =
-    MyState.get.flatMap: n =>
+    MyState.getsEff: n =>
       if n <= 0
       then !!.pure(n)
       else MyState.put(n - 1) &&! program

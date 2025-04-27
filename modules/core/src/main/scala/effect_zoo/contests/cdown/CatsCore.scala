@@ -1,11 +1,14 @@
 package effect_zoo.contests.cdown
 import effect_zoo.contests.{Cdown, Contender}
 import cats.data.State
+import cats.data.StateT
 import cats.implicits._
 
 
 object CatsCore extends Cdown.Entry(Contender.CatsCore):
   def program: State[Int, Int] =
+    //@#@TODO
+    // State.inspectF: n =>
     State.get[Int].flatMap: n =>
       if n <= 0
       then n.pure

@@ -1,6 +1,6 @@
 ThisBuild / organization := "com.github.marcinzh"
 ThisBuild / version := "1.0.0"
-ThisBuild / scalaVersion := "3.6.3"
+ThisBuild / scalaVersion := "3.6.4"
 
 ThisBuild / watchBeforeCommand := Watch.clearScreen
 ThisBuild / watchTriggeredMessage := Watch.clearScreenOnTrigger
@@ -17,7 +17,7 @@ ThisBuild / scalacOptions ++= Seq(
 
 val Deps = {
   val v_kyo = "0.17.0"
-  val v_tur = "0.108.0"
+  val v_tur = "0.114.0"
   object deps {
     val scalatest = "org.scalatest" %% "scalatest" % "3.2.19" % "test"
     val catsCore = "org.typelevel" %% "cats-core" % "2.13.0"

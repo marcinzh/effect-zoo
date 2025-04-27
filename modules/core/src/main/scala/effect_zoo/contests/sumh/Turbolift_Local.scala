@@ -15,16 +15,15 @@ object Turbolift_Local extends Sumh.Entry(Contender.Turbolift % "Local"):
   type MyState = MyState.type
 
   def prog: Int !! (MyError & MyReader & MyWriter & MyState) =
-    for
-      s <- MyState.get
-      _ <- MyState.put(s + 1)
-      _ <- MyWriter.tell(s)
-      r <- MyReader.ask
-      x <-
-        if s < r
-        then prog
-        else !!.pure(s)
-    yield x
+    MyState.getsEff: s =>
+      for
+        _ <- MyState.put(s + 1)
+        _ <- MyWriter.tell(s)
+        x <- MyReader.asksEff: r =>
+          if s < r
+          then prog
+          else !!.pure(s)
+      yield x
 
   override def round1 =
     prog
