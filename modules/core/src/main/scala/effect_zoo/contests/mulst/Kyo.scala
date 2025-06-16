@@ -18,7 +18,7 @@ object Kyo extends Mulst.Entry(Contender.Kyo):
           .andThen(prog(n - 1))
 
     prog(Mulst.LIMIT)
-      .pipe(Var.runTuple(0))
+      .handle(Var.runTuple(0))
       .map(_._1)
       .eval
 
@@ -36,8 +36,8 @@ object Kyo extends Mulst.Entry(Contender.Kyo):
           .andThen(prog(n - 1))
 
     prog(Mulst.LIMIT)
-      .pipe(Var.runTuple(0.toInt1))
-      .pipe(Var.runTuple(0.toInt2))
+      .handle(Var.runTuple(0.toInt1))
+      .handle(Var.runTuple(0.toInt2))
       .map {
         case (int2, (int1, _)) => (int1.toInt, int2.toInt)
       }
@@ -57,9 +57,9 @@ object Kyo extends Mulst.Entry(Contender.Kyo):
           .andThen(prog(n - 1))
 
     prog(Mulst.LIMIT)
-      .pipe(Var.runTuple(0.toInt1))
-      .pipe(Var.runTuple(0.toInt2))
-      .pipe(Var.runTuple(0.toInt3))
+      .handle(Var.runTuple(0.toInt1))
+      .handle(Var.runTuple(0.toInt2))
+      .handle(Var.runTuple(0.toInt3))
       .map {
         case (int3, (int2, (int1, _))) => (int1.toInt, int2.toInt, int3.toInt)
       }
@@ -79,10 +79,10 @@ object Kyo extends Mulst.Entry(Contender.Kyo):
           .andThen(prog(n - 1))
 
     prog(Mulst.LIMIT)
-      .pipe(Var.runTuple(0.toInt1))
-      .pipe(Var.runTuple(0.toInt2))
-      .pipe(Var.runTuple(0.toInt3))
-      .pipe(Var.runTuple(0.toInt4))
+      .handle(Var.runTuple(0.toInt1))
+      .handle(Var.runTuple(0.toInt2))
+      .handle(Var.runTuple(0.toInt3))
+      .handle(Var.runTuple(0.toInt4))
       .map {
         case (int4, (int3, (int2, (int1, _)))) => (int1.toInt, int2.toInt, int3.toInt, int4.toInt)
       }
@@ -104,11 +104,11 @@ object Kyo extends Mulst.Entry(Contender.Kyo):
           .andThen(prog(n - 1))
 
     prog(Mulst.LIMIT)
-      .pipe(Var.runTuple(0.toInt1))
-      .pipe(Var.runTuple(0.toInt2))
-      .pipe(Var.runTuple(0.toInt3))
-      .pipe(Var.runTuple(0.toInt4))
-      .pipe(Var.runTuple(0.toInt5))
+      .handle(Var.runTuple(0.toInt1))
+      .handle(Var.runTuple(0.toInt2))
+      .handle(Var.runTuple(0.toInt3))
+      .handle(Var.runTuple(0.toInt4))
+      .handle(Var.runTuple(0.toInt5))
       .map {
         case (int5, (int4, (int3, (int2, (int1, _))))) => (int1.toInt, int2.toInt, int3.toInt, int4.toInt, int5.toInt)
       }

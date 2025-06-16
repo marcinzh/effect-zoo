@@ -16,7 +16,7 @@ ThisBuild / scalacOptions ++= Seq(
 )
 
 val Deps = {
-  val v_kyo = "0.17.0"
+  val v_kyo = "0.18.0"
   val v_tur = "0.114.0"
   object deps {
     val scalatest = "org.scalatest" %% "scalatest" % "3.2.19" % "test"
