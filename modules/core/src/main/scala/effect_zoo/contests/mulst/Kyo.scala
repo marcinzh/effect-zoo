@@ -1,6 +1,6 @@
 package effect_zoo.contests.mulst
 import effect_zoo.contests.{Contender, Mulst}
-import effect_zoo.auxx.OpaqueInts._
+import effect_zoo.auxx.OpaqueInts.*
 import kyo.*
 
 object Kyo extends Mulst.Entry(Contender.Kyo):
@@ -39,7 +39,7 @@ object Kyo extends Mulst.Entry(Contender.Kyo):
       .handle(Var.runTuple(0.toInt1))
       .handle(Var.runTuple(0.toInt2))
       .map {
-        case (int2, (int1, _)) => (int1.toInt, int2.toInt)
+        case (int2, (int1, _)) => (Int1.unwrap(int1), Int2.unwrap(int2))
       }
       .eval
 
@@ -61,7 +61,7 @@ object Kyo extends Mulst.Entry(Contender.Kyo):
       .handle(Var.runTuple(0.toInt2))
       .handle(Var.runTuple(0.toInt3))
       .map {
-        case (int3, (int2, (int1, _))) => (int1.toInt, int2.toInt, int3.toInt)
+        case (int3, (int2, (int1, _))) => (Int1.unwrap(int1), Int2.unwrap(int2), Int3.unwrap(int3))
       }
       .eval
 
@@ -84,7 +84,7 @@ object Kyo extends Mulst.Entry(Contender.Kyo):
       .handle(Var.runTuple(0.toInt3))
       .handle(Var.runTuple(0.toInt4))
       .map {
-        case (int4, (int3, (int2, (int1, _)))) => (int1.toInt, int2.toInt, int3.toInt, int4.toInt)
+        case (int4, (int3, (int2, (int1, _)))) => (Int1.unwrap(int1), Int2.unwrap(int2), Int3.unwrap(int3), Int4.unwrap(int4))
       }
       .eval
 
@@ -110,7 +110,7 @@ object Kyo extends Mulst.Entry(Contender.Kyo):
       .handle(Var.runTuple(0.toInt4))
       .handle(Var.runTuple(0.toInt5))
       .map {
-        case (int5, (int4, (int3, (int2, (int1, _))))) => (int1.toInt, int2.toInt, int3.toInt, int4.toInt, int5.toInt)
+        case (int5, (int4, (int3, (int2, (int1, _))))) => (Int1.unwrap(int1), Int2.unwrap(int2), Int3.unwrap(int3), Int4.unwrap(int4), Int5.unwrap(int5))
       }
       .eval
 

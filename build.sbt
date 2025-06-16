@@ -1,6 +1,6 @@
 ThisBuild / organization := "com.github.marcinzh"
 ThisBuild / version := "1.0.0"
-ThisBuild / scalaVersion := "3.6.4"
+ThisBuild / scalaVersion := "3.7.0"
 
 ThisBuild / watchBeforeCommand := Watch.clearScreen
 ThisBuild / watchTriggeredMessage := Watch.clearScreenOnTrigger
@@ -12,11 +12,11 @@ ThisBuild / scalacOptions ++= Seq(
   "-unchecked",
   "-Xfatal-warnings",
   "-Xkind-projector:underscores",
-  "-language:experimental.betterFors"
+  "-preview", // "-language:experimental.betterFors"
 )
 
 val Deps = {
-  val v_kyo = "0.18.0"
+  val v_kyo = "0.19.0"
   val v_tur = "0.114.0"
   object deps {
     val scalatest = "org.scalatest" %% "scalatest" % "3.2.19" % "test"
@@ -26,9 +26,8 @@ val Deps = {
     val catsEffect = "org.typelevel" %% "cats-effect" % "3.5.7"
     val zio = "dev.zio" %% "zio" % "2.1-RC1"
     val zioPrelude = "dev.zio" %% "zio-prelude" % "1.0.0-RC39"
-    val turbolift = "io.github.marcinzh" %% "turbolift-core" % v_tur
-    val turbolift_bindless =
-      "io.github.marcinzh" %% "turbolift-bindless" % v_tur
+    val turbolift = "io.github.marcinzh" %% "turbolift-core-next" % v_tur
+    val turbolift_bindless = "io.github.marcinzh" %% "turbolift-bindless-next" % v_tur
     val betterFiles = ("com.github.pathikrit" %% "better-files" % "3.9.2")
       .cross(CrossVersion.for3Use2_13)
     val kyo = "io.getkyo" %% "kyo-core" % v_kyo

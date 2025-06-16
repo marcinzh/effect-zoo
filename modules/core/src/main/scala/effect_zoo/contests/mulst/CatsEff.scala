@@ -49,7 +49,7 @@ object CatsEff extends Mulst.Entry(Contender.CatsEff):
     prog[Fx.fx2[MyState2, MyState1]](Mulst.LIMIT)
     .runStateU[Int, Fx.fx1[MyState2]](0)
     .runState[Int2](0.toInt2)
-    .map { case ((_, a), b) => (a, b.toInt) }
+    .map { case ((_, a), b) => (a, b.unwrap) }
     .run
 
 
@@ -69,7 +69,7 @@ object CatsEff extends Mulst.Entry(Contender.CatsEff):
     .runState(0.toInt1)
     .runState(0.toInt2)
     .runState(0.toInt3)
-    .map { case (((_, a), b), c) => (a, b.toInt, c.toInt) }
+    .map { case (((_, a), b), c) => (a, b.unwrap, c.unwrap) }
     .run
 
 
@@ -90,7 +90,7 @@ object CatsEff extends Mulst.Entry(Contender.CatsEff):
     .runState(0.toInt2)
     .runState(0.toInt3)
     .runState(0.toInt4)
-    .map { case ((((_, a), b), c), d) => (a, b.toInt, c.toInt, d.toInt) }
+    .map { case ((((_, a), b), c), d) => (a, b.unwrap, c.unwrap, d.unwrap) }
     .run
 
 
@@ -112,5 +112,5 @@ object CatsEff extends Mulst.Entry(Contender.CatsEff):
     .runState(0.toInt3)
     .runState(0.toInt4)
     .runState(0.toInt5)
-    .map { case (((((_, a), b), c), d), e) => (a, b.toInt, c.toInt, d.toInt, e.toInt) }
+    .map { case (((((_, a), b), c), d), e) => (a, b.unwrap, c.unwrap, d.unwrap, e.unwrap) }
     .run

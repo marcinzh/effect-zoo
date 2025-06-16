@@ -18,29 +18,29 @@ object OpaqueInts:
 
   object Int1:
     extension (thiz: Int1)
-      inline def toInt: Int = thiz
+      inline def unwrap: Int = thiz
 
   object Int2:
     extension (thiz: Int2)
-      inline def toInt: Int = thiz
-      inline def +(n: Int): Int2 = thiz.toInt + n
+      inline def unwrap: Int = thiz
+      inline def +(n: Int): Int2 = thiz.unwrap + n
     // Faking it for "Please provide an implicit kyo.Tag" error
     given Tag[Int2] = Tag[Int2.type].asInstanceOf[Tag[Int2]]
 
   object Int3:
     extension (thiz: Int3)
-      inline def toInt: Int = thiz
-      inline def +(n: Int): Int3 = thiz.toInt + n
+      inline def unwrap: Int = thiz
+      inline def +(n: Int): Int3 = thiz.unwrap + n
     given Tag[Int3] = Tag[Int3.type].asInstanceOf[Tag[Int3]]
 
   object Int4:
     extension (thiz: Int4)
-      inline def toInt: Int = thiz
-      inline def +(n: Int): Int4 = thiz.toInt + n
+      inline def unwrap: Int = thiz
+      inline def +(n: Int): Int4 = thiz.unwrap + n
     given Tag[Int4] = Tag[Int4.type].asInstanceOf[Tag[Int4]]
 
   object Int5:
     extension (thiz: Int5)
-      inline def toInt: Int = thiz
-      inline def +(n: Int): Int5 = thiz.toInt + n
+      inline def unwrap: Int = thiz
+      inline def +(n: Int): Int5 = thiz.unwrap + n
     given Tag[Int5] = Tag[Int5.type].asInstanceOf[Tag[Int5]]
