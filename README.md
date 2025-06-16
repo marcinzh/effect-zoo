@@ -24,6 +24,7 @@ spread over a varying number `State` effects (1 to 5).
 - `reint`: The Reinterpretation scenario from Haskell's Effect Zoo.
 Demonstrates use of custom-defined effects as application modules, and effect reinterpretation as DI mechanism.
 
+- `mapfoldio` and `mapfoldpure`: Basic operations on streams. More stream-oriented contests will be added in the future.
 
 ### Included effect systems:
 
