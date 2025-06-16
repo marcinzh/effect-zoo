@@ -1,11 +1,10 @@
 package effect_zoo.contests.sumh
 import effect_zoo.contests.{Sumh, Contender}
-import scala.util.chaining._
 import cats.Monoid
 import cats.syntax.semigroup._
 import cats.instances.int._
 import zio._
-import effect_zoo.auxx.zio_.BenchmarkRuntime
+import effect_zoo.auxx.UnsafeRunZio._
 import effect_zoo.auxx.zio_.rws.env.{Reader, Writer, State}
 
 
@@ -32,4 +31,4 @@ object ZioEnv extends Sumh.Entry(Contender.ZIO % "Env"):
       aws <- prog2.provideEnvironment(readerEnv ++ writerEnv ++ stateEnv)
     yield aws)
     .either
-    .pipe(BenchmarkRuntime.unsafeRun)
+    .unsafeRunZio

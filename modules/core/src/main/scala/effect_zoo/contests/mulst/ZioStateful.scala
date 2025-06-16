@@ -1,6 +1,6 @@
 package effect_zoo.contests.mulst
 import effect_zoo.contests.{Contender, Mulst}
-import effect_zoo.auxx.zio_.BenchmarkRuntime
+import effect_zoo.auxx.UnsafeRunZio._
 import scala.util.chaining._
 import zio._
 import ZioStateful_Aux._
@@ -33,7 +33,7 @@ object ZioStateful extends Mulst.Entry(Contender.ZIO % "Stateful"):
 
     (prog(Mulst.LIMIT) *> MyStateOps1.get)
     .pipe(ZIO.stateful[Any](MyState1(0)))
-    .pipe(BenchmarkRuntime.unsafeRun)
+    .unsafeRunZio
 
 
   override def round2 =
@@ -51,7 +51,7 @@ object ZioStateful extends Mulst.Entry(Contender.ZIO % "Stateful"):
     (prog(Mulst.LIMIT) *> (MyStateOps1.get <*> MyStateOps2.get))
     .pipe(ZIO.stateful[ZState[MyState2]](MyState1(0)))
     .pipe(ZIO.stateful[Any](MyState2(0)))
-    .pipe(BenchmarkRuntime.unsafeRun)
+    .unsafeRunZio
 
 
   override def round3 =
@@ -70,7 +70,7 @@ object ZioStateful extends Mulst.Entry(Contender.ZIO % "Stateful"):
     .pipe(ZIO.stateful[ZState[MyState3] & ZState[MyState2]](MyState1(0)))
     .pipe(ZIO.stateful[ZState[MyState3]](MyState2(0)))
     .pipe(ZIO.stateful[Any](MyState3(0)))
-    .pipe(BenchmarkRuntime.unsafeRun)
+    .unsafeRunZio
     
 
   override def round4 =
@@ -90,7 +90,7 @@ object ZioStateful extends Mulst.Entry(Contender.ZIO % "Stateful"):
     .pipe(ZIO.stateful[ZState[MyState4] & ZState[MyState3]](MyState2(0)))
     .pipe(ZIO.stateful[ZState[MyState4]](MyState3(0)))
     .pipe(ZIO.stateful[Any](MyState4(0)))
-    .pipe(BenchmarkRuntime.unsafeRun)
+    .unsafeRunZio
 
 
   override def round5 =
@@ -111,7 +111,7 @@ object ZioStateful extends Mulst.Entry(Contender.ZIO % "Stateful"):
     .pipe(ZIO.stateful[ZState[MyState5] & ZState[MyState4]](MyState3(0)))
     .pipe(ZIO.stateful[ZState[MyState5]](MyState4(0)))
     .pipe(ZIO.stateful[Any](MyState5(0)))
-    .pipe(BenchmarkRuntime.unsafeRun)
+    .unsafeRunZio
 
 
 

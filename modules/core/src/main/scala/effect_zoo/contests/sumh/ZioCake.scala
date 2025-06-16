@@ -1,11 +1,10 @@
 package effect_zoo.contests.sumh
 import effect_zoo.contests.{Sumh, Contender}
-import scala.util.chaining._
 import cats.Monoid
 import cats.syntax.semigroup._
 import cats.instances.int._
 import zio._
-import effect_zoo.auxx.zio_.BenchmarkRuntime
+import effect_zoo.auxx.UnsafeRunZio._
 import effect_zoo.auxx.zio_.rws.cake.{Reader, Writer, State, Cake}
 
 
@@ -27,4 +26,4 @@ object ZioCake extends Sumh.Entry(Contender.ZIO % "Cake"):
     (Writer.listen[Long](prog) <*> State.get[Int])
     .provide(ZLayer.fromZIO(Cake[Int, Long, Int](Sumh.LIMIT, 0)))
     .either
-    .pipe(BenchmarkRuntime.unsafeRun)
+    .unsafeRunZio

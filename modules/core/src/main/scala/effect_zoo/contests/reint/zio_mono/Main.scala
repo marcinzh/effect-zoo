@@ -1,8 +1,7 @@
 package effect_zoo.contests.reint.zio_mono
 import effect_zoo.contests.{Reint, Contender}
-import scala.util.chaining._
 import zio._
-import effect_zoo.auxx.zio_.BenchmarkRuntime
+import effect_zoo.auxx.UnsafeRunZio._
 
 
 object Main extends Reint.Entry(Contender.ZIO % "Mono"):
@@ -18,7 +17,7 @@ object Main extends Reint.Entry(Contender.ZIO % "Mono"):
       LogWriter.Live.layer,
       ResponseReader.Live.layer(Reint.Shared.RESPONSE),
     )
-    .pipe(BenchmarkRuntime.unsafeRun)
+    .unsafeRunZio
 
 
   override def round1 = Reint.Shared.rep1(prog)

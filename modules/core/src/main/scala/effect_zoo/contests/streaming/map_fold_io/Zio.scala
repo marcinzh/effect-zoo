@@ -1,9 +1,8 @@
 package effect_zoo.contests.streaming.map_fold_io
 import effect_zoo.contests.streaming.{MapFoldIO, Contender}
-import scala.util.chaining._
 import zio._
 import zio.stream._
-import effect_zoo.auxx.zio_.BenchmarkRuntime
+import effect_zoo.auxx.UnsafeRunZio._
 
 
 object Zio extends MapFoldIO.Entry(Contender.ZIO):
@@ -13,4 +12,4 @@ object Zio extends MapFoldIO.Entry(Contender.ZIO):
       .filterZIO(x => ZIO.succeed(x % 2 == 0))
       .mapZIO(x => ZIO.succeed(x + 1))
       .runSum
-      .pipe(BenchmarkRuntime.unsafeRun)
+      .unsafeRunZio

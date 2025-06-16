@@ -1,10 +1,9 @@
 package effect_zoo.contests.sumh
 import effect_zoo.contests.{Sumh, Contender}
-import scala.util.chaining._
 import cats.Monoid
 import cats.instances.int._
 import zio._
-import effect_zoo.auxx.zio_.BenchmarkRuntime
+import effect_zoo.auxx.UnsafeRunZio._
 import effect_zoo.auxx.zio_.rws.layer.{Reader, ReaderLive, Writer, WriterLive, State, StateLive}
 
 
@@ -30,4 +29,4 @@ object ZioLayer extends Sumh.Entry(Contender.ZIO % "Layer"):
       ReaderLive.layer(Sumh.LIMIT)
     )
     .either
-    .pipe(BenchmarkRuntime.unsafeRun)
+    .unsafeRunZio

@@ -1,8 +1,7 @@
 package effect_zoo.contests.cdown
 import effect_zoo.contests.{Cdown, Contender}
-import scala.util.chaining._
 import zio._
-import effect_zoo.auxx.zio_.BenchmarkRuntime
+import effect_zoo.auxx.UnsafeRunZio._
 import effect_zoo.auxx.zio_.rws.cake.{Reader, Writer, State, Cake}
 
 
@@ -16,4 +15,4 @@ object ZioCake extends Cdown.Entry(Contender.ZIO % "Cake"):
   override def round1 =
     (program <*> State.get[Int])
     .provide(ZLayer.fromZIO(Cake[Int, Int, Int](0, Cdown.LIMIT)))
-    .pipe(BenchmarkRuntime.unsafeRun)
+    .unsafeRunZio

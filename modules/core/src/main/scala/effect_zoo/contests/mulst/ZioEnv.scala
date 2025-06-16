@@ -1,8 +1,7 @@
 package effect_zoo.contests.mulst
 import effect_zoo.contests.{Contender, Mulst}
-import scala.util.chaining._
 import zio._
-import effect_zoo.auxx.zio_.BenchmarkRuntime
+import effect_zoo.auxx.UnsafeRunZio._
 import ZioEnv_Aux._
 
 
@@ -36,7 +35,7 @@ object ZioEnv extends Mulst.Entry(Contender.ZIO % "Env"):
       prog2 = prog(Mulst.LIMIT) *> MyStateOps1.get
       x <- prog2.provideEnvironment(env1)
     yield x)
-    .pipe(BenchmarkRuntime.unsafeRun)
+    .unsafeRunZio
 
 
   override def round2 =
@@ -57,7 +56,7 @@ object ZioEnv extends Mulst.Entry(Contender.ZIO % "Env"):
       prog2 = prog(Mulst.LIMIT) *> (MyStateOps1.get <*> MyStateOps2.get)
       x <- prog2.provideEnvironment(env1 ++ env2)
     yield x)
-    .pipe(BenchmarkRuntime.unsafeRun)
+    .unsafeRunZio
 
 
   override def round3 =
@@ -79,7 +78,7 @@ object ZioEnv extends Mulst.Entry(Contender.ZIO % "Env"):
       prog2 = prog(Mulst.LIMIT) *> (MyStateOps1.get <*> MyStateOps2.get <*> MyStateOps3.get)
       x <- prog2.provideEnvironment(env1 ++ env2 ++ env3)
     yield x)
-    .pipe(BenchmarkRuntime.unsafeRun)
+    .unsafeRunZio
 
 
   override def round4 =
@@ -102,7 +101,7 @@ object ZioEnv extends Mulst.Entry(Contender.ZIO % "Env"):
       prog2 = prog(Mulst.LIMIT) *> (MyStateOps1.get <*> MyStateOps2.get <*> MyStateOps3.get <*> MyStateOps4.get)
       x <- prog2.provideEnvironment(env1 ++ env2 ++ env3 ++ env4)
     yield x)
-    .pipe(BenchmarkRuntime.unsafeRun)
+    .unsafeRunZio
 
 
   override def round5 =
@@ -126,7 +125,7 @@ object ZioEnv extends Mulst.Entry(Contender.ZIO % "Env"):
       prog2 = prog(Mulst.LIMIT) *> (MyStateOps1.get <*> MyStateOps2.get <*> MyStateOps3.get <*> MyStateOps4.get <*> MyStateOps5.get)
       x <- prog2.provideEnvironment(env1 ++ env2 ++ env3 ++ env4 ++ env5)
     yield x)
-    .pipe(BenchmarkRuntime.unsafeRun)
+    .unsafeRunZio
 
 
 object ZioEnv_Aux:

@@ -1,8 +1,7 @@
 package effect_zoo.contests.reint.zio_layer
 import effect_zoo.contests.{Reint, Contender}
-import scala.util.chaining._
 import zio._
-import effect_zoo.auxx.zio_.BenchmarkRuntime
+import effect_zoo.auxx.UnsafeRunZio._
 import effect_zoo.auxx.zio_.rws.layer.{ReaderLive, Writer, WriterLive}
 
 
@@ -19,7 +18,7 @@ object Main extends Reint.Entry(Contender.ZIO % "Layer"):
       WriterLive.layer[Vector[String]],
       ReaderLive.layer(Reint.Shared.RESPONSE),
     )
-    .pipe(BenchmarkRuntime.unsafeRun)
+    .unsafeRunZio
 
 
   override def round1 = Reint.Shared.rep1(prog)
