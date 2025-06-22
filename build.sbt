@@ -29,7 +29,7 @@ val Deps = {
     val zioPrelude = "dev.zio" %% "zio-prelude" % "1.0.0-RC39"
     val turbolift = "io.github.marcinzh" %% "turbolift-core-next" % v_tur
     val turbolift_bindless = "io.github.marcinzh" %% "turbolift-bindless-next" % v_tur
-    val beam = "io.github.marcinzh" %% "beam-core" % "0.14.0"
+    val beam = "io.github.marcinzh" %% "beam-core" % "0.16.0"
     val betterFiles = ("com.github.pathikrit" %% "better-files" % "3.9.2").cross(CrossVersion.for3Use2_13)
     val kyo = "io.getkyo" %% "kyo-core" % v_kyo
     val kyo_direct = "io.getkyo" %% "kyo-direct" % v_kyo
@@ -89,3 +89,6 @@ addCommandAlias("runbench", "bench/Jmh/run -i 10 -wi 10 -f1 -t1 -r 1 -w 1")
 addCommandAlias("runbench3", "bench/Jmh/run -i 5 -wi 3 -f1 -t1 -r 3 -w 3")
 addCommandAlias("runbench10", "bench/Jmh/run -i 5 -wi 3 -f1 -t1 -r 10 -w 10")
 addCommandAlias("runbench1", "bench/Jmh/run -i 1 -wi 1 -f1 -t1 -r 1 -w 1")
+
+val cls = taskKey[Unit]("cls")
+cls := { print("\u001b[0m\u001b[2J\u001bc") }

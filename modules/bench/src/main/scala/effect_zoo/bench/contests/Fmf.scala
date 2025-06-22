@@ -10,8 +10,8 @@ import effect_zoo.registry.Registry
 @BenchmarkMode(Array(Mode.Throughput))
 @OutputTimeUnit(TimeUnit.SECONDS)
 @Fork(jvmArgs = Array("-Dcats.effect.tracing.mode=DISABLED", "-Xms2g", "-Xmx2g"))
-class MapFoldIO {
-  val reg = Registry.findByContestName("MapFoldIO")
+class Fmf {
+  val reg = Registry.findByContestName("Fmf")
 
   val Fs2__run = reg.findRound("Fs2", 0).run
   val ZIO__run = reg.findRound("ZIO", 0).run

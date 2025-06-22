@@ -37,7 +37,6 @@ object Contender:
   case object ZIO extends Plain
   case object ZPure extends Plain
   case object Kyo extends Plain
-  case object StdLib extends Plain { override def toString = "LazyList" }
 
   val all = Vector(
     Unfunctional,
@@ -50,5 +49,4 @@ object Contender:
     Kyo,
     ZPure,
     Turbolift,
-    StdLib,
   )

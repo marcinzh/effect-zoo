@@ -1,13 +1,13 @@
-package effect_zoo.contests.streaming.map_fold_io
-import effect_zoo.contests.streaming.{MapFoldIO, Contender}
+package effect_zoo.contests.streaming.fmf
+import effect_zoo.contests.streaming.{Fmf, Contender}
 import kyo.*
 import effect_zoo.auxx.UnsafeRunKyo._
 
 
-object Kyo extends MapFoldIO.Entry(Contender.Kyo):
+object Kyo extends Fmf.Entry(Contender.Kyo):
   override def round1 =
     Stream
-      .init(MapFoldIO.theSeq)
+      .init(Fmf.theSeq)
       .filter(x => IO(x % 2 == 0))
       .map(x => IO(x + 1))
       .fold(0)(_ + _)
