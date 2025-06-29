@@ -18,6 +18,11 @@ class Mulst {
   val CatsCore__2__run = reg.findRound("CatsCore", 2).run
   val CatsCore__3__run = reg.findRound("CatsCore", 3).run
   val CatsCore__4__run = reg.findRound("CatsCore", 4).run
+  val CatsEff__0__run = reg.findRound("CatsEff", 0).run
+  val CatsEff__1__run = reg.findRound("CatsEff", 1).run
+  val CatsEff__2__run = reg.findRound("CatsEff", 2).run
+  val CatsEff__3__run = reg.findRound("CatsEff", 3).run
+  val CatsEff__4__run = reg.findRound("CatsEff", 4).run
   val Turbolift__0__run = reg.findRound("Turbolift", 0).run
   val Turbolift__1__run = reg.findRound("Turbolift", 1).run
   val Turbolift__2__run = reg.findRound("Turbolift", 2).run
@@ -44,6 +49,11 @@ class Mulst {
   @Benchmark def CatsCore__2 = CatsCore__2__run()
   @Benchmark def CatsCore__3 = CatsCore__3__run()
   @Benchmark def CatsCore__4 = CatsCore__4__run()
+  @Benchmark def CatsEff__0 = CatsEff__0__run()
+  @Benchmark def CatsEff__1 = CatsEff__1__run()
+  @Benchmark def CatsEff__2 = CatsEff__2__run()
+  @Benchmark def CatsEff__3 = CatsEff__3__run()
+  @Benchmark def CatsEff__4 = CatsEff__4__run()
   @Benchmark def Turbolift__0 = Turbolift__0__run()
   @Benchmark def Turbolift__1 = Turbolift__1__run()
   @Benchmark def Turbolift__2 = Turbolift__2__run()

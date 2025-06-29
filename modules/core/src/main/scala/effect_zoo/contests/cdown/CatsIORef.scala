@@ -14,7 +14,7 @@ object CatsIORef extends Cdown.Entry(Contender.CatsIO % "Ref"):
       L.liftIO(ref.get).flatMap: n =>
         if n <= 0
         then n.pure
-        else L.liftIO(ref.set(n - 1)) *> program
+        else L.liftIO(ref.set(n - 1)) >> program
 
   override def round1 =
     type Eff[A] = ReaderT[IO, Ref[IO, Int], A]

@@ -6,6 +6,7 @@ import cats.implicits._
 import org.atnos.eff._
 import org.atnos.eff.all._
 import org.atnos.eff.syntax.all._
+import effect_zoo.auxx.CatsEffAux._
 
 
 object CatsEff extends Cdown.Entry(Contender.CatsEff):
@@ -15,7 +16,7 @@ object CatsEff extends Cdown.Entry(Contender.CatsEff):
     get.flatMap: n =>
       if n <= 0
       then n.pure
-      else put(n - 1) *> program
+      else put(n - 1) *>> program
 
   override def round1 =
     program[Fx.fx1[MyState]]

@@ -23,14 +23,12 @@ object CatsCore extends Mulst.Entry(Contender.CatsCore):
       if n <= 0
       then lift0(Now(()))
       else
-        for
-          _ <- lift1(StateT.modify(_ + 1))
-          _ <- lift1(StateT.modify(_ + 10))
-          _ <- lift1(StateT.modify(_ + 100))
-          _ <- lift1(StateT.modify(_ + 1000))
-          _ <- lift1(StateT.modify(_ + 10000))
-          _ <- prog(n - 1)
-        yield ()
+        lift1(StateT.modify(_ + 1)) >>
+        lift1(StateT.modify(_ + 10)) >>
+        lift1(StateT.modify(_ + 100)) >>
+        lift1(StateT.modify(_ + 1000)) >>
+        lift1(StateT.modify(_ + 10000)) >>
+        prog(n - 1)
 
     prog(Mulst.LIMIT)
     .run(0).value
@@ -46,14 +44,12 @@ object CatsCore extends Mulst.Entry(Contender.CatsCore):
       if n <= 0
       then lift0(Now(()))
       else
-        for
-          _ <- lift1(StateT.modify(_ + 1))
-          _ <- lift2(StateT.modify(_ + 10))
-          _ <- lift1(StateT.modify(_ + 100))
-          _ <- lift2(StateT.modify(_ + 1000))
-          _ <- lift1(StateT.modify(_ + 10000))
-          _ <- prog(n - 1)
-        yield ()
+        lift1(StateT.modify(_ + 1)) >>
+        lift2(StateT.modify(_ + 10)) >>
+        lift1(StateT.modify(_ + 100)) >>
+        lift2(StateT.modify(_ + 1000)) >>
+        lift1(StateT.modify(_ + 10000)) >>
+        prog(n - 1)
 
     prog(Mulst.LIMIT)
     .run(0).run(0).value
@@ -70,14 +66,12 @@ object CatsCore extends Mulst.Entry(Contender.CatsCore):
       if n <= 0
       then lift0(Now(()))
       else
-        for
-          _ <- lift1(StateT.modify(_ + 1))
-          _ <- lift2(StateT.modify(_ + 10))
-          _ <- lift3(StateT.modify(_ + 100))
-          _ <- lift1(StateT.modify(_ + 1000))
-          _ <- lift2(StateT.modify(_ + 10000))
-          _ <- prog(n - 1)
-        yield ()
+        lift1(StateT.modify(_ + 1)) >>
+        lift2(StateT.modify(_ + 10)) >>
+        lift3(StateT.modify(_ + 100)) >>
+        lift1(StateT.modify(_ + 1000)) >>
+        lift2(StateT.modify(_ + 10000)) >>
+        prog(n - 1)
 
     prog(Mulst.LIMIT)
     .run(0).run(0).run(0).value
@@ -95,14 +89,12 @@ object CatsCore extends Mulst.Entry(Contender.CatsCore):
       if n <= 0
       then lift0(Now(()))
       else
-        for
-          _ <- lift1(StateT.modify(_ + 1))
-          _ <- lift2(StateT.modify(_ + 10))
-          _ <- lift3(StateT.modify(_ + 100))
-          _ <- lift4(StateT.modify(_ + 1000))
-          _ <- lift1(StateT.modify(_ + 10000))
-          _ <- prog(n - 1)
-        yield ()
+        lift1(StateT.modify(_ + 1)) >>
+        lift2(StateT.modify(_ + 10)) >>
+        lift3(StateT.modify(_ + 100)) >>
+        lift4(StateT.modify(_ + 1000)) >>
+        lift1(StateT.modify(_ + 10000)) >>
+        prog(n - 1)
 
     prog(Mulst.LIMIT)
     .run(0).run(0).run(0).run(0).value
@@ -121,14 +113,12 @@ object CatsCore extends Mulst.Entry(Contender.CatsCore):
       if n <= 0
       then lift0(Now(()))
       else
-        for
-          _ <- lift1(StateT.modify(_ + 1))
-          _ <- lift2(StateT.modify(_ + 10))
-          _ <- lift3(StateT.modify(_ + 100))
-          _ <- lift4(StateT.modify(_ + 1000))
-          _ <- lift5(StateT.modify(_ + 10000))
-          _ <- prog(n - 1)
-        yield ()
+        lift1(StateT.modify(_ + 1)) >>
+        lift2(StateT.modify(_ + 10)) >>
+        lift3(StateT.modify(_ + 100)) >>
+        lift4(StateT.modify(_ + 1000)) >>
+        lift5(StateT.modify(_ + 10000)) >>
+        prog(n - 1)
 
     prog(Mulst.LIMIT)
     .run(0).run(0).run(0).run(0).run(0).value

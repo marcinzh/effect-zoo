@@ -12,6 +12,6 @@ object CatsCore extends Cdown.Entry(Contender.CatsCore):
     State.get[Int].flatMap: n =>
       if n <= 0
       then n.pure
-      else State.set(n - 1) *> program
+      else State.set(n - 1) >> program
 
   override def round1 = program.run(Cdown.LIMIT).value

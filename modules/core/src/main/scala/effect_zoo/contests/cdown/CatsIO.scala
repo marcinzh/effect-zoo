@@ -13,7 +13,7 @@ object CatsIO extends Cdown.Entry(Contender.CatsIO):
     S.get.flatMap: n =>
       if n <= 0
       then n.pure
-      else S.set(n - 1) *> program
+      else S.set(n - 1) >> program
 
   override def round1 =
     program[StateT[IO, Int, _]]

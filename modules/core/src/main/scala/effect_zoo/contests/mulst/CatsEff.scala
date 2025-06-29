@@ -1,12 +1,13 @@
 package effect_zoo.contests.mulst
 import effect_zoo.contests.{Contender, Mulst}
-import effect_zoo.auxx.OpaqueInts._
 import cats._
 import cats.data._
 import cats.implicits._
 import org.atnos.eff._
 import org.atnos.eff.all._
 import org.atnos.eff.syntax.all._
+import effect_zoo.auxx.OpaqueInts._
+import effect_zoo.auxx.CatsEffAux._
 
 
 object CatsEff extends Mulst.Entry(Contender.CatsEff):
@@ -21,11 +22,11 @@ object CatsEff extends Mulst.Entry(Contender.CatsEff):
       if n <= 0
       then Eff.unit
       else
-        modify[U, Int1](_ + 1) *>
-        modify[U, Int1](_ + 10) *>
-        modify[U, Int1](_ + 100) *>
-        modify[U, Int1](_ + 1000) *>
-        modify[U, Int1](_ + 10000) *>
+        modify[U, Int1](_ + 1) *>>
+        modify[U, Int1](_ + 10) *>>
+        modify[U, Int1](_ + 100) *>>
+        modify[U, Int1](_ + 1000) *>>
+        modify[U, Int1](_ + 10000) *>>
         prog(n - 1)
 
     prog(Mulst.LIMIT)
@@ -39,11 +40,11 @@ object CatsEff extends Mulst.Entry(Contender.CatsEff):
       if n <= 0
       then Eff.unit
       else
-        modify[U, Int1](_ + 1) *>
-        modify[U, Int2](_ + 10) *>
-        modify[U, Int1](_ + 100) *>
-        modify[U, Int2](_ + 1000) *>
-        modify[U, Int1](_ + 10000) *>
+        modify[U, Int1](_ + 1) *>>
+        modify[U, Int2](_ + 10) *>>
+        modify[U, Int1](_ + 100) *>>
+        modify[U, Int2](_ + 1000) *>>
+        modify[U, Int1](_ + 10000) *>>
         prog(n - 1)
 
     prog[Fx.fx2[MyState2, MyState1]](Mulst.LIMIT)
@@ -58,11 +59,11 @@ object CatsEff extends Mulst.Entry(Contender.CatsEff):
       if n <= 0
       then Eff.unit
       else
-        modify[U, Int1](_ + 1) *>
-        modify[U, Int2](_ + 10) *>
-        modify[U, Int3](_ + 100) *>
-        modify[U, Int1](_ + 1000) *>
-        modify[U, Int2](_ + 10000) *>
+        modify[U, Int1](_ + 1) *>>
+        modify[U, Int2](_ + 10) *>>
+        modify[U, Int3](_ + 100) *>>
+        modify[U, Int1](_ + 1000) *>>
+        modify[U, Int2](_ + 10000) *>>
         prog(n - 1)
 
     prog[Fx.fx3[MyState1, MyState2, MyState3]](Mulst.LIMIT)
@@ -78,11 +79,11 @@ object CatsEff extends Mulst.Entry(Contender.CatsEff):
       if n <= 0
       then Eff.unit
       else
-        modify[U, Int1](_ + 1) *>
-        modify[U, Int2](_ + 10) *>
-        modify[U, Int3](_ + 100) *>
-        modify[U, Int4](_ + 1000) *>
-        modify[U, Int1](_ + 10000) *>
+        modify[U, Int1](_ + 1) *>>
+        modify[U, Int2](_ + 10) *>>
+        modify[U, Int3](_ + 100) *>>
+        modify[U, Int4](_ + 1000) *>>
+        modify[U, Int1](_ + 10000) *>>
         prog(n - 1)
 
     prog[Fx.fx4[MyState1, MyState2, MyState3, MyState4]](Mulst.LIMIT)
@@ -99,11 +100,11 @@ object CatsEff extends Mulst.Entry(Contender.CatsEff):
       if n <= 0
       then Eff.unit
       else
-        modify[U, Int1](_ + 1) *>
-        modify[U, Int2](_ + 10) *>
-        modify[U, Int3](_ + 100) *>
-        modify[U, Int4](_ + 1000) *>
-        modify[U, Int5](_ + 10000) *>
+        modify[U, Int1](_ + 1) *>>
+        modify[U, Int2](_ + 10) *>>
+        modify[U, Int3](_ + 100) *>>
+        modify[U, Int4](_ + 1000) *>>
+        modify[U, Int5](_ + 10000) *>>
         prog(n - 1)
 
     prog[Fx.fx5[MyState1, MyState2, MyState3, MyState4, MyState5]](Mulst.LIMIT)
