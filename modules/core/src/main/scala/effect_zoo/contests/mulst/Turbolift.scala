@@ -2,15 +2,15 @@ package effect_zoo.contests.mulst
 import effect_zoo.contests.{Contender, Mulst}
 import scala.util.chaining._
 import turbolift.!!
-import turbolift.effects.State
+import turbolift.effects.StateEffect
 
 
 object Turbolift extends Mulst.Entry(Contender.Turbolift):
-  case object MyState1 extends State[Int]
-  case object MyState2 extends State[Int]
-  case object MyState3 extends State[Int]
-  case object MyState4 extends State[Int]
-  case object MyState5 extends State[Int]
+  case object MyState1 extends StateEffect[Int]
+  case object MyState2 extends StateEffect[Int]
+  case object MyState3 extends StateEffect[Int]
+  case object MyState4 extends StateEffect[Int]
+  case object MyState5 extends StateEffect[Int]
   type MyState1 = MyState1.type
   type MyState2 = MyState2.type
   type MyState3 = MyState3.type

@@ -1,14 +1,14 @@
 package effect_zoo.contests.sumh
 import effect_zoo.contests.{Sumh, Contender}
 import turbolift.!!
-import turbolift.effects.{Reader, Writer, State, Error}
+import turbolift.effects.{ReaderEffect, WriterEffect, StateEffect, ErrorEffect}
 
 
 object Turbolift_Local extends Sumh.Entry(Contender.Turbolift % "Local"):
-  case object MyError extends Error[String]
-  case object MyReader extends Reader[Int]
-  case object MyWriter extends Writer[Long]
-  case object MyState extends State[Int]
+  case object MyError extends ErrorEffect[String]
+  case object MyReader extends ReaderEffect[Int]
+  case object MyWriter extends WriterEffect[Long]
+  case object MyState extends StateEffect[Int]
   type MyError = MyError.type
   type MyReader = MyReader.type
   type MyWriter = MyWriter.type

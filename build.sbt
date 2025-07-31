@@ -1,6 +1,6 @@
 ThisBuild / organization := "com.github.marcinzh"
 ThisBuild / version := "1.0.0"
-ThisBuild / scalaVersion := "3.7.0"
+ThisBuild / scalaVersion := "3.7.2"
 
 ThisBuild / watchBeforeCommand := Watch.clearScreen
 ThisBuild / watchTriggeredMessage := Watch.clearScreenOnTrigger
@@ -17,7 +17,7 @@ ThisBuild / scalacOptions ++= Seq(
 
 val Deps = {
   val v_kyo = "0.19.0"
-  val v_tur = "0.114.0"
+  val v_tur = "0.118.0"
   object deps {
     val scalatest = "org.scalatest" %% "scalatest" % "3.2.19" % "test"
     val catsCore = "org.typelevel" %% "cats-core" % "2.13.0"
@@ -29,7 +29,7 @@ val Deps = {
     val zioPrelude = "dev.zio" %% "zio-prelude" % "1.0.0-RC39"
     val turbolift = "io.github.marcinzh" %% "turbolift-core-next" % v_tur
     val turbolift_bindless = "io.github.marcinzh" %% "turbolift-bindless-next" % v_tur
-    val beam = "io.github.marcinzh" %% "beam-core" % "0.16.0"
+    val beam = "io.github.marcinzh" %% "beam-core" % "0.18.0"
     val betterFiles = ("com.github.pathikrit" %% "better-files" % "3.9.2").cross(CrossVersion.for3Use2_13)
     val kyo = "io.getkyo" %% "kyo-core" % v_kyo
     val kyo_direct = "io.getkyo" %% "kyo-direct" % v_kyo

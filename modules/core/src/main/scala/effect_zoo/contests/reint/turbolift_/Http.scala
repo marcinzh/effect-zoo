@@ -1,6 +1,6 @@
 package effect_zoo.contests.reint.turbolift_
 import turbolift.{!!, Signature, Effect, Handler}
-import turbolift.effects.Reader
+import turbolift.effects.ReaderEffect
 import turbolift.Extensions._
 
 
@@ -19,6 +19,6 @@ val mockResponses: Handler[Identity, Identity, Http, ResponseReader] =
   .toHandler
 
 
-case object ResponseReader extends Reader[String]
+case object ResponseReader extends ReaderEffect[String]
 
 type ResponseReader = ResponseReader.type

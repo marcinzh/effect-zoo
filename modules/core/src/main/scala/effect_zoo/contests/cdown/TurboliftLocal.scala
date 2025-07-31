@@ -1,11 +1,11 @@
 package effect_zoo.contests.cdown
 import effect_zoo.contests.{Cdown, Contender}
 import turbolift.!!
-import turbolift.effects.State
+import turbolift.effects.StateEffect
 
 
 object TurboliftLocal extends Cdown.Entry(Contender.Turbolift % "Local"):
-  case object MyState extends State[Int]
+  case object MyState extends StateEffect[Int]
   type MyState = MyState.type
 
   def program: Int !! MyState =

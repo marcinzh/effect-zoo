@@ -1,6 +1,6 @@
 package effect_zoo.contests.reint.turbolift_
 import turbolift.{!!, Signature, Effect, Handler}
-import turbolift.effects.WriterK
+import turbolift.effects.WriterEffectK
 import turbolift.Extensions._
 
 
@@ -13,12 +13,12 @@ case object Logging extends Effect[LoggingSignature] with LoggingSignature:
 type Logging = Logging.type  
 
 
-val accumulateLogMessages: Handler[Identity, Identity, Logging, LogWriter] =
+val accumulateLogMessages: Handler.IdId[Logging, LogWriter] =
   new Logging.impl.Proxy[LogWriter] with LoggingSignature:
     override def logMsg(text: String): Unit !! ThisEffect = LogWriter.tell(text)
   .toHandler
 
 
-case object LogWriter extends WriterK[Vector, String]
+case object LogWriter extends WriterEffectK[Vector, String]
 
 type LogWriter = LogWriter.type
