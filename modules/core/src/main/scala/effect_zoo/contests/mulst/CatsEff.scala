@@ -5,7 +5,7 @@ import cats.data._
 import cats.implicits._
 import org.atnos.eff._
 import org.atnos.eff.all._
-import org.atnos.eff.syntax.all._
+import org.atnos.eff.syntax.all.given
 import effect_zoo.auxx.OpaqueInts._
 import effect_zoo.auxx.CatsEffAux._
 
@@ -48,8 +48,9 @@ object CatsEff extends Mulst.Entry(Contender.CatsEff):
         prog(n - 1)
 
     prog[Fx.fx2[MyState2, MyState1]](Mulst.LIMIT)
-    .runStateU[Int, Fx.fx1[MyState2]](0)
-    .runState[Int2](0.toInt2)
+    // .runStateU[Int, Fx.fx1[MyState2]](0)
+    .runState(0.toInt1)
+    .runState(0.toInt2)
     .map { case ((_, a), b) => (a, b.unwrap) }
     .run
 
