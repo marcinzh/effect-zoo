@@ -4,7 +4,7 @@ import kyo.*
 
 object Kyo_Direct extends Sumh.Entry(Contender.Kyo % "Direct"):
   def prog: Int < (Abort[String] & Env[Int] & Var[Int] & Var[Long]) =
-    defer:
+    direct:
       val s = (Var.get[Int]).now
       (Var.set[Int](s + 1)).now
       (Var.update[Long](_ + s.toLong)).now
@@ -17,7 +17,7 @@ object Kyo_Direct extends Sumh.Entry(Contender.Kyo % "Direct"):
         Env.run(Sumh.LIMIT):
           Var.run(0L):
             Var.run(0):
-              defer:
+              direct:
                 val a = (prog).now
                 val b = (Var.get[Long]).now
                 val c = (Var.get[Int]).now

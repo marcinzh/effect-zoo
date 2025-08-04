@@ -8,7 +8,7 @@ object Kyo extends Fmf.Entry(Contender.Kyo):
   override def round1 =
     Stream
       .init(Fmf.theSeq)
-      .filter(x => IO(x % 2 == 0))
-      .map(x => IO(x + 1))
+      .filter(x => Sync.defer(x % 2 == 0))
+      .map(x => Sync.defer(x + 1))
       .fold(0)(_ + _)
       .unsafeRunKyo
